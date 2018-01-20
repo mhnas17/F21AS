@@ -1,5 +1,5 @@
 
 public class Classtwo {
 
-	//Stam's comment
+	//Stam's comments
 }
