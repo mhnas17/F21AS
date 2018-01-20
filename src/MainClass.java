@@ -5,6 +5,8 @@ public class MainClass {
 		//George 23
 		// hey
 		// TODO Auto-generated method stub
+		
+		// stam has the same meal every day..
 
 	}
 
