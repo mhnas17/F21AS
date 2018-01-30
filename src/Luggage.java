@@ -85,6 +85,4 @@ public class Luggage {
 		this.accum_numberofpassengers = accum_numberofpassengers;
 	}
 	
-		
-	
 }

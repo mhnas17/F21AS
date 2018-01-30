@@ -64,5 +64,4 @@ public class Plane {
 		this.maxvolume = maxvolume;
 	}
 	
-		
 }
