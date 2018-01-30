@@ -2,6 +2,7 @@
 public class MainClass {
 
 	public static void main(String[] args) {
+		//Stam's test comment
 		//George 239
 		// hey
 		// TODO Auto-generated method stub 
