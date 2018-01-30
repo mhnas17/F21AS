@@ -1,5 +1,7 @@
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.*;
 
 public class Data {
@@ -55,6 +57,7 @@ public class Data {
 	private void processLine(String line) {
 		try {
 			
+			
 		}
 		// ignore lines in error and try to carry on
 		catch (NumberFormatException nfe) {
@@ -101,6 +104,7 @@ public class Data {
    
    public int getExcessPassengersPerFlight(Flight e){
 		
+	   
 		return 0;
 	}
 	
@@ -115,7 +119,25 @@ public class Data {
 		return 0;
 	}
    
-   
+   public void writeToFile(String filename, String report) {
+		FileWriter fw;
+		try {
+			fw = new FileWriter(filename);
+			fw.write("The report\n");
+			fw.write(report);
+			fw.close();
+		}
+		// message and stop if file not found
+		catch (FileNotFoundException fnf) {
+			System.out.println(filename + "not found");
+			System.exit(0);
+		}
+		// stack trace here because we don't expect to come here
+		catch (IOException ioe) {
+			ioe.printStackTrace();
+			System.exit(1);
+		}
+	}
    
    
 }
