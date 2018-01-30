@@ -18,8 +18,7 @@ public class Booking {
 		setFlightcode(flightcode);
 		setCheckedin(checkedin);
 	}
-	
-	
+		
 	/**
 	 * @return
 	 */

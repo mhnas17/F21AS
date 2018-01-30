@@ -52,7 +52,6 @@ public class Flight {
 	public void setFlightdestination(String flightdestination) {
 		this.flightdestination = flightdestination;
 	}
-		
 	
 	
 	/**

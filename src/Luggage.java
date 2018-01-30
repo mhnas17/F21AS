@@ -6,8 +6,7 @@ public class Luggage {
 	private double accum_excessfees = 0;
 	private int accum_numberofpassengers = 0;
 	
-	
-	
+		
 	/**
 	 * @param accum_volume
 	 * @param accum_weight

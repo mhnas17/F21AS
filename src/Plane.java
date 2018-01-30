@@ -32,7 +32,7 @@ public class Plane {
 		this.maxpassengers = maxpassengers;
 	}
 	
-	
+		
 	/**
 	 * @return
 	 */
