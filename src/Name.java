@@ -112,6 +112,7 @@ public class Name {
 		return result;
 	}
 
+	
 	/**
 	 * returns the initials of the cabin owner separated by dots
 	 * @return initials of cabin owner
