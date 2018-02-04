@@ -21,6 +21,8 @@ public class NewGui extends JFrame implements ActionListener {
 	JTextField weight = new JTextField(5);
 	JCheckBox luggage = new JCheckBox("Luggage");
 	
+	
+	
 	public NewGui() {
 		setName("Check-In");
 		setupSouthPanel();
@@ -53,6 +55,7 @@ public class NewGui extends JFrame implements ActionListener {
 		southPanel.setLayout(new GridLayout(1, 1));
 		
 		southPanel.add(checkIn);
+		checkIn.addActionListener(this);
 		southPanel.add(report);
 		
 		this.add(southPanel, BorderLayout.SOUTH);
@@ -72,6 +75,10 @@ public class NewGui extends JFrame implements ActionListener {
 		this.add(northPanel, BorderLayout.NORTH);
 	}
 
-	public void actionPerformed(ActionEvent event) {		
+	public void actionPerformed(ActionEvent event ) {	
+		if (event.getSource() == checkIn) {
+			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+    	
+		}
 	}	
 }
