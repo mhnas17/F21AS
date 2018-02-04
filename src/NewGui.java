@@ -27,6 +27,8 @@ public class NewGui extends JFrame implements ActionListener {
 		setupNorthPanel();
 		setupCenterPanel();
 		pack();
+		setResizable(false);
+		setSize(600, 200);
 		setVisible(true);
 	}
 	
