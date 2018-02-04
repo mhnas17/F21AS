@@ -24,7 +24,7 @@ public class NewGui extends JFrame implements ActionListener {
 	
 	
 	public NewGui() {
-		setName("Check-In");
+		setTitle("Check In");
 		setupSouthPanel();
 		setupNorthPanel();
 		setupCenterPanel();
