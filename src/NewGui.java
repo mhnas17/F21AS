@@ -21,8 +21,6 @@ public class NewGui extends JFrame implements ActionListener {
 	JTextField weight = new JTextField(5);
 	JCheckBox luggage = new JCheckBox("Luggage");
 	
-	
-	
 	public NewGui() {
 		setTitle("Check In");
 		setupSouthPanel();
