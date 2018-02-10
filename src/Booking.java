@@ -13,7 +13,10 @@ public class Booking {
 	 * @param checkedin
 	 */
 	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin){
-				
+		if(bookingreference.trim().length()!=5){
+			throw new IllegalStateException("Wrong");
+		
+		}		
 		setBookingreference(bookingreference);
 		setPassengername(passengername);
 		setFlightcode(flightcode);
