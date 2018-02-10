@@ -1,3 +1,4 @@
+package name_plane;
 public class Name {
 		
     //instance variables

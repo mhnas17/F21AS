@@ -1,7 +1,11 @@
+import GUI.NewGui;
+import name_plane.Name;
 
 public class Manager {
 
 	public static void main(String[] args) {
+		
+				 
 		// TODO Auto-generated method stub
 		//Data s= new Data();
 		//s.process("textfile1", "textfile2");

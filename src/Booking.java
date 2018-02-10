@@ -1,7 +1,7 @@
-
+import name_plane.Name;
 public class Booking {
 
-	private String bookingreference;
+	public String bookingreference;
 	private Name passengername;
 	private String flightcode;
 	private boolean checkedin;
@@ -13,11 +13,14 @@ public class Booking {
 	 * @param checkedin
 	 */
 	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin){
+				
 		setBookingreference(bookingreference);
 		setPassengername(passengername);
 		setFlightcode(flightcode);
 		setCheckedin(checkedin);
-	}
+		}
+		
+	
 		
 	/**
 	 * @return
@@ -28,10 +31,15 @@ public class Booking {
 	
 	
 	
+	
 	/**
 	 * @param bookingreference
 	 */
 	public void setBookingreference(String bookingreference) {
+		if(bookingreference.trim().length()!=5){
+			throw new IllegalStateException("Wrong");
+		
+		}
 		this.bookingreference = bookingreference;
 	}
 	public Name getPassengername() {

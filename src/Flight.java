@@ -1,4 +1,4 @@
-
+import name_plane.Plane;
 public class Flight {
 
 	private String flightcode;
