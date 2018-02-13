@@ -17,17 +17,14 @@ public class Booking {
 	 * @param checkedin
 	 * @throws InvalidBookingReference
 	 */
-	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin) {
-		try {
-			validbookingreference(bookingreference);
-		} catch (InvalidBookingReference e) {
-			System.out.println(e.getMessage());
-		}
-
+	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin)
+			throws InvalidBookingReference {
+ 
 		setBookingreference(bookingreference);
 		setPassengername(passengername);
 		setFlightcode(flightcode);
 		setCheckedin(checkedin);
+
 	}
 
 	/**
@@ -41,8 +38,9 @@ public class Booking {
 	 * @param bookingreference
 	 * @throws InvalidBookingReference
 	 */
-	public void setBookingreference(String bookingreference) {
+	public void setBookingreference(String bookingreference) throws InvalidBookingReference {
 
+		validbookingreference(bookingreference);
 		this.bookingreference = bookingreference;
 	}
 
@@ -84,7 +82,7 @@ public class Booking {
 	public void setCheckedin(boolean checkedin) {
 		this.checkedin = checkedin;
 	}
-
+ 
 	public void validbookingreference(String b) throws InvalidBookingReference {
 		int size = b.trim().length();
 		if (size != 5) {
