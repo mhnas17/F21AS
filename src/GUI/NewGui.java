@@ -1,12 +1,11 @@
 package GUI;
+
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-
-
 public class NewGui extends JFrame implements ActionListener {
-		
+
 	/**
 	 * 
 	 */
@@ -21,7 +20,7 @@ public class NewGui extends JFrame implements ActionListener {
 	JTextField length = new JTextField(5);
 	JTextField weight = new JTextField(5);
 	JCheckBox luggage = new JCheckBox("Luggage");
-	
+
 	public NewGui() {
 		setTitle("Check In");
 		setupSouthPanel();
@@ -32,12 +31,12 @@ public class NewGui extends JFrame implements ActionListener {
 		setSize(600, 200);
 		setVisible(true);
 	}
-	
+
 	private void setupCenterPanel() {
 		JPanel centerPanel = new JPanel();
 
 		centerPanel.setLayout(new GridBagLayout());
-				
+
 		centerPanel.add(new JLabel("Weight "));
 		centerPanel.add(weight);
 		centerPanel.add(new JLabel("Height "));
@@ -46,27 +45,27 @@ public class NewGui extends JFrame implements ActionListener {
 		centerPanel.add(length);
 		centerPanel.add(new JLabel("Width "));
 		centerPanel.add(width);
-		
+
 		this.add(centerPanel, BorderLayout.CENTER);
 	}
 
 	private void setupSouthPanel() {
 		JPanel southPanel = new JPanel();
-		
+
 		southPanel.setLayout(new GridLayout(1, 1));
-		
+
 		southPanel.add(checkIn);
 		checkIn.addActionListener(this);
 		southPanel.add(report);
-		
+
 		this.add(southPanel, BorderLayout.SOUTH);
 	}
 
 	private void setupNorthPanel() {
 		JPanel northPanel = new JPanel();
-		
-		northPanel.setLayout(new BoxLayout(northPanel,BoxLayout.Y_AXIS));
-		
+
+		northPanel.setLayout(new BoxLayout(northPanel, BoxLayout.Y_AXIS));
+
 		northPanel.add(new JLabel("Last Name "));
 		northPanel.add(lastName);
 		northPanel.add(new JLabel("Booking Refernce Number "));
@@ -76,10 +75,10 @@ public class NewGui extends JFrame implements ActionListener {
 		this.add(northPanel, BorderLayout.NORTH);
 	}
 
-	public void actionPerformed(ActionEvent event ) {	
+	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == checkIn) {
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
-    	
+
 		}
-	}	
+	}
 }

@@ -1,4 +1,5 @@
 package core;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
@@ -7,28 +8,30 @@ import java.util.*;
 
 public class Data {
 
-	
-	HashMap <String, Booking> bookings = new HashMap <String, Booking> ();
-	HashMap <String,Flight> flights = new HashMap <String,Flight>();
-	HashMap <String,Luggage> checkindata = new HashMap <String,Luggage>();
-	
-	
-	/** top-level process to read,.... 
-	 * @param filename  The name of the file containing the text
-	 */
-	public void process(String filename1, String filename2){
+	HashMap<String, Booking> bookings = new HashMap<String, Booking>();
+	HashMap<String, Flight> flights = new HashMap<String, Flight>();
+	HashMap<String, Luggage> checkindata = new HashMap<String, Luggage>();
 
-		//read text file1
-		readtextfile(filename1); 
-		readtextfile(filename2);
-			
-	}
-	
 	/**
-	 * reads file with given name, extracting data, creating objects and
-	 * adding them to the maps.
-	 * Blank Lines are skipped
-	 * @param filename the name of the input file       
+	 * top-level process to read,....
+	 * 
+	 * @param filename
+	 *            The name of the file containing the text
+	 */
+	public void process(String filename1, String filename2) {
+
+		// read text file1
+		readtextfile(filename1);
+		readtextfile(filename2);
+
+	}
+
+	/**
+	 * reads file with given name, extracting data, creating objects and adding them
+	 * to the maps. Blank Lines are skipped
+	 * 
+	 * @param filename
+	 *            the name of the input file
 	 */
 	public void readtextfile(String filename) {
 		try {
@@ -49,16 +52,17 @@ public class Data {
 			System.exit(0);
 		}
 	}
-	
+
 	/**
-	 * Processes line, extracts data, creates object and adds to map.
-	 * Will crash if the name is entered without a space
-	 * @param line the line to to be processed
+	 * Processes line, extracts data, creates object and adds to map. Will crash if
+	 * the name is entered without a space
+	 * 
+	 * @param line
+	 *            the line to to be processed
 	 */
 	private void processLine(String line) {
 		try {
-			
-			
+
 		}
 		// ignore lines in error and try to carry on
 		catch (NumberFormatException nfe) {
@@ -72,55 +76,51 @@ public class Data {
 		}
 
 	}
-		
-	public int getPassengersPerFlight(Flight e){
-					
+
+	public int getPassengersPerFlight(Flight e) {
+
 		int s = checkindata.get(e.getFlightcode()).getAccum_numberofpassengers();
 		return s;
-				
-	}
-	
-	
-	public double getLuggageWeightPerFlight(Flight e){
-		
-		double  s = checkindata.get(e.getFlightcode()).getAccum_weight();
-		return s;
-		
+
 	}
 
-   public double getLuggageVolumePerFlight(Flight e){
-		
-	   double  s = checkindata.get(e.getFlightcode()).getAccum_volume();
+	public double getLuggageWeightPerFlight(Flight e) {
+
+		double s = checkindata.get(e.getFlightcode()).getAccum_weight();
 		return s;
-		
+
 	}
-	
-   public double getExcessFeesPerFlight(Flight e){
-	
-	   double  s = checkindata.get(e.getFlightcode()).getAccum_excessfees();
+
+	public double getLuggageVolumePerFlight(Flight e) {
+
+		double s = checkindata.get(e.getFlightcode()).getAccum_volume();
 		return s;
-	
-    }
-	
-   
-   public int getExcessPassengersPerFlight(Flight e){
-		
-	   
+
+	}
+
+	public double getExcessFeesPerFlight(Flight e) {
+
+		double s = checkindata.get(e.getFlightcode()).getAccum_excessfees();
+		return s;
+
+	}
+
+	public int getExcessPassengersPerFlight(Flight e) {
+
 		return 0;
 	}
-	
-   
-   public double getExcessWeightPerFlight(){
-		
+
+	public double getExcessWeightPerFlight() {
+
 		return 0;
 	}
-   
-   public double getExcessVolumePerFlight(){
-		
+
+	public double getExcessVolumePerFlight() {
+
 		return 0;
 	}
-   
-   public void writeToFile(String filename, String report) {
+
+	public void writeToFile(String filename, String report) {
 		FileWriter fw;
 		try {
 			fw = new FileWriter(filename);
@@ -139,6 +139,5 @@ public class Data {
 			System.exit(1);
 		}
 	}
-   
-   
+
 }
