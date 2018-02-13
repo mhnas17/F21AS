@@ -50,7 +50,7 @@ public class BookingTest {
 	public void testBooking() throws InvalidBookingReference {
 
 		thrown.expect(InvalidBookingReference.class);
-		//thrown.expectMessage("Invalid Booking Reference : Must be 5 characters long.");
+		thrown.expectMessage("Invalid Booking Reference : Must be 5 characters long.");
 		Booking b = new Booking("RF1222", new Name("Minadakis George"), "A1320", false);
 		
 	}

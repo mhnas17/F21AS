@@ -16,7 +16,7 @@ public class Plane {
 		setMaxweight(maxweight);
 		setMaxvolume(maxvolume);
 	}
-
+	
 	/**
 	 * @return
 	 */

@@ -11,7 +11,7 @@ public class Data {
 	HashMap<String, Booking> bookings = new HashMap<String, Booking>();
 	HashMap<String, Flight> flights = new HashMap<String, Flight>();
 	HashMap<String, Luggage> checkindata = new HashMap<String, Luggage>();
-
+			
 	/**
 	 * top-level process to read,....
 	 * 

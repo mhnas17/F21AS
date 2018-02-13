@@ -1,6 +1,8 @@
 package core;
 
+import java.util.ArrayList;
 import name_plane.Plane;
+
 
 public class Flight {
 
@@ -8,20 +10,25 @@ public class Flight {
 	private String flightdestination;
 	private String carrier;
 	private Plane plane;
-
+		
+	
 	/**
 	 * @param flightcode
 	 * @param flightdestination
 	 * @param carrier
 	 * @param plane
+	 * @throws InvalidFlightCode 
+	 * @throws InvalidDestination 
+	 * @throws IndalidPlaneType 
+	 * @throws InvalidBookingReference
 	 */
 	public Flight(String flightcode, String flightdestination, String carrier, Plane plane) {
-        				
+
 		setFlightcode(flightcode);
 		setFlightdestination(flightdestination);
 		setCarrier(carrier);
 		setPlane(plane);
-	 
+
 	}
 
 	/**
@@ -33,13 +40,14 @@ public class Flight {
 
 	/**
 	 * @param flightcode
+	 * @throws InvalidFlightCode 
 	 */
 	public void setFlightcode(String flightcode) {
-		if (!validflightcode(flightcode))
-		throw new IllegalArgumentException("flight code must have the format A1234");
+		if(!validflightcode(flightcode)) throw new IllegalArgumentException("Invalid Flight Code");
+			
 		this.flightcode = flightcode;
 	}
- 
+
 	/**
 	 * @return
 	 */
@@ -50,7 +58,7 @@ public class Flight {
 	/**
 	 * @param flightdestination
 	 */
-	public void setFlightdestination(String flightdestination) {
+	public void setFlightdestination(String flightdestination)  {
 		this.flightdestination = flightdestination;
 	}
 
@@ -77,24 +85,29 @@ public class Flight {
 
 	/**
 	 * @param plane
+	 * @throws IndalidPlaneType 
 	 */
 	public void setPlane(Plane plane) {
+		
 		this.plane = plane;
 	}
 
-	private boolean validflightcode(String p) {
-		int size = p.length();
-		if (size !=5)
+	private boolean validflightcode(String b) {
+		int size = b.trim().length();
+		if (size != 5) {
 			return false;
-		char ch = p.charAt(0);
-		if (!isULetter(ch))
+		}
+		char ch = b.charAt(0);
+		if (!isULetter(ch)) {
 			return false;
+		}
+
 		for (int i = 1; i < size; i++) {
-			ch = p.charAt(i);
+			ch = b.charAt(i);
 			if (isNotNumber(ch)) {
 				return false;
 			}
-
+			
 		}
 		return true;
 	}
@@ -107,4 +120,7 @@ public class Flight {
 		return ch >= 'A' && ch <= 'Z';
 	}
 
+			
 }
+	
+
