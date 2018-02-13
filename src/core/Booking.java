@@ -1,3 +1,4 @@
+package core;
 import name_plane.Name;
 public class Booking {
 
@@ -13,8 +14,9 @@ public class Booking {
 	 * @param checkedin
 	 */
 	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin){
-		if(bookingreference.trim().length()!=5){
-			throw new IllegalStateException("Wrong");
+		if(!validbookingreference(bookingreference)){				
+			
+			throw new IllegalStateException("Booking Reference should be of format AB123");
 		
 		}		
 		setBookingreference(bookingreference);
@@ -39,10 +41,12 @@ public class Booking {
 	 * @param bookingreference
 	 */
 	public void setBookingreference(String bookingreference) {
-		if(bookingreference.trim().length()!=5){
-			throw new IllegalStateException("Wrong");
+      
+		if(!validbookingreference(bookingreference)){				
+			
+			throw new IllegalStateException("Booking Reference should be of format AB123");
 		
-		}
+		}	
 		this.bookingreference = bookingreference;
 	}
 	public Name getPassengername() {
@@ -89,5 +93,30 @@ public class Booking {
 		this.checkedin = checkedin;
 	}
 	
+	
+	public boolean validbookingreference(String b){
+		int size = b.trim().length();
+		if (size !=5 ) return false;
+		char ch = b.charAt(0);
+		if (!isULetter(ch)) return false;
+		ch = b.charAt(1);
+		if (!isULetter(ch)) return false;
+		for (int i=2; i<size; i++) {
+			ch = b.charAt(i);
+			if(isNotNumber(ch)) {
+			return false;}
+		}
+		return true;
+		
+	}
+	
+	private boolean isNotNumber(char ch) {
+		return ch < '0' || ch > '9';
+		}
+	
+		private boolean isULetter(char ch) {
+		return ch >= 'A' && ch <= 'Z';
+		}
+			
 		
 }

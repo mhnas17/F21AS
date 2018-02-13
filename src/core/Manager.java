@@ -1,3 +1,4 @@
+package core;
 import GUI.NewGui;
 import name_plane.Name;
 
