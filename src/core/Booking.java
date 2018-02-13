@@ -24,7 +24,6 @@ public class Booking {
 		setPassengername(passengername);
 		setFlightcode(flightcode);
 		setCheckedin(checkedin);
-
 	}
 
 	/**
