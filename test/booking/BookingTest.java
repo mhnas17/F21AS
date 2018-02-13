@@ -14,7 +14,8 @@ import core.Booking;
 import name_plane.Name;
 
 public class BookingTest {
-
+	Booking b1  =new Booking("RF112",new Name("Minadakis George"),"A1320", false);
+	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -35,11 +36,20 @@ public class BookingTest {
     public ExpectedException thrown = ExpectedException.none();
 	
 	@Test
+	//Testing the getters and setters for booking reference. These should pass
+	public void testGetterAndSetter_shouldPass() {
+		
+		assertEquals("Booking should be RF112", "RF112", b1.getBookingreference());
+		b1.setBookingreference("AB123");
+		assertEquals("Booking should be AB123", "AB123", b1.getBookingreference());
+	}
+	
+	@Test
 	public void testBooking() {
 		
 		thrown.expect(IllegalStateException.class);
 		thrown.expectMessage("Booking Reference should be of format AB123");
-		Booking b  =new Booking("RFA12",new Name("Minadakis George"),"A1320", false);
+		Booking b  =new Booking("RF12",new Name("Minadakis George"),"A1320", false);
 	}
 	
 }
