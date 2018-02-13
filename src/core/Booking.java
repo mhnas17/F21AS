@@ -12,6 +12,7 @@ public class Booking {
 	 * @param passengername
 	 * @param flightcode
 	 * @param checkedin
+	 * fgfgf
 	 */
 	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin){
 		if(!validbookingreference(bookingreference)){				
