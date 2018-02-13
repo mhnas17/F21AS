@@ -17,10 +17,6 @@ public class Flight {
 	 * @param flightdestination
 	 * @param carrier
 	 * @param plane
-	 * @throws InvalidFlightCode 
-	 * @throws InvalidDestination 
-	 * @throws IndalidPlaneType 
-	 * @throws InvalidBookingReference
 	 */
 	public Flight(String flightcode, String flightdestination, String carrier, Plane plane) {
 
