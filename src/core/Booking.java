@@ -58,6 +58,7 @@ public class Booking {
 	 * @return
 	 */
 	public String getFlightcode() {
+		
 		return flightcode;
 	}
 
@@ -65,7 +66,10 @@ public class Booking {
 	 * @param flightcode
 	 */
 	public void setFlightcode(String flightcode) {
+		
+		if(!validflightcode(flightcode)) throw new IllegalArgumentException("Invalid Flight Code");
 		this.flightcode = flightcode;
+		
 	}
 
 	/**
@@ -111,4 +115,26 @@ public class Booking {
 		return ch >= 'A' && ch <= 'Z';
 	}
 
+	private boolean validflightcode(String b) {
+		int size = b.trim().length();
+		if (size != 5) {
+			return false;
+		}
+		char ch = b.charAt(0);
+		if (!isULetter(ch)) {
+			return false;
+		}
+
+		for (int i = 1; i < size; i++) {
+			ch = b.charAt(i);
+			if (isNotNumber(ch)) {
+				return false;
+			}
+			
+		}
+		return true;
+	}
+	
+	
+	
 }
