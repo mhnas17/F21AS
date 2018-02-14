@@ -49,7 +49,7 @@ public class BookingTest {
 	}
 
 	@Test
-	public void testBooking() throws Exception {
+	public void testBooking() throws InvalidBookingReference, InvalidFlightCode {
 
 		thrown.expect(InvalidBookingReference.class);
 		thrown.expectMessage("Invalid Booking Reference : Must be 5 characters long.");
