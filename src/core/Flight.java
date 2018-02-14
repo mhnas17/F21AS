@@ -1,6 +1,5 @@
 package core;
-
-import java.util.ArrayList;
+import Exceptions.InvalidFlightCode;
 import name_plane.Plane;
 
 
@@ -17,8 +16,9 @@ public class Flight {
 	 * @param flightdestination
 	 * @param carrier
 	 * @param plane
+	 * @throws InvalidFlightCode 
 	 */
-	public Flight(String flightcode, String flightdestination, String carrier, Plane plane) {
+	public Flight(String flightcode, String flightdestination, String carrier, Plane plane) throws InvalidFlightCode {
 
 		setFlightcode(flightcode);
 		setFlightdestination(flightdestination);
@@ -38,8 +38,8 @@ public class Flight {
 	 * @param flightcode
 	 * @throws InvalidFlightCode 
 	 */
-	public void setFlightcode(String flightcode) {
-		if(!validflightcode(flightcode)) throw new IllegalArgumentException("Invalid Flight Code");
+	public void setFlightcode(String flightcode) throws InvalidFlightCode {
+		if(!validflightcode(flightcode)) throw new InvalidFlightCode(flightcode);
 			
 		this.flightcode = flightcode;
 	}

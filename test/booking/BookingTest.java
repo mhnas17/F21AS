@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import Exceptions.InvalidBookingReference;
+import Exceptions.InvalidFlightCode;
 import core.Booking;
 import core.Flight;
 import name_plane.Name;
@@ -38,8 +39,7 @@ public class BookingTest {
 	public ExpectedException thrown = ExpectedException.none();
 
 	@Test
-	// Testing the getters and setters for booking reference. These should pass
-	public void testGetterAndSetter_shouldPass() throws InvalidBookingReference {
+	public void testGetterAndSetter_shouldPass() throws Exception {
 		Booking b1 = new Booking("RF112", new Name("Minadakis George"), "A1320", false);
 		
 		assertEquals("Booking should be RF112", "RF112", b1.getBookingreference());
@@ -49,7 +49,7 @@ public class BookingTest {
 	}
 
 	@Test
-	public void testBooking() throws InvalidBookingReference {
+	public void testBooking() throws Exception {
 
 		thrown.expect(InvalidBookingReference.class);
 		thrown.expectMessage("Invalid Booking Reference : Must be 5 characters long.");
@@ -58,7 +58,7 @@ public class BookingTest {
 	}
 	
 	@Test
-	public void testGetFlightcode() {
+	public void testGetFlightcode() throws InvalidFlightCode {
 	
 		 String expected1 = "A1234";
 		 Flight c1 = new Flight("A1234","London","AEGEAN", new Plane (140,300,500));;
@@ -68,15 +68,15 @@ public class BookingTest {
 
 	
 	@Test
-	public void testSetFlightcode() {
+	public void testSetFlightcode() throws InvalidFlightCode {
 		 String expected1 = "A1235";
 		 Flight c1 = new Flight("A1234","London","AEGEAN", new Plane (140,300,500));;
 	     c1.setFlightcode("A1235");
 		 assertEquals(expected1, c1.getFlightcode());
 	}
 	
-	@Test(expected = IllegalArgumentException.class)
-	public  void invalidflightcodesupplied() {
+	@Test(expected = InvalidFlightCode.class)
+	public  void invalidflightcodesupplied() throws InvalidFlightCode {
 		Flight c = new Flight("1320A","London","AEGEAN", new Plane (140,300,500));
 	}
 

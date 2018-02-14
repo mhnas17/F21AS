@@ -15,10 +15,10 @@ public class Booking {
 	 * @param passengername
 	 * @param flightcode
 	 * @param checkedin
-	 * @throws InvalidBookingReference
+	 * @throws InvalidBookingReference 
+	 * @throws InvalidFlightCode  
 	 */
-	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin)
-			throws InvalidBookingReference {
+	public Booking(String bookingreference, Name passengername, String flightcode, boolean checkedin) throws InvalidBookingReference, InvalidFlightCode{
  
 		setBookingreference(bookingreference);
 		setPassengername(passengername);
@@ -64,10 +64,11 @@ public class Booking {
 
 	/**
 	 * @param flightcode
+	 * @throws invalidFlightCode 
 	 */
-	public void setFlightcode(String flightcode) {
+	public void setFlightcode(String flightcode) throws InvalidFlightCode {
 		
-		if(!validflightcode(flightcode)) throw new IllegalArgumentException("Invalid Flight Code");
+		if(!validflightcode(flightcode)) throw new InvalidFlightCode(flightcode);
 		this.flightcode = flightcode;
 		
 	}
