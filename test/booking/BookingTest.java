@@ -58,26 +58,45 @@ public class BookingTest {
 	}
 	
 	@Test
-	public void testGetFlightcode() throws InvalidFlightCode {
+	public void testGetFlightcode() throws InvalidFlightCode, InvalidBookingReference {
 	
 		 String expected1 = "A1234";
-		 Flight c1 = new Flight("A1234","London","AEGEAN", new Plane (140,300,500));;
-	     String actual1 = c1.getFlightcode();
+		 Booking b1 = new Booking("AB234", new Name("Minadakis George"), "A1234", false);
+	     String actual1 = b1.getFlightcode();
 		 assertEquals(expected1, actual1);
 	}
 
 	
 	@Test
-	public void testSetFlightcode() throws InvalidFlightCode {
+	public void testSetFlightcode() throws InvalidFlightCode, InvalidBookingReference {
 		 String expected1 = "A1235";
-		 Flight c1 = new Flight("A1234","London","AEGEAN", new Plane (140,300,500));;
-	     c1.setFlightcode("A1235");
-		 assertEquals(expected1, c1.getFlightcode());
+		 Booking b1 = new Booking("RF112", new Name("Minadakis George"), "A1320", false);
+	     b1.setFlightcode("A1235");
+		 assertEquals(expected1, b1.getFlightcode());
 	}
 	
 	@Test(expected = InvalidFlightCode.class)
-	public  void invalidflightcodesupplied() throws InvalidFlightCode {
-		Flight c = new Flight("1320A","London","AEGEAN", new Plane (140,300,500));
+	public  void invalidflightcodesupplied() throws InvalidFlightCode, InvalidBookingReference {
+		Booking b1 = new Booking("RF112", new Name("Minadakis George"), "Ab320", false);
 	}
 
+	@Test
+	public void testGetpassengername() throws InvalidFlightCode, InvalidBookingReference {
+		Name expected1= new Name("Minadakis George");
+		Booking b1 = new Booking("RF112", new Name("Minadakis George"), "A1320", false);
+		Name actual1 = b1.getPassengername();
+		assertEquals(expected1.getFirstName(),actual1.getFirstName());
+		assertEquals(expected1.getLastName(),actual1.getLastName());
+		assertEquals(expected1.getFullName(),actual1.getFullName());
+		assertEquals(expected1.getInitials(),actual1.getInitials());
+	}
+	
+	@Test
+	public void testSetpassengername() throws InvalidFlightCode, InvalidBookingReference {
+		Name expected1= new Name("Stam Tiniakos");
+		Booking b1 = new Booking("RF112", new Name("Minadakis George"), "A1320", false);
+		b1.setPassengername(expected1);
+		assertEquals(expected1, b1.getPassengername());
+		
+	}
 }
