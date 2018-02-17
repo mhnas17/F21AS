@@ -58,4 +58,8 @@ public class LuggageMap {
 		return 0;
 	}
 	
+	public Luggage getValue(String k) {
+		return checkindata.get(k);
+	}
+	
 }

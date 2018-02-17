@@ -15,6 +15,7 @@ public class Manager {
 	private FlightMap entries;
 	private LuggageMap lug;
 	private BookingMap book;
+	private NewGui gui;
 	
 	public Manager() throws InvalidFlightCode, InvalidBookingReference {
 
@@ -96,7 +97,11 @@ public class Manager {
 		}
 
 	}
-
+	
+	public void showGui() {
+		gui = new NewGui(book, lug);
+	}
+	
 	public static void main(String[] args) throws Exception {
 
 		// TODO Auto-generated method stub
@@ -108,6 +113,7 @@ public class Manager {
 		// Flight c = new Flight("A13201", "London", "AEGEAN", new Plane(140, 300,
 		// 500));
 		Manager p = new Manager();
+		p.showGui();
 
 	}
 

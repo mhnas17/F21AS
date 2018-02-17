@@ -15,4 +15,8 @@ public class BookingMap {
 		bookings.put(key, value);
 	}
 	
+	public Booking getValue(String k) {
+		return bookings.get(k);
+	}
+	
 }

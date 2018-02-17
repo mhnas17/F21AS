@@ -25,9 +25,14 @@ public class NewGui extends JFrame implements ActionListener {
 	JTextField weight = new JTextField(5);
 	JCheckBox luggage = new JCheckBox("Luggage");
 	
+	private BookingMap book;
+	private LuggageMap lugagges;
+	
 	Luggage lug = new Luggage(0,0,0,0);
 	
 	public NewGui(BookingMap bmap, LuggageMap lmap) {
+		this.book = bmap;
+		this.lugagges = lmap;
 		setTitle("Check In");
 		setupSouthPanel();
 		setupNorthPanel();
@@ -83,8 +88,13 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == checkIn) {
-			lug.setAccum_volume(getVolume());
-			lug.setAccum_weight(getWeight());
+			
+			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
+			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
+			
+			
+			
+			
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 
 		}
