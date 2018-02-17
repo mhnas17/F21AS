@@ -4,6 +4,10 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
+import core.Luggage;
+import core.BookingMap;
+import core.LuggageMap;
+
 public class NewGui extends JFrame implements ActionListener {
 
 	/**
@@ -20,7 +24,9 @@ public class NewGui extends JFrame implements ActionListener {
 	JTextField length = new JTextField(5);
 	JTextField weight = new JTextField(5);
 	JCheckBox luggage = new JCheckBox("Luggage");
-
+	
+	Luggage lug = new Luggage(0,0,0,0);
+	
 	public NewGui() {
 		setTitle("Check In");
 		setupSouthPanel();
@@ -77,6 +83,8 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == checkIn) {
+			lug.setAccum_volume(getVolume());
+			lug.setAccum_weight(getWeight());
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 
 		}
