@@ -4,8 +4,13 @@ import java.util.HashMap;
 
 public class LuggageMap {
 
-	HashMap<String, Luggage> checkindata = new HashMap<String, Luggage>();
+	private HashMap<String, Luggage> checkindata; 
 	
+	
+	public LuggageMap(){ 
+		checkindata = new HashMap<String, Luggage>();
+	}
+			
 	public int getPassengersPerFlight(Flight e) {
 
 		int s = checkindata.get(e.getFlightcode()).getAccum_numberofpassengers();
