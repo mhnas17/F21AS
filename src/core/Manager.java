@@ -17,6 +17,7 @@ public class Manager {
 		//NewGui demo = new NewGui();
 		Booking b = new Booking("AF115",new Name("Minadakis George"),"A1320",false);
 		Flight c = new Flight("A13201","London","AEGEAN", new Plane (140,300,500));
+		//o phil gamietai
 	}
 
 }
