@@ -11,4 +11,8 @@ public class BookingMap {
 		bookings = new HashMap<String, Booking>();
 	}
 	
+	public void add(String key,Booking value) {
+		bookings.put(key, value);
+	}
+	
 }

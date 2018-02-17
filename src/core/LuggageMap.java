@@ -10,6 +10,10 @@ public class LuggageMap {
 	public LuggageMap(){ 
 		checkindata = new HashMap<String, Luggage>();
 	}
+	
+	public void add(String key,Luggage value) {
+		checkindata.put(key, value);
+	}
 			
 	public int getPassengersPerFlight(Flight e) {
 
