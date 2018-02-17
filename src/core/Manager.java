@@ -12,11 +12,15 @@ import java.util.HashMap;
 
 public class Manager {
 
+	private FlightMap entries;
+	private LuggageMap lug;
+	private BookingMap book;
+	
 	public Manager() throws InvalidFlightCode, InvalidBookingReference {
 
-		FlightMap entries = new FlightMap();
-		LuggageMap lug = new LuggageMap();
-		BookingMap book = new BookingMap();
+		entries = new FlightMap();
+		lug = new LuggageMap();
+		book = new BookingMap();
 		BufferedReader buff = null;
 		String data[] = new String[4];
 		try {
