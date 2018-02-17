@@ -81,4 +81,14 @@ public class NewGui extends JFrame implements ActionListener {
 
 		}
 	}
+	
+	public double getVolume() {
+		double volume = Double.parseDouble(length.getText())*Double.parseDouble(width.getText())*Double.parseDouble(height.getText());
+		return volume;
+	}
+	
+	public double getWeight() {
+		double w = Double.parseDouble(weight.getText());
+		return w;
+	} 
 }
