@@ -136,6 +136,6 @@ public class Booking {
 		return true;
 	}
 	
-	
+	// o giorgos tona pairnei
 	
 }
