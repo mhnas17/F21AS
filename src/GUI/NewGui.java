@@ -27,7 +27,7 @@ public class NewGui extends JFrame implements ActionListener {
 	
 	Luggage lug = new Luggage(0,0,0,0);
 	
-	public NewGui() {
+	public NewGui(BookingMap bmap, LuggageMap lmap) {
 		setTitle("Check In");
 		setupSouthPanel();
 		setupNorthPanel();

@@ -17,8 +17,8 @@ public class FlightMap {
 		flights.put(key, value);
 	}
 
-	public boolean getFlight() {
-		return flights.isEmpty();
+	public void getFlight() {
+		System.out.println(flights);
 	}
 		
 }
