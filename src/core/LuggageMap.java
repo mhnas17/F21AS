@@ -1,6 +1,9 @@
 package core;
 
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class LuggageMap {
 
@@ -9,6 +12,7 @@ public class LuggageMap {
 	
 	public LuggageMap(){ 
 		checkindata = new HashMap<String, Luggage>();
+		
 	}
 	
 	public void add(String key,Luggage value) {
@@ -58,8 +62,22 @@ public class LuggageMap {
 		return 0;
 	}
 	
+	
+	
 	public Luggage getValue(String k) {
 		return checkindata.get(k);
 	}
+	public void getReport() {
+		String report="|Flight|Total Volume|Total Weight|Total excess fees|Passengers\n";
+		 Set<Entry<String,Luggage>> hashSet=checkindata.entrySet();
+	        for(Entry entry:hashSet ) {
+	        	Luggage s = Luggage.class.cast(entry.getValue());
+	        		
+	        		System.out.println("Key="+entry.getKey()+", Value="+ s.getAccum_numberofpassengers());
+	        }
+		//return report;
+	}
 	
+	
+
 }

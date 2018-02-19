@@ -68,7 +68,7 @@ public class NewGui extends JFrame implements ActionListener {
 		JPanel southPanel = new JPanel();
 
 		southPanel.setLayout(new GridLayout(1, 1));
-
+		report.addActionListener(this);
 		southPanel.add(checkIn);
 		checkIn.addActionListener(this);
 		southPanel.add(report);
@@ -98,6 +98,10 @@ public class NewGui extends JFrame implements ActionListener {
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+		if(event.getSource()==report) {
+				lugagges.getReport();
+				
+			}
 			
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 
