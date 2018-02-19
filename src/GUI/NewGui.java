@@ -23,13 +23,13 @@ public class NewGui extends JFrame implements ActionListener {
 	JTextField width = new JTextField(5);
 	JTextField length = new JTextField(5);
 	JTextField weight = new JTextField(5);
-	JCheckBox luggage = new JCheckBox("Luggage",false);
-	
+	JCheckBox luggage = new JCheckBox("Luggage", false);
+
 	private BookingMap book;
 	private LuggageMap lugagges;
-	
-	Luggage lug = new Luggage(0,0,0,0);
-	
+
+	Luggage lug = new Luggage(0, 0, 0, 0);
+
 	public NewGui(BookingMap bmap, LuggageMap lmap) {
 		this.book = bmap;
 		this.lugagges = lmap;
@@ -93,17 +93,17 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == checkIn) {
-			
+
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
-		if(event.getSource()==report) {
-				lugagges.getReport();
-				
-			}
-			
+
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+
+		}
+		if (event.getSource() == report) {
+			lugagges.getReport();
 
 		}
 		if (event.getSource() == luggage) {
@@ -112,34 +112,33 @@ public class NewGui extends JFrame implements ActionListener {
 				length.setEditable(true);
 				width.setEditable(true);
 				height.setEditable(true);
-			}
-			else {
+			} else {
 				weight.setEditable(false);
 				length.setEditable(false);
 				width.setEditable(false);
 				height.setEditable(false);
 			}
-			
+
 		}
 	}
-	
+
 	public double getVolume() {
-		double volume = Double.parseDouble(length.getText())*Double.parseDouble(width.getText())*Double.parseDouble(height.getText());
+		double volume = Double.parseDouble(length.getText()) * Double.parseDouble(width.getText())
+				* Double.parseDouble(height.getText());
 		return volume;
 	}
-	
+
 	public double getWeight() {
 		double w = Double.parseDouble(weight.getText());
 		return w;
-	} 
-	
+	}
+
 	public double getExcessfees() {
 		double w = Double.parseDouble(weight.getText());
-		if(w>20) {
-			return (w-20)*15;
-		}
-		else
-		return 0;
-		
+		if (w > 20) {
+			return (w - 20) * 15;
+		} else
+			return 0;
+
 	}
 }
