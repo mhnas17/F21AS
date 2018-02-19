@@ -23,7 +23,7 @@ public class NewGui extends JFrame implements ActionListener {
 	JTextField width = new JTextField(5);
 	JTextField length = new JTextField(5);
 	JTextField weight = new JTextField(5);
-	JCheckBox luggage = new JCheckBox("Luggage");
+	JCheckBox luggage = new JCheckBox("Luggage",false);
 	
 	private BookingMap book;
 	private LuggageMap lugagges;
@@ -50,12 +50,16 @@ public class NewGui extends JFrame implements ActionListener {
 
 		centerPanel.add(new JLabel("Weight "));
 		centerPanel.add(weight);
+		weight.setEditable(false);
 		centerPanel.add(new JLabel("Height "));
 		centerPanel.add(height);
+		height.setEditable(false);
 		centerPanel.add(new JLabel("Length "));
 		centerPanel.add(length);
+		length.setEditable(false);
 		centerPanel.add(new JLabel("Width "));
 		centerPanel.add(width);
+		width.setEditable(false);
 
 		this.add(centerPanel, BorderLayout.CENTER);
 	}
@@ -82,6 +86,7 @@ public class NewGui extends JFrame implements ActionListener {
 		northPanel.add(new JLabel("Booking Refernce Number "));
 		northPanel.add(bkngRef);
 		northPanel.add(luggage);
+		luggage.addActionListener(this);
 
 		this.add(northPanel, BorderLayout.NORTH);
 	}
@@ -96,6 +101,21 @@ public class NewGui extends JFrame implements ActionListener {
 			
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 
+		}
+		if (event.getSource() == luggage) {
+			if (weight.isEditable() == false) {
+				weight.setEditable(true);
+				length.setEditable(true);
+				width.setEditable(true);
+				height.setEditable(true);
+			}
+			else {
+				weight.setEditable(false);
+				length.setEditable(false);
+				width.setEditable(false);
+				height.setEditable(false);
+			}
+			
 		}
 	}
 	
