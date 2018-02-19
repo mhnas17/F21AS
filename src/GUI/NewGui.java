@@ -93,11 +93,16 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == checkIn) {
-
-			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
-			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
-			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
-			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+			if (luggage.isSelected()==true) {
+				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
+				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
+				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
+				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+			}
+			else {
+				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+			}
+			
 
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 
