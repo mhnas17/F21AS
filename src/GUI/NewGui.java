@@ -91,9 +91,8 @@ public class NewGui extends JFrame implements ActionListener {
 			
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
 			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
-			
-			
-			
+			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
+			lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
 			
 			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 
@@ -109,4 +108,14 @@ public class NewGui extends JFrame implements ActionListener {
 		double w = Double.parseDouble(weight.getText());
 		return w;
 	} 
+	
+	public double getExcessfees() {
+		double w = Double.parseDouble(weight.getText());
+		if(w>20) {
+			return (w-20)*15;
+		}
+		else
+		return 0;
+		
+	}
 }

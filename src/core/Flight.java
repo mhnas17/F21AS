@@ -12,10 +12,11 @@ public class Flight {
 		
 	
 	/**
-	 * @param flightcode
-	 * @param flightdestination
-	 * @param carrier
-	 * @param plane
+	 * constructor of an object of type Flight
+	 * @param flightcode the flight code for each flight
+	 * @param flightdestination the destination of the flight
+	 * @param carrier the name of the company that operates the flight
+	 * @param plane the plane type 
 	 * @throws InvalidFlightCode 
 	 */
 	public Flight(String flightcode, String flightdestination, String carrier, Plane plane) throws InvalidFlightCode {
@@ -28,7 +29,7 @@ public class Flight {
 	}
 
 	/**
-	 * @return
+	 * @return the flight code of the flight
 	 */
 	public String getFlightcode() {
 		return flightcode;
