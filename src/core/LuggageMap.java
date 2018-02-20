@@ -1,9 +1,10 @@
 package core;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
+
+import name_plane.Plane;
 
 
 public class LuggageMap {
@@ -34,7 +35,7 @@ public class LuggageMap {
 			
 	/**
 	 * @param e
-	 * @return
+	 * @return the total number of passengers in each flight
 	 */
 	public int getPassengersPerFlight(Flight e) {
 
@@ -45,7 +46,7 @@ public class LuggageMap {
 
 	/**
 	 * @param e
-	 * @return
+	 * @return the total weight of bags in each flight
 	 */
 	public double getLuggageWeightPerFlight(Flight e) {
 
@@ -56,7 +57,7 @@ public class LuggageMap {
 
 	/**
 	 * @param e
-	 * @return
+	 * @return the total volume of bags in each flight
 	 */
 	public double getLuggageVolumePerFlight(Flight e) {
 
@@ -67,7 +68,7 @@ public class LuggageMap {
 
 	/**
 	 * @param e
-	 * @return
+	 * @return the total excess fees collected in each flight
 	 */
 	public double getExcessFeesPerFlight(Flight e) {
 
@@ -78,31 +79,42 @@ public class LuggageMap {
 
 	/**
 	 * @param e
-	 * @return
+	 * @return the excess number of passengers in each flight
 	 */
-	public int getExcessPassengersPerFlight(Flight e) {
+	public int getExcessPassengersPerFlight(Flight b) {
 
-		return 0;
+		int actual = checkindata.get(b.getFlightcode()).getAccum_numberofpassengers();
+		int maximum  = b.getPlane().getMaxpassengers();
+		if(actual>maximum){
+			return actual - maximum;
+		}
+		else return 0;
 	}
 
 	/**
-	 * @return
+	 * @return the excess weight in each flight
 	 */
-	public double getExcessWeightPerFlight() {
-
-		return 0;
+	public double getExcessWeightPerFlight(Flight b) {
+		double actual = checkindata.get(b.getFlightcode()).getAccum_weight();
+		double maximum = b.getPlane().getMaxweight();		
+		if(actual>maximum){
+			return actual - maximum;
+		}
+		else return 0;
 	}
 
 	/**
-	 * @return
+	 * @return the excess volume in each flight
 	 */
-	public double getExcessVolumePerFlight() {
-
-		return 0;
+	public double getExcessVolumePerFlight(Flight b) {
+		double actual = checkindata.get(b.getFlightcode()).getAccum_volume();
+		double maximum = b.getPlane().getMaxvolume();		
+		if(actual>maximum){
+			return actual - maximum;
+		}
+		else return 0;
 	}
-	
-	
-	
+		
 	/**
 	 * @param k
 	 * @return

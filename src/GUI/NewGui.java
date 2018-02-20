@@ -108,6 +108,8 @@ public class NewGui extends JFrame implements ActionListener {
 								.setAccum_excessfees(getExcessfees());
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_numberofpassengers(1);
+						book.getValue(bkngRef.getText() + lastName.getText()).setCheckedin(true);
+						
 						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
@@ -122,6 +124,7 @@ public class NewGui extends JFrame implements ActionListener {
 					try {
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_numberofpassengers(1);
+						book.getValue(bkngRef.getText() + lastName.getText()).setCheckedin(true);
 						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
