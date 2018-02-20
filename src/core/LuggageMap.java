@@ -117,7 +117,7 @@ public class LuggageMap {
 		
 	/**
 	 * @param k
-	 * @return
+	 * @return the luggage object that corresponds to the key provided in the parameter
 	 */
 	public Luggage getValue(String k) {
 		return checkindata.get(k);
