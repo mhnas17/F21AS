@@ -123,7 +123,7 @@ public class Manager {
 		// Flight c = new Flight("A13201", "London", "AEGEAN", new Plane(140, 300,
 		// 500));
 		Manager p = new Manager();
-		p.showGui();
+		p.showGui();	
 
 	}
 
