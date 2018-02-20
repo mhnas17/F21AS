@@ -2,18 +2,18 @@ package core;
 
 import java.util.HashMap;
 
-/**
- * instantiate a hashmap. The key is the flight code reference and the value is a flight object
- * @author stamtiniakos
- *
- */
-public class FlightMap {
 
-	private HashMap <String, Flight> flights;
-	
+public class FlightMap {
 	
 	/**
-	 * hasmap constructor
+	 * instantiate a hashmap. The key is the flight code reference and the value is a flight object
+	 * @author stamtiniakos
+	 *
+	 */
+	private HashMap <String, Flight> flights;
+	
+	/**
+	 * hash map constructor
 	 */
 	public FlightMap(){
 		
