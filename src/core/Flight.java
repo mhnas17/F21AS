@@ -46,13 +46,14 @@ public class Flight {
 	}
 
 	/**
-	 * @return
+	 * @return the destination of the flight
 	 */
 	public String getFlightdestination() {
 		return flightdestination;
 	}
 
 	/**
+	 * sets the flight destination to the value provided in the parameter
 	 * @param flightdestination
 	 */
 	public void setFlightdestination(String flightdestination)  {
@@ -60,13 +61,14 @@ public class Flight {
 	}
 
 	/**
-	 * @return
+	 * @return the name of the flight carrier
 	 */
 	public String getCarrier() {
 		return carrier;
 	}
 
 	/**
+	 * sets the name of the flight carrier to the name provided in the parameter
 	 * @param carrier
 	 */
 	public void setCarrier(String carrier) {
@@ -74,13 +76,14 @@ public class Flight {
 	}
 
 	/**
-	 * @return
+	 * @return the object of type Plane
 	 */
 	public Plane getPlane() {
 		return plane;
 	}
 
 	/**
+	 * sets the Plane to the object provided in the parameter
 	 * @param plane
 	 * @throws IndalidPlaneType 
 	 */
@@ -89,6 +92,12 @@ public class Flight {
 		this.plane = plane;
 	}
 
+	/**
+	 * return true if the flight code provided in the parameter is in a valid format.
+	 * return false if the flight code provided in the parameter is in a wrong format.
+	 * @param b
+	 * @return
+	 */
 	private boolean validflightcode(String b) {
 		int size = b.trim().length();
 		if (size != 5) {
@@ -109,10 +118,18 @@ public class Flight {
 		return true;
 	}
 
+	/**
+	 * @param ch character 
+	 * @return true if the character provided in the parameter is a number and false if it is not
+	 */
 	private boolean isNotNumber(char ch) {
 		return ch < '0' || ch > '9';
 	}
 
+	/**
+	 * @param ch character
+	 * @return true if the character provided in the parameter is a capital letter and false otherwise 
+	 */
 	private boolean isULetter(char ch) {
 		return ch >= 'A' && ch <= 'Z';
 	}

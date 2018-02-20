@@ -2,16 +2,17 @@ package core;
 
 public class Luggage {
 
-	private double accum_volume = 0;
-	private double accum_weight = 0;
-	private double accum_excessfees = 0;
-	private int accum_numberofpassengers = 0;
+	private double accum_volume;
+	private double accum_weight;
+	private double accum_excessfees;
+	private int accum_numberofpassengers;
 
 	/**
-	 * @param accum_volume
-	 * @param accum_weight
-	 * @param accum_excessfees
-	 * @param accum_numberofpassengers
+	 * luggage object constructor
+	 * @param accum_volume the accumulated baggage volume for one flight
+	 * @param accum_weight the accumulated baggage weight for one flight
+	 * @param accum_excessfees the accumulated excess fees for one flight
+	 * @param accum_numberofpassengers the number of passengers for one flight
 	 */
 	public Luggage(double accum_volume, double accum_weight, double accum_excessfees, int accum_numberofpassengers) {
 		setAccum_volume(accum_volume);
@@ -21,13 +22,14 @@ public class Luggage {
 	}
 
 	/**
-	 * @return
+	 * @return the accumulated volume of bags for one flight
 	 */
 	public double getAccum_volume() {
 		return accum_volume;
 	}
 
 	/**
+	 * adds the bag volume of one passenger,as provided in the parameter, to the accumulated volume of the flight
 	 * @param accum_volume
 	 */
 	public void setAccum_volume(double accum_volume) {
@@ -35,13 +37,14 @@ public class Luggage {
 	}
 
 	/**
-	 * @return
+	 * @return the accumulated bag weight for one flight
 	 */
 	public double getAccum_weight() {
 		return accum_weight;
 	}
 
 	/**
+	 *adds the bag weight of one passenger to the accumulated bags weight of the flight
 	 * @param accum_weight
 	 */
 	public void setAccum_weight(double accum_weight) {
@@ -49,6 +52,7 @@ public class Luggage {
 	}
 
 	/**
+	 * 
 	 * @return
 	 */
 	public double getAccum_excessfees() {
