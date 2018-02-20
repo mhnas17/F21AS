@@ -7,6 +7,7 @@ import javax.swing.*;
 import core.Luggage;
 import core.BookingMap;
 import core.LuggageMap;
+import core.BookingLists;
 
 public class NewGui extends JFrame implements ActionListener {
 
@@ -27,12 +28,14 @@ public class NewGui extends JFrame implements ActionListener {
 
 	private BookingMap book;
 	private LuggageMap lugagges;
+	private BookingLists lists;
 
 	Luggage lug = new Luggage(0, 0, 0, 0);
 
-	public NewGui(BookingMap bmap, LuggageMap lmap) {
+	public NewGui(BookingMap bmap, LuggageMap lmap, BookingLists blist) {
 		this.book = bmap;
 		this.lugagges = lmap;
+		this.lists = blist;
 		setTitle("Check In");
 		setupSouthPanel();
 		setupNorthPanel();
@@ -93,18 +96,37 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == checkIn) {
+			
 			if (luggage.isSelected()==true) {
-				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
-				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
-				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
-				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+				if (lists.searchNames(lastName.getText()) && lists.searchBookings(bkngRef.getText()) == true) {
+					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
+					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
+					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
+					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+					JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+				}
+				else if (!lists.searchNames(lastName.getText())){
+					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
+				}
+				else if (!lists.searchBookings(bkngRef.getText())) {
+					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
+				}
 			}
 			else {
-				lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+				if (lists.searchNames(lastName.getText()) && lists.searchBookings(bkngRef.getText()) == true) {
+					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
+					JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+					}
+				else if (!lists.searchNames(lastName.getText())){
+					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
+				}
+				else if (!lists.searchBookings(bkngRef.getText())) {
+					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
+				}
 			}
 			
-
-			JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+			
+			
 
 		}
 		if (event.getSource() == report) {

@@ -15,6 +15,7 @@ public class Manager {
 	private FlightMap entries;
 	private LuggageMap lug;
 	private BookingMap book;
+	private BookingLists lists;
 	private NewGui gui;
 	
 	public Manager() throws InvalidFlightCode, InvalidBookingReference {
@@ -22,6 +23,7 @@ public class Manager {
 		entries = new FlightMap();
 		lug = new LuggageMap();
 		book = new BookingMap();
+		lists = new BookingLists();
 		BufferedReader buff = null;
 		String data[] = new String[4];
 		try {
@@ -76,6 +78,11 @@ public class Manager {
 				Booking b = new Booking(data[0], n, data[2], Boolean.parseBoolean(data[3]));
 				// add to list
 				book.add(data[0], b);
+				lists.addBookingReferences(data[0]);
+				//lists.sysoutBooking();
+				Name name = new Name(data[1]);
+				lists.addLastName(name.getLastName());
+				//lists.sysoutName();
 				// read next line
 				inputLine = buff.readLine();
 			}
@@ -99,7 +106,7 @@ public class Manager {
 	}
 	
 	public void showGui() {
-		gui = new NewGui(book, lug);
+		gui = new NewGui(book, lug, lists);
 	}
 	
 	public static void main(String[] args) throws Exception {
