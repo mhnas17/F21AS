@@ -37,7 +37,7 @@ public class NewGui extends JFrame implements ActionListener {
 		this.book = bmap;
 		this.lugagges = lmap;
 		this.lists = blist;
-		this.fmap=fmap;
+		this.fmap = fmap;
 		setTitle("Check In");
 		setupSouthPanel();
 		setupNorthPanel();
@@ -100,8 +100,10 @@ public class NewGui extends JFrame implements ActionListener {
 		if (event.getSource() == checkIn) {
 
 			if (luggage.isSelected() == true) {
-				if (lists.searchNames(lastName.getText()) == true && lists.searchBookings(bkngRef.getText()) == true && !book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true ) {
-					try {
+				try {
+					if (lists.searchNames(lastName.getText()) == true && lists.searchBookings(bkngRef.getText()) == true
+							&& book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin() == false) {
+
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_volume(getVolume());
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
@@ -111,42 +113,45 @@ public class NewGui extends JFrame implements ActionListener {
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_numberofpassengers(1);
 						book.getValue(bkngRef.getText() + lastName.getText()).setCheckedin(true);
-						
+
 						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
-					} catch (Exception e) {
-						JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
+					} else if (!lists.searchNames(lastName.getText())) {
+						JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
+					} else if (!lists.searchBookings(bkngRef.getText())) {
+						JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
+					} else if (book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin() == true) {
+						JOptionPane.showMessageDialog(this, "You are already checked in!");
 					}
-				} else if (!lists.searchNames(lastName.getText())) {
-					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
-				} else if (!lists.searchBookings(bkngRef.getText())) {
-					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
 				}
-				else if(book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true) {
-					JOptionPane.showMessageDialog(this, "You are already checked in!");
-				}
+
 			} else {
-				if (lists.searchNames(lastName.getText())==true && lists.searchBookings(bkngRef.getText()) == true && !book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true) {
-					try {
+				try {
+					if (lists.searchNames(lastName.getText()) == true && lists.searchBookings(bkngRef.getText()) == true
+							&& book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin() == false) {
+
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_numberofpassengers(1);
 						book.getValue(bkngRef.getText() + lastName.getText()).setCheckedin(true);
 						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
-					} catch (Exception e) {
-						JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
+
+					} else if (!lists.searchNames(lastName.getText())) {
+						JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
+					} else if (!lists.searchBookings(bkngRef.getText())) {
+						JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
+					} else if (book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin() == true) {
+						JOptionPane.showMessageDialog(this, "You are already checked in!");
 					}
-				} else if (!lists.searchNames(lastName.getText())) {
-					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
-				} else if (!lists.searchBookings(bkngRef.getText())) {
-					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
 				}
-				else if(book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true) {
-					JOptionPane.showMessageDialog(this, "You are already checked in!");
-				}
+
 			}
 
 		}
 		if (event.getSource() == report) {
-			lugagges.getReport(fmap);
+			// lugagges.getReport(fmap);
 			lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
 
 		}
@@ -164,6 +169,7 @@ public class NewGui extends JFrame implements ActionListener {
 			}
 
 		}
+
 	}
 
 	public double getVolume() {

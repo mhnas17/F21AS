@@ -17,7 +17,7 @@ public class Manager {
 	private BookingMap book;
 	private BookingLists lists;
 	private NewGui gui;
-	
+
 	public Manager() throws InvalidFlightCode, InvalidBookingReference {
 
 		entries = new FlightMap();
@@ -36,11 +36,11 @@ public class Manager {
 				// create staff object
 				String planeType = data[3];
 				if (planeType.equals("A1")) {
-					p1 = new Plane(140, 1300, 900);
+					p1 = new Plane(10, 200, 3.75);
 				} else if (planeType.equals("A2")) {
-					p1 = new Plane(200, 1500, 1000);
+					p1 = new Plane(10, 200, 3.75);
 				} else {
-					p1 = new Plane(250, 1800, 1200);
+					p1 = new Plane(13, 260, 4.875);
 				}
 				Flight s = new Flight(data[0], data[1], data[2], p1);
 				Luggage l = new Luggage(0, 0, 0, 0);
@@ -79,10 +79,10 @@ public class Manager {
 				// add to list
 				book.add(data[0] + n.getLastName(), b);
 				lists.addBookingReferences(data[0]);
-				//lists.sysoutBooking();
+				// lists.sysoutBooking();
 				Name name = new Name(data[1]);
 				lists.addLastName(name.getLastName());
-				//lists.sysoutName();
+				// lists.sysoutName();
 				// read next line
 				inputLine = buff.readLine();
 			}
@@ -104,26 +104,19 @@ public class Manager {
 		}
 
 	}
-	
+
 	public void showGui() {
 		gui = new NewGui(book, lug, lists, entries);
 	}
+
 	public void report() {
 		lug.getReport(entries);
 	}
 
 	public static void main(String[] args) throws Exception {
 
-		// TODO Auto-generated method stub
-		// Data s= new Data();
-		// s.process("textfile1", "textfile2");
-		// NewGui demo = new NewGui();
-		// Booking b = new Booking("AF115", new Name("Minadakis George"), "A1320",
-		// false);
-		// Flight c = new Flight("A13201", "London", "AEGEAN", new Plane(140, 300,
-		// 500));
 		Manager p = new Manager();
-		p.showGui();	
+		p.showGui();
 
 	}
 

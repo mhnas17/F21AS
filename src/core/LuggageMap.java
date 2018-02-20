@@ -154,7 +154,7 @@ public class LuggageMap {
 	        	
 	        }
 	       
-	      System.out.println(report); 
+	    System.out.println(report); 
 		return report;
 	}
 	/**Writes an output file of the info we want file
