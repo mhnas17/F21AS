@@ -29,8 +29,8 @@ public class Luggage {
 	}
 
 	/**
-	 * adds the bag volume of one passenger,as provided in the parameter, to the accumulated volume of the flight
-	 * @param accum_volume
+	 * adds the bag volume for one passenger to the accumulated volume of the flight
+	 * @param accum_volume bag volume for a single passenger
 	 */
 	public void setAccum_volume(double accum_volume) {
 		this.accum_volume += accum_volume;
@@ -45,36 +45,37 @@ public class Luggage {
 
 	/**
 	 *adds the bag weight of one passenger to the accumulated bags weight of the flight
-	 * @param accum_weight
+	 * @param accum_weight bag weight for one passenger
 	 */
 	public void setAccum_weight(double accum_weight) {
 		this.accum_weight += accum_weight;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * @return the accumulated excess fees for one flight
 	 */
 	public double getAccum_excessfees() {
 		return accum_excessfees;
 	}
 
 	/**
-	 * @param accum_excessfees
+	 * adds the excess fees of one passenger to the accumulated excess fees of the flight
+	 * @param accum_excessfees bag weight for one passenger
 	 */
 	public void setAccum_excessfees(double accum_excessfees) {
 		this.accum_excessfees += accum_excessfees;
 	}
 
 	/**
-	 * @return
+	 * @return the number of passengers who have checked in the one flight
 	 */
 	public int getAccum_numberofpassengers() {
 		return accum_numberofpassengers;
 	}
 
 	/**
-	 * @param accum_numberofpassengers
+	 * adds one passenger to the total number of passengers of one flight
+	 * @param accum_numberofpassengers one passenger
 	 */
 	public void setAccum_numberofpassengers(int accum_numberofpassengers) {
 		this.accum_numberofpassengers += accum_numberofpassengers;
