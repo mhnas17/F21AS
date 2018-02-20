@@ -28,7 +28,7 @@ public class BookingMap {
 	
 	/**
 	 * @param k
-	 * @return the value that corresponds to a specific key
+	 * @return the object that corresponds to a specific booking reference
 	 */
 	public Booking getValue(String k) {
 		return bookings.get(k);
