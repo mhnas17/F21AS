@@ -77,7 +77,7 @@ public class Manager {
 				Name n = new Name(data[1]);
 				Booking b = new Booking(data[0], n, data[2], Boolean.parseBoolean(data[3]));
 				// add to list
-				book.add(data[0], b);
+				book.add(data[0] + n.getLastName(), b);
 				lists.addBookingReferences(data[0]);
 				//lists.sysoutBooking();
 				Name name = new Name(data[1]);

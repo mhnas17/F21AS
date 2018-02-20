@@ -96,37 +96,42 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == checkIn) {
-			
-			if (luggage.isSelected()==true) {
+
+			if (luggage.isSelected() == true) {
 				if (lists.searchNames(lastName.getText()) && lists.searchBookings(bkngRef.getText()) == true) {
-					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_volume(getVolume());
-					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_weight(getWeight());
-					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_excessfees(getExcessfees());
-					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
-					JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
-				}
-				else if (!lists.searchNames(lastName.getText())){
-					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
-				}
-				else if (!lists.searchBookings(bkngRef.getText())) {
-					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
-				}
-			}
-			else {
-				if (lists.searchNames(lastName.getText()) && lists.searchBookings(bkngRef.getText()) == true) {
-					lugagges.getValue(book.getValue(bkngRef.getText()).getFlightcode()).setAccum_numberofpassengers(1);
-					JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+					try {
+						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
+								.setAccum_volume(getVolume());
+						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
+								.setAccum_weight(getWeight());
+						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
+								.setAccum_excessfees(getExcessfees());
+						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
+								.setAccum_numberofpassengers(1);
+						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
 					}
-				else if (!lists.searchNames(lastName.getText())){
+				} else if (!lists.searchNames(lastName.getText())) {
 					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
+				} else if (!lists.searchBookings(bkngRef.getText())) {
+					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
 				}
-				else if (!lists.searchBookings(bkngRef.getText())) {
+			} else {
+				if (lists.searchNames(lastName.getText()) && lists.searchBookings(bkngRef.getText()) == true) {
+					try {
+						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
+								.setAccum_numberofpassengers(1);
+						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
+					}
+				} else if (!lists.searchNames(lastName.getText())) {
+					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
+				} else if (!lists.searchBookings(bkngRef.getText())) {
 					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
 				}
 			}
-			
-			
-			
 
 		}
 		if (event.getSource() == report) {
