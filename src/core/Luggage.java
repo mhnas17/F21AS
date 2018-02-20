@@ -52,7 +52,7 @@ public class Luggage {
 	}
 
 	/**
-	 * @return the accumulated excess fees for one flight
+	 * @return the accumulated excess fees of one flight
 	 */
 	public double getAccum_excessfees() {
 		return accum_excessfees;
@@ -67,7 +67,7 @@ public class Luggage {
 	}
 
 	/**
-	 * @return the number of passengers who have checked in the one flight
+	 * @return the number of passengers who have checked in one flight
 	 */
 	public int getAccum_numberofpassengers() {
 		return accum_numberofpassengers;
