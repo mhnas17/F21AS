@@ -1,5 +1,8 @@
 package core;
 
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -88,7 +91,9 @@ public class LuggageMap {
 		if(actual>maximum){
 			return actual - maximum;
 		}
-		else return 0;
+		else {
+			return 0;
+			}
 	}
 
 	/**
@@ -126,17 +131,54 @@ public class LuggageMap {
 	/**
 	 * 
 	 */
-	public void getReport() {
-		String report="|Flight|Total Volume|Total Weight|Total excess fees|Passengers\n";
+	/**
+	 * 
+	 */
+	
+	public String getReport(FlightMap f) {
+		String report="| Flight | Total Volume | Total Weight | Total excess fees | Passengers |\n";
 		 Set<Entry<String,Luggage>> hashSet=checkindata.entrySet();
 	        for(Entry entry:hashSet ) {
 	        	Luggage s = Luggage.class.cast(entry.getValue());
+	        		report+= String.format("  %-6s",entry.getKey()) +"       "+ String.format("%-12.2f",s.getAccum_volume())+"    " + String.format("%-12.2f",s.getAccum_weight())+ String.format("  %-17.2f",s.getAccum_excessfees()) + String.format("   %-11d", s.getAccum_numberofpassengers()) +"\n";
 	        		
-	        		System.out.println("Key="+entry.getKey()+", Value="+ s.getAccum_numberofpassengers());
 	        }
-		//return report;
+	        report+="\n";
+	        report+="Flights that have exceeded Capacity\n";
+	        report+="===================================\n";
+	        report+="|Flight| Exceeding passengers|Exceeding weight|Excceeding Volume|\n";
+	        for(Entry entry:hashSet ) {
+	        	Luggage s = Luggage.class.cast(entry.getValue());
+	        	String flightNum = entry.getKey().toString();	
+	        	report+=  String.format("  %-5s",flightNum) + String.format("           %-5d",getExcessPassengersPerFlight(f.getFlight(flightNum)))+ String.format("           %-5.2f",getExcessWeightPerFlight(f.getFlight(flightNum)))+ String.format("           %-5.2f",getExcessVolumePerFlight(f.getFlight(flightNum)))+"\n"; 
+	        	
+	        }
+	       
+	      System.out.println(report); 
+		return report;
 	}
-	
+	/**Writes an output file of the info we want file
+	 * @param filename
+	 * @param data
+	 */
+	public void writeToFile(String filename, String data) {		
+		 FileWriter filewriter;
+		 try {
+		    filewriter = new FileWriter(filename);		    
+		    filewriter.write(data);
+		 	filewriter.close();
+		 }
+		 //message and stop if file not found
+		 catch (FileNotFoundException fnf){
+			 System.out.println(filename + " not found ");
+			 System.exit(0);
+		 }
+		 //stack trace here because we don't expect to come here
+		 catch (IOException ioe){
+		    ioe.printStackTrace();
+		    System.exit(1);
+		 }
+	}
 	
 
 }

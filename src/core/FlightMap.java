@@ -31,10 +31,10 @@ public class FlightMap {
 	}
 
 	/**
-	 * prints the hash map ????
+	 *returns the object flight from the hashmap ????
 	 */
-	public void getFlight() {
-		System.out.println(flights);
+	public Flight getFlight(String x) {
+		return flights.get(x) ;
 	}
 		
 }

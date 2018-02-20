@@ -106,9 +106,12 @@ public class Manager {
 	}
 	
 	public void showGui() {
-		gui = new NewGui(book, lug, lists);
+		gui = new NewGui(book, lug, lists, entries);
 	}
-	
+	public void report() {
+		lug.getReport(entries);
+	}
+
 	public static void main(String[] args) throws Exception {
 
 		// TODO Auto-generated method stub

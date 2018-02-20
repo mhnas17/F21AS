@@ -6,6 +6,7 @@ import javax.swing.*;
 
 import core.Luggage;
 import core.BookingMap;
+import core.FlightMap;
 import core.LuggageMap;
 import core.BookingLists;
 
@@ -29,13 +30,14 @@ public class NewGui extends JFrame implements ActionListener {
 	private BookingMap book;
 	private LuggageMap lugagges;
 	private BookingLists lists;
-
+	private FlightMap fmap;
 	Luggage lug = new Luggage(0, 0, 0, 0);
 
-	public NewGui(BookingMap bmap, LuggageMap lmap, BookingLists blist) {
+	public NewGui(BookingMap bmap, LuggageMap lmap, BookingLists blist, FlightMap fmap) {
 		this.book = bmap;
 		this.lugagges = lmap;
 		this.lists = blist;
+		this.fmap=fmap;
 		setTitle("Check In");
 		setupSouthPanel();
 		setupNorthPanel();
@@ -138,7 +140,8 @@ public class NewGui extends JFrame implements ActionListener {
 
 		}
 		if (event.getSource() == report) {
-			lugagges.getReport();
+			lugagges.getReport(fmap);
+			lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
 
 		}
 		if (event.getSource() == luggage) {
