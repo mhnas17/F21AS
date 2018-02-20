@@ -100,7 +100,7 @@ public class NewGui extends JFrame implements ActionListener {
 		if (event.getSource() == checkIn) {
 
 			if (luggage.isSelected() == true) {
-				if (lists.searchNames(lastName.getText()) && lists.searchBookings(bkngRef.getText()) == true) {
+				if (lists.searchNames(lastName.getText()) == true && lists.searchBookings(bkngRef.getText()) == true && !book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true ) {
 					try {
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_volume(getVolume());
@@ -121,8 +121,11 @@ public class NewGui extends JFrame implements ActionListener {
 				} else if (!lists.searchBookings(bkngRef.getText())) {
 					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
 				}
+				else if(book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true) {
+					JOptionPane.showMessageDialog(this, "You are already checked in!");
+				}
 			} else {
-				if (lists.searchNames(lastName.getText()) && lists.searchBookings(bkngRef.getText()) == true) {
+				if (lists.searchNames(lastName.getText())==true && lists.searchBookings(bkngRef.getText()) == true && !book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true) {
 					try {
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_numberofpassengers(1);
@@ -135,6 +138,9 @@ public class NewGui extends JFrame implements ActionListener {
 					JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
 				} else if (!lists.searchBookings(bkngRef.getText())) {
 					JOptionPane.showMessageDialog(this, "Booking reference doesn't exist!");
+				}
+				else if(book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin()==true) {
+					JOptionPane.showMessageDialog(this, "You are already checked in!");
 				}
 			}
 
