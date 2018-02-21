@@ -93,12 +93,13 @@ public class Luggage {
 	}
 	
 	/**
-	 * @param h
-	 * @param l
-	 * @param w
+	 * @param h height
+	 * @param l length
+	 * @param w width
 	 * @return
-	 */
-	public double computeVolume(double h,double l,double w) {
+	 * returns the volume
+	 */ 
+	public double computeVolume(double l,double w,double h) {
 		double Vol= (h*w*l)/1000000;
 		return Vol;
 	}

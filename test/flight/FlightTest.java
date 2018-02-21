@@ -17,7 +17,7 @@ public class FlightTest {
 	public void setup() throws Exception {
 		c1 = new Flight("A1234","London","AEGEAN", new Plane (140,300,500));
 	}
-	
+	// tests for the invalid flight code exceptions for all different cases
 	@Test
 	public void testGetFlightcode() throws InvalidFlightCode {
 	

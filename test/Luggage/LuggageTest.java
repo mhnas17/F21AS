@@ -20,8 +20,8 @@ private Luggage c1;
 		c1 = new Luggage(0, 0, 0, 0);
 	}
 	
-
-	@Test
+	// test for the accumulative volume getter method
+	@Test 
 	public void testGetAccum_volume() {
 		
 		double expected1 = 0;
@@ -29,7 +29,7 @@ private Luggage c1;
 	     assertEquals(expected1, actual1,0.00000001);
 		
 	}
-
+	// test for the accumulative setter volume method
 	@Test
 	public void testSetAccum_volume() throws NegativeNumbers {
 		double expected1 = 10;
@@ -39,14 +39,14 @@ private Luggage c1;
 		 c1.setAccum_volume(15.5);
 		 assertEquals(expected2, c1.getAccum_volume(),0.00000001);
 	}
-
+	// test for the accumulative weight getter method	
 	@Test
 	public void testGetAccum_weight() {
 		double expected1 = 0;
 	     double actual1 = c1.getAccum_weight();
 	     assertEquals(expected1, actual1,0.00000001);
 	}
-
+	// test for the accumulative weight setter method
 	@Test
 	public void testSetAccum_weight() throws NegativeNumbers {
 		double expected1 = 10;
@@ -57,14 +57,14 @@ private Luggage c1;
 		 assertEquals(expected2, c1.getAccum_weight(),0.00000001);
 	}
 	
-	
+	// test for the accumulative excess fees getter method
 	@Test
 	public void testGetAccum_excessfees() {
 		double expected1 = 0;
 	     double actual1 = c1.getAccum_excessfees();
 	     assertEquals(expected1, actual1,0.00000001);
 	}
-
+	// test for the accumulative excess fees setter method
 	@Test
 	public void testSetAccum_excessfees() {
 		double expected1 = 10;
@@ -74,14 +74,14 @@ private Luggage c1;
 		 c1.setAccum_excessfees(12);
 		 assertEquals(expected2, c1.getAccum_excessfees(),0.00000001);
 	}
-	
+	// test for the accumulative passengers getter method
 	@Test
 	public void testGetAccum_numberofpassengers() {
 		double expected1 = 0;
 	     double actual1 = c1.getAccum_numberofpassengers();
 	     assertEquals(expected1, actual1,0.00000001);
 	}
-
+	// test for the accumulative passengers setter method
 	@Test
 	public void testSetAccum_numberofpassengers() {
 		double expected1 = 10;
@@ -91,13 +91,14 @@ private Luggage c1;
 		 c1.setAccum_numberofpassengers(12);
 		 assertEquals(expected2, c1.getAccum_numberofpassengers(),0.00000001);
 	}
+	// Test for the computation of the volume method
 	@Test
 	public void testComVolume() {
 		double expected1 = 0.048125;
-	     double actual1 = c1.computeVolume(25,35,55);
-	     assertEquals(expected1, actual1,0.00000001);
+	    double actual1 = c1.computeVolume(25,35,55);
+	    assertEquals(expected1, actual1,0.00000001);
 	}
-	
+	// Test for the computation of the excess method for all the different cases
 	@Test
 	public void testcomputeExcessFees() {
 		double expected1 = 0;
