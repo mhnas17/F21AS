@@ -166,7 +166,13 @@ public class NewGui extends JFrame implements ActionListener {
 		}
 		
 		if (event.getSource() == close) {
-			System.exit(0);
+			String ObjButtons[] = {"Yes","Cancel"};
+	        int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit?","Exit Kiosk",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+	        if(PromptResult==JOptionPane.YES_OPTION)
+	        {
+	        	lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
+	        	 System.exit(1);
+		    }
 
 		}
 		
