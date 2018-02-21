@@ -19,6 +19,7 @@ public class NewGui extends JFrame implements ActionListener {
 	ButtonGroup roleButtons = new ButtonGroup();
 	JButton checkIn = new JButton("Check-in");
 	JButton report = new JButton("Report");
+	JButton close = new JButton("Close");
 	JTextField lastName = new JTextField(30);
 	JTextField bkngRef = new JTextField(30);
 	JTextField height = new JTextField(5);
@@ -76,7 +77,9 @@ public class NewGui extends JFrame implements ActionListener {
 		southPanel.add(checkIn);
 		checkIn.addActionListener(this);
 		southPanel.add(report);
-
+		southPanel.add(close);
+		close.addActionListener(this);
+		
 		this.add(southPanel, BorderLayout.SOUTH);
 	}
 
@@ -161,6 +164,13 @@ public class NewGui extends JFrame implements ActionListener {
 			lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
 
 		}
+		
+		if (event.getSource() == close) {
+			System.exit(0);
+
+		}
+		
+		
 		if (event.getSource() == luggage) {
 			if (weight.isEditable() == false) {
 				weight.setEditable(true);

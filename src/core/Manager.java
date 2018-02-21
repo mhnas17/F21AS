@@ -1,14 +1,11 @@
 package core;
 
-import java.util.InputMismatchException;
+
 import java.io.*;
-import Exceptions.InvalidBookingReference;
-import Exceptions.InvalidFlightCode;
 import GUI.NewGui;
 import name_plane.Name;
 import name_plane.Plane;
-import java.util.*;
-import java.util.HashMap;
+
 
 public class Manager {
 
