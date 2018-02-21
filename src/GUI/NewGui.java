@@ -9,6 +9,7 @@ import core.BookingMap;
 import core.FlightMap;
 import core.LuggageMap;
 import core.BookingLists;
+import core.Luggage;
 
 public class NewGui extends JFrame implements ActionListener {
 
@@ -32,12 +33,14 @@ public class NewGui extends JFrame implements ActionListener {
 	private LuggageMap lugagges;
 	private BookingLists lists;
 	private FlightMap fmap;
+	private Luggage lg;
 	 
-	public NewGui(BookingMap bmap, LuggageMap lmap, BookingLists blist, FlightMap fmap) {
+	public NewGui(BookingMap bmap, LuggageMap lmap, BookingLists blist, FlightMap fmap,Luggage lg) {
 		this.book = bmap;
 		this.lugagges = lmap;
 		this.lists = blist;
 		this.fmap = fmap;
+		this.lg = lg;
 		setTitle("Check In");
 		setupSouthPanel();
 		setupNorthPanel();
@@ -53,16 +56,16 @@ public class NewGui extends JFrame implements ActionListener {
 
 		centerPanel.setLayout(new GridBagLayout());
 
-		centerPanel.add(new JLabel("Weight "));
+		centerPanel.add(new JLabel("Weight (KG) "));
 		centerPanel.add(weight);
 		weight.setEditable(false);
-		centerPanel.add(new JLabel("Height "));
+		centerPanel.add(new JLabel("Height (cm) "));
 		centerPanel.add(height);
 		height.setEditable(false);
-		centerPanel.add(new JLabel("Length "));
+		centerPanel.add(new JLabel("Length (cm)"));
 		centerPanel.add(length);
 		length.setEditable(false);
-		centerPanel.add(new JLabel("Width "));
+		centerPanel.add(new JLabel("Width (cm) "));
 		centerPanel.add(width);
 		width.setEditable(false);
 
@@ -196,8 +199,8 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public double getVolume() throws NumberFormatException {
 		if(length.getText()==null||width.getText()==null||height.getText()==null ) throw new NumberFormatException();
-		double volume = Double.parseDouble(length.getText()) * Double.parseDouble(width.getText())
-				* Double.parseDouble(height.getText());
+		// volume converted to m^3
+		double volume = lg.computeVolume(Double.parseDouble(length.getText()), Double.parseDouble(width.getText()),Double.parseDouble(height.getText()));
 		return volume;
 	}
 
@@ -209,11 +212,8 @@ public class NewGui extends JFrame implements ActionListener {
 
 	public double getExcessfees() throws NumberFormatException {
 		if(weight.getText()==null ) throw new NumberFormatException();
-		double w = Double.parseDouble(weight.getText());
-		if (w > 20) {
-			return (w - 20) * 15;
-		} else
-			return 0;
-
+		double fees = lg.compExceessFees(Double.parseDouble(weight.getText()));
+		return fees;
+		
 	}
 }

@@ -129,21 +129,21 @@ public class LuggageMap {
 	}
 	
 	public String getReport(FlightMap f) {
-		String report="| Flight | Total Volume | Total Weight | Total excess fees | Passengers |\n";
+		String report="| Flight | Total Volume(m^3) | Total Weight(kg) | Total excess fees(£) | Passengers |\n";
 		 Set<Entry<String,Luggage>> hashSet=checkindata.entrySet();
 	        for(Entry entry:hashSet ) {
 	        	Luggage s = Luggage.class.cast(entry.getValue());
-	        		report+= String.format("  %-6s",entry.getKey()) +"       "+ String.format("%-12.2f",s.getAccum_volume())+"    " + String.format("%-12.2f",s.getAccum_weight())+ String.format("  %-17.2f",s.getAccum_excessfees()) + String.format("   %-11d", s.getAccum_numberofpassengers()) +"\n";
+	        		report+= String.format("  %-6s",entry.getKey()) +"       "+ String.format("%-12.3f",s.getAccum_volume())+"    " + String.format("       %-12.2f",s.getAccum_weight())+ String.format("      %-17.2f",s.getAccum_excessfees()) + String.format("    %-11d", s.getAccum_numberofpassengers()) +"\n";
 	        		
 	        }
 	        report+="\n";
 	        report+="Flights that have exceeded Capacity\n";
 	        report+="===================================\n";
-	        report+="|Flight| Exceeding passengers|Exceeding weight|Excceeding Volume|\n";
+	        report+="|Flight| Exceeding passengers|Exceeding weight(kg)|Excceeding Volume(m^3)|\n";
 	        for(Entry entry:hashSet ) {
 	        	Luggage s = Luggage.class.cast(entry.getValue());
 	        	String flightNum = entry.getKey().toString();	
-	        	report+=  String.format("  %-5s",flightNum) + String.format("           %-5d",getExcessPassengersPerFlight(f.getFlight(flightNum)))+ String.format("           %-5.2f",getExcessWeightPerFlight(f.getFlight(flightNum)))+ String.format("           %-5.2f",getExcessVolumePerFlight(f.getFlight(flightNum)))+"\n"; 
+	        	report+=  String.format("  %-5s",flightNum) + String.format("           %-5d",getExcessPassengersPerFlight(f.getFlight(flightNum)))+ String.format("              %-5.2f",getExcessWeightPerFlight(f.getFlight(flightNum)))+ String.format("                %-5.3f",getExcessVolumePerFlight(f.getFlight(flightNum)))+"\n"; 
 	        	
 	        }
 	       

@@ -14,13 +14,14 @@ public class Manager {
 	private BookingMap book;
 	private BookingLists lists;
 	private NewGui gui;
-
+	private Luggage l;
 	public Manager() throws Exception {
 
 		entries = new FlightMap();
 		lug = new LuggageMap();
 		book = new BookingMap();
 		lists = new BookingLists();
+		
 		BufferedReader buff = null;
 		String data[] = new String[4];
 		try {
@@ -40,7 +41,7 @@ public class Manager {
 					p1 = new Plane(13, 260, 4.875);
 				}
 				Flight s = new Flight(data[0], data[1], data[2], p1);
-				Luggage l = new Luggage(0, 0, 0, 0);
+				l = new Luggage(0, 0, 0, 0);
 				// add to list
 				entries.add(data[0], s);
 				lug.add(data[0], l);
@@ -103,7 +104,7 @@ public class Manager {
 	}
 
 	public void showGui() {
-		gui = new NewGui(book, lug, lists, entries);
+		gui = new NewGui(book, lug, lists, entries,l);
 	}
 
 	public void report() {
