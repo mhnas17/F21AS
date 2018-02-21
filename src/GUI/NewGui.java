@@ -1,17 +1,17 @@
-package gui;
+package GUI;
 
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import booking.BookingLists;
-import booking.BookingMap;
-import exceptions.NegativeNumbers;
-import flight.FlightMap;
-import luggage.Luggage;
-import luggage.LuggageMap;
+import Exceptions.NegativeNumbers;
+import core.BookingMap;
+import core.FlightMap;
+import core.LuggageMap;
+import core.BookingLists;
+import core.Luggage;
 
-public class Gui extends JFrame implements ActionListener {
+public class NewGui extends JFrame implements ActionListener {
 
 	/**
 	 * Creating the Gui and its components
@@ -35,7 +35,7 @@ public class Gui extends JFrame implements ActionListener {
 	private FlightMap fmap;
 	private Luggage lg;
 	 
-	public Gui(BookingMap bmap, LuggageMap lmap, BookingLists blist, FlightMap fmap,Luggage lg) {
+	public NewGui(BookingMap bmap, LuggageMap lmap, BookingLists blist, FlightMap fmap,Luggage lg) {
 		this.book = bmap;
 		this.lugagges = lmap;
 		this.lists = blist;

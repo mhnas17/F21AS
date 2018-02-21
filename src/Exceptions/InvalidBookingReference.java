@@ -1,4 +1,4 @@
-package exceptions;
+package Exceptions;
 
 public class InvalidBookingReference extends Exception {
 

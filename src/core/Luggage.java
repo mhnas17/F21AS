@@ -1,6 +1,6 @@
-package luggage;
+package core;
 
-import exceptions.NegativeNumbers;
+import Exceptions.NegativeNumbers;
 
 public class Luggage {
 

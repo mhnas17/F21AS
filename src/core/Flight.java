@@ -1,6 +1,6 @@
-package flight;
-import exceptions.InvalidFlightCode;
-import support.Plane;
+package core;
+import Exceptions.InvalidFlightCode;
+import name_plane.Plane;
 
 
 public class Flight {
