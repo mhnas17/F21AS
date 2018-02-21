@@ -2,9 +2,17 @@ package core;
 
 
 import java.io.*;
-import GUI.NewGui;
-import name_plane.Name;
-import name_plane.Plane;
+
+import booking.Booking;
+import booking.BookingLists;
+import booking.BookingMap;
+import flight.Flight;
+import flight.FlightMap;
+import gui.Gui;
+import luggage.Luggage;
+import luggage.LuggageMap;
+import support.Name;
+import support.Plane;
 
 
 public class Manager {
@@ -13,7 +21,7 @@ public class Manager {
 	private LuggageMap lug;
 	private BookingMap book;
 	private BookingLists lists;
-	private NewGui gui;
+	private Gui gui;
 	private Luggage l;
 	/** Reads the two csv files and creates the hashmaps and starts the Gui
 	 * @throws Exception
@@ -107,7 +115,7 @@ public class Manager {
 	}
 
 	public void showGui() {
-		gui = new NewGui(book, lug, lists, entries,l);
+		gui = new Gui(book, lug, lists, entries,l);
 	}
 
 	public void report() {

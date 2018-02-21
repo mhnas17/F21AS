@@ -1,13 +1,13 @@
-package flight;
+package Flight;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import Exceptions.InvalidFlightCode;
-import core.Flight;
-import name_plane.Plane;
+import exceptions.InvalidFlightCode;
+import flight.Flight;
+import support.Plane;
 
 public class FlightTest {
 

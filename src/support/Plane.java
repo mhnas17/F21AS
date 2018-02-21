@@ -1,4 +1,4 @@
-package name_plane;
+package support;
 
 public class Plane {
 

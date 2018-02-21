@@ -1,4 +1,4 @@
-package booking;
+package Booking;
 
 import static org.junit.Assert.*;
 
@@ -10,12 +10,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import Exceptions.InvalidBookingReference;
-import Exceptions.InvalidFlightCode;
-import core.Booking;
-import core.Flight;
-import name_plane.Name;
-import name_plane.Plane;
+import booking.Booking;
+import exceptions.InvalidBookingReference;
+import exceptions.InvalidFlightCode;
+import flight.Flight;
+import support.Name;
+import support.Plane;
 
 public class BookingTest {
 	

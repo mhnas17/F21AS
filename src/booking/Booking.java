@@ -1,7 +1,7 @@
-package core;
+package booking;
 
-import name_plane.Name;
-import Exceptions.*;
+import exceptions.*;
+import support.Name;
 
 public class Booking {
 

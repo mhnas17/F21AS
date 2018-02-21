@@ -1,13 +1,16 @@
-package core;
+package luggage;
 
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Set;
 
-import name_plane.Plane;
+import flight.Flight;
+import flight.FlightMap;
+import support.Plane;
+
+import java.util.Set;
 
 
 public class LuggageMap {

@@ -1,4 +1,4 @@
-package core;
+package flight;
 
 import java.util.HashMap;
 
