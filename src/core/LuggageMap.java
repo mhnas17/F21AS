@@ -128,13 +128,6 @@ public class LuggageMap {
 		return checkindata.get(k);
 	}
 	
-	/**
-	 * 
-	 */
-	/**
-	 * 
-	 */
-	
 	public String getReport(FlightMap f) {
 		String report="| Flight | Total Volume | Total Weight | Total excess fees | Passengers |\n";
 		 Set<Entry<String,Luggage>> hashSet=checkindata.entrySet();
@@ -157,6 +150,7 @@ public class LuggageMap {
 	    System.out.println(report); 
 		return report;
 	}
+	
 	/**Writes an output file of the info we want file
 	 * @param filename
 	 * @param data

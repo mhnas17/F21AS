@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
 
-import core.Luggage;
+import Exceptions.NegativeNumbers;
 import core.BookingMap;
 import core.FlightMap;
 import core.LuggageMap;
@@ -31,8 +31,7 @@ public class NewGui extends JFrame implements ActionListener {
 	private LuggageMap lugagges;
 	private BookingLists lists;
 	private FlightMap fmap;
-	Luggage lug = new Luggage(0, 0, 0, 0);
-
+	 
 	public NewGui(BookingMap bmap, LuggageMap lmap, BookingLists blist, FlightMap fmap) {
 		this.book = bmap;
 		this.lugagges = lmap;
@@ -122,7 +121,14 @@ public class NewGui extends JFrame implements ActionListener {
 					} else if (book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin() == true) {
 						JOptionPane.showMessageDialog(this, "You are already checked in!");
 					}
-				} catch (Exception e) {
+				} 
+				catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(this, "Please enter your bag dimension and weight");
+				}
+				catch (NegativeNumbers e) {
+					JOptionPane.showMessageDialog(this, "You have entered negative numbers,please try again");
+				}
+				catch (NullPointerException e) {
 					JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
 				}
 
@@ -143,7 +149,7 @@ public class NewGui extends JFrame implements ActionListener {
 					} else if (book.getValue(bkngRef.getText() + lastName.getText()).isCheckedin() == true) {
 						JOptionPane.showMessageDialog(this, "You are already checked in!");
 					}
-				} catch (Exception e) {
+				} catch (NullPointerException e) {
 					JOptionPane.showMessageDialog(this, "Incorrect name booking reference combination!");
 				}
 
@@ -172,18 +178,21 @@ public class NewGui extends JFrame implements ActionListener {
 
 	}
 
-	public double getVolume() {
+	public double getVolume() throws NumberFormatException {
+		if(length.getText()==null||width.getText()==null||height.getText()==null ) throw new NumberFormatException();
 		double volume = Double.parseDouble(length.getText()) * Double.parseDouble(width.getText())
 				* Double.parseDouble(height.getText());
 		return volume;
 	}
 
-	public double getWeight() {
+	public double getWeight() throws NumberFormatException {
+		if(weight.getText()==null ) throw new NumberFormatException();
 		double w = Double.parseDouble(weight.getText());
 		return w;
 	}
 
-	public double getExcessfees() {
+	public double getExcessfees() throws NumberFormatException {
+		if(weight.getText()==null ) throw new NumberFormatException();
 		double w = Double.parseDouble(weight.getText());
 		if (w > 20) {
 			return (w - 20) * 15;

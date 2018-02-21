@@ -18,7 +18,7 @@ public class Manager {
 	private BookingLists lists;
 	private NewGui gui;
 
-	public Manager() throws InvalidFlightCode, InvalidBookingReference {
+	public Manager() throws Exception {
 
 		entries = new FlightMap();
 		lug = new LuggageMap();

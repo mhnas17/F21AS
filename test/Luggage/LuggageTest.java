@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import Exceptions.NegativeNumbers;
 import core.Luggage;
 
 
@@ -30,7 +31,7 @@ private Luggage c1;
 	}
 
 	@Test
-	public void testSetAccum_volume() {
+	public void testSetAccum_volume() throws NegativeNumbers {
 		double expected1 = 10;
 		double expected2 = 25.5;
 	     c1.setAccum_volume(10);
@@ -47,7 +48,7 @@ private Luggage c1;
 	}
 
 	@Test
-	public void testSetAccum_weight() {
+	public void testSetAccum_weight() throws NegativeNumbers {
 		double expected1 = 10;
 		double expected2 = 22;
 	     c1.setAccum_weight(10);
