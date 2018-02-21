@@ -14,7 +14,7 @@ import core.Luggage;
 public class NewGui extends JFrame implements ActionListener {
 
 	/**
-	 * 
+	 * Creating the Gui and its components
 	 */
 	private static final long serialVersionUID = 1L;
 	ButtonGroup roleButtons = new ButtonGroup();
@@ -51,6 +51,9 @@ public class NewGui extends JFrame implements ActionListener {
 		setVisible(true);
 	}
 
+	/**
+	 * The center panel of the gui
+	 */
 	private void setupCenterPanel() {
 		JPanel centerPanel = new JPanel();
 
@@ -72,6 +75,9 @@ public class NewGui extends JFrame implements ActionListener {
 		this.add(centerPanel, BorderLayout.CENTER);
 	}
 
+	/**The bottom panel of the Gui
+	 * 
+	 */
 	private void setupSouthPanel() {
 		JPanel southPanel = new JPanel();
 
@@ -86,6 +92,9 @@ public class NewGui extends JFrame implements ActionListener {
 		this.add(southPanel, BorderLayout.SOUTH);
 	}
 
+	/** The top panel of the gui
+	 * 
+	 */
 	private void setupNorthPanel() {
 		JPanel northPanel = new JPanel();
 
@@ -163,9 +172,7 @@ public class NewGui extends JFrame implements ActionListener {
 
 		}
 		if (event.getSource() == report) {
-			// lugagges.getReport(fmap);
 			lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
-
 		}
 		
 		if (event.getSource() == close) {
@@ -173,6 +180,7 @@ public class NewGui extends JFrame implements ActionListener {
 	        int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit?","Exit Kiosk",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
 	        if(PromptResult==JOptionPane.YES_OPTION)
 	        {
+	        	//Writes the report on a file before closing in case the employee forgot to do so
 	        	lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
 	        	 System.exit(1);
 		    }

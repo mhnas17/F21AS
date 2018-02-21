@@ -15,6 +15,9 @@ public class Manager {
 	private BookingLists lists;
 	private NewGui gui;
 	private Luggage l;
+	/** Reads the two csv files and creates the hashmaps and starts the Gui
+	 * @throws Exception
+	 */
 	public Manager() throws Exception {
 
 		entries = new FlightMap();

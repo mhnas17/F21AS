@@ -128,6 +128,10 @@ public class LuggageMap {
 		return checkindata.get(k);
 	}
 	
+	/** first for each is for the general details of the flights
+	 * @param f
+	 * @return a String with the desired information so it can be printed out 
+	 */
 	public String getReport(FlightMap f) {
 		String report="| Flight | Total Volume(m^3) | Total Weight(kg) | Total excess fees(£) | Passengers |\n";
 		 Set<Entry<String,Luggage>> hashSet=checkindata.entrySet();
@@ -140,6 +144,7 @@ public class LuggageMap {
 	        report+="Flights that have exceeded Capacity\n";
 	        report+="===================================\n";
 	        report+="|Flight| Exceeding passengers|Exceeding weight(kg)|Excceeding Volume(m^3)|\n";
+	        // this for each checks and tests for whether there are any exceeded values of flights. prints everything regardless in a table
 	        for(Entry entry:hashSet ) {
 	        	Luggage s = Luggage.class.cast(entry.getValue());
 	        	String flightNum = entry.getKey().toString();	
@@ -147,7 +152,7 @@ public class LuggageMap {
 	        	
 	        }
 	       
-	    System.out.println(report); 
+	    //System.out.println(report); printing the report on the console for testing the format of the table
 		return report;
 	}
 	
