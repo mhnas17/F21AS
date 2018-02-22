@@ -14,7 +14,7 @@ import core.Luggage;
 public class NewGui extends JFrame implements ActionListener {
 
 	/**
-	 * Creating the Gui and its components
+	 * Creating the Gui and its components 
 	 */
 	private static final long serialVersionUID = 1L;
 	ButtonGroup roleButtons = new ButtonGroup();

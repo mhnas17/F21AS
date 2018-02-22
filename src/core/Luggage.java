@@ -10,7 +10,7 @@ public class Luggage {
 	private int accum_numberofpassengers;
 
 	/**
-	 * luggage object constructor
+	 * luggage object constructor 
 	 * @param accum_volume the accumulated baggage volume for one flight
 	 * @param accum_weight the accumulated baggage weight for one flight
 	 * @param accum_excessfees the accumulated excess fees for one flight
