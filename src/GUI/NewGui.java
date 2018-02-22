@@ -49,6 +49,7 @@ public class NewGui extends JFrame implements ActionListener {
 		setResizable(false);
 		setSize(600, 200);
 		setVisible(true);
+		setDefaultCloseOperation(this.DO_NOTHING_ON_CLOSE);
 	}
 
 	/**
