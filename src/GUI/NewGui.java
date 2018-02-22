@@ -127,7 +127,7 @@ public class NewGui extends JFrame implements ActionListener {
 						lugagges.getValue(book.getValue(bkngRef.getText() + lastName.getText()).getFlightcode())
 								.setAccum_numberofpassengers(1);
 						book.getValue(bkngRef.getText() + lastName.getText()).setCheckedin(true);
-
+						JOptionPane.showMessageDialog(this, "luggage Excess fees: £"+String.format("%.2f",lg.compExceessFees(getWeight())));
 						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
 						if(book.getCheckInReport(book)==true) {
 							JOptionPane.showMessageDialog(this, "Everyone is checked in!");
