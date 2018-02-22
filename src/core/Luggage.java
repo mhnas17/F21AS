@@ -100,7 +100,7 @@ public class Luggage {
 	 * returns the volume
 	 */ 
 	public double computeVolume(double l,double w,double h) {
-		double Vol= (h*w*l)/1000000;
+		double Vol= (h*w*l)/1000000; //flop saving math here to convert the cm given dimensions to m^3 
 		return Vol;
 	}
 	public double compExceessFees(double w) 

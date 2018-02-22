@@ -1,6 +1,8 @@
 package core;
 
 import java.util.HashMap;
+import java.util.Set;
+import java.util.Map.Entry;
 
 public class BookingMap {
 
@@ -32,6 +34,25 @@ public class BookingMap {
 	 */
 	public Booking getValue(String k) {
 		return bookings.get(k);
+	}
+	/** checks if everyone has checked in 
+	 * @param f
+	 * @return
+	 */
+	public boolean getCheckInReport(BookingMap f) {
+		boolean allCheckedIn=true;
+		 Set<Entry<String,Booking>> hashSet=bookings.entrySet();
+	        for(Entry entry:hashSet ) {
+	        	Booking s = Booking.class.cast(entry.getValue());
+	        	if(s.isCheckedin()==false) 
+	        	{
+	        		allCheckedIn=false;
+	        		break;
+	        	}
+	        	
+	        }
+	                 
+	       return allCheckedIn;
 	}
 	
 }

@@ -129,6 +129,12 @@ public class NewGui extends JFrame implements ActionListener {
 						book.getValue(bkngRef.getText() + lastName.getText()).setCheckedin(true);
 
 						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
+						if(book.getCheckInReport(book)==true) {
+							JOptionPane.showMessageDialog(this, "Everyone is checked in!");
+							lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
+				        	System.exit(1);
+							
+						}
 					} else if (!lists.searchNames(lastName.getText())) {
 						JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
 					} else if (!lists.searchBookings(bkngRef.getText())) {
@@ -156,7 +162,13 @@ public class NewGui extends JFrame implements ActionListener {
 								.setAccum_numberofpassengers(1);
 						book.getValue(bkngRef.getText() + lastName.getText()).setCheckedin(true);
 						JOptionPane.showMessageDialog(this, "Check in complete! have a pleasant flight!");
-
+						if(book.getCheckInReport(book)==true) {
+							JOptionPane.showMessageDialog(this, "Everyone is checked in!");
+							lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
+				        	System.exit(1);
+							
+						}
+					
 					} else if (!lists.searchNames(lastName.getText())) {
 						JOptionPane.showMessageDialog(this, "Last name doesn't exist!");
 					} else if (!lists.searchBookings(bkngRef.getText())) {
