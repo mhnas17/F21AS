@@ -15,6 +15,8 @@ public class Manager {
 	private BookingLists lists;
 	private NewGui gui;
 	private Luggage l;
+	private PassengerList passengerlist;
+	private Passenger passenger;
 	
 	/** Reads the two csv files and creates the hashmaps and starts the Gui
 	 * @throws Exception
@@ -25,6 +27,7 @@ public class Manager {
 		lug = new LuggageMap();
 		book = new BookingMap();
 		lists = new BookingLists();
+		passengerlist = new PassengerList();
 		
 		BufferedReader buff = null;
 		String data[] = new String[4];
@@ -87,10 +90,12 @@ public class Manager {
 					book.add(data[0] + n.getLastName(), b);
 					// add booking references to a list
 					lists.addBookingReferences(data[0]);
-					// create name object for lastnames list
-					Name name = new Name(data[1]);
 					// add lastnames to a list
-					lists.addLastName(name.getLastName());
+					lists.addLastName(n.getLastName());
+					//creates passenger object
+					passenger = new Passenger(data[0],n.getLastName(),0,0,0,0);
+	                //adds passenger to passenger list
+					passengerlist.add(passenger);
 					}
 				// read next line
 				inputLine = buff.readLine();
@@ -126,7 +131,17 @@ public class Manager {
 	public static void main(String[] args) throws Exception {
 
 		Manager p = new Manager("flights.csv","bookings.csv");
-		p.showGui();
+		//p.showGui();
+		
+		Queue q = new Queue();
+		CheckinScheduler s = new CheckinScheduler(q,p.passengerlist);
+		CheckinProcessor pr = new CheckinProcessor(q);
+		
+		new Thread(s).start();
+		new Thread(pr).start();
+		
+		
+		
 
 	}
 

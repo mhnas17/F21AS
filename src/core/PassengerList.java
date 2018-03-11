@@ -6,7 +6,7 @@ public class PassengerList {
 	private ArrayList<Passenger> passengers;
 
 	public PassengerList() {
-		this.passengers = new ArrayList<Passenger> ();
+		this.passengers = new ArrayList<> ();
 	}
 	
 	public void add(Passenger p) {

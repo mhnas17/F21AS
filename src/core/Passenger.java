@@ -1,20 +1,21 @@
 package core;
 
+import Exceptions.NegativeNumbers;
 import name_plane.Name;
 
 public class Passenger {
 	
 	private String bookingreference;
-	private Name passengername;
+	private String lastname;
 	private double weight;
 	private double length;
 	private double width;
 	private double height;
 	
-	public Passenger(String bookingreference,Name passengername,double weight, double length, double width, double height){
+	public Passenger(String bookingreference,String lastname,double weight, double length, double width, double height){
 		
 		setBookingreference(bookingreference);
-		setPassengername(passengername);
+		setLastname(lastname);
 		setWeight(weight);
 		setLength(length);
 		setWidth(width);
@@ -29,13 +30,7 @@ public class Passenger {
 		this.bookingreference = bookingreference;
 	}
 
-	public Name getPassengername() {
-		return passengername;
-	}
-
-	public void setPassengername(Name passengername) {
-		this.passengername = passengername;
-	}
+	
 
 	public double getWeight() {
 		return weight;
@@ -68,5 +63,14 @@ public class Passenger {
 	public void setHeight(double height) {
 		this.height = height;
 	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	
 	
 }
