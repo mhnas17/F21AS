@@ -31,9 +31,9 @@ public class WaitingQueue {
 		}
 		Passenger n = queue.pollFirst();
 		
-		book.getValue(n.getBookingreference() + n.getLastname()).setCheckedin(true);
+		book.getValue(n.getBookingreference() + n.getName().getLastName()).setCheckedin(true);
 		
-		System.out.println("Got: " + n.getLastname() +" " +  Thread.currentThread());
+		System.out.println("Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
 		
 		if(queue.isEmpty()){
 			empty = true;
@@ -57,13 +57,13 @@ public class WaitingQueue {
 			}
 		}
 		// generates random numbers for weight and dimension of luggage
-		n.setLength(Math.random()*100+1);
-		n.setHeight(Math.random()*100+1);
-		n.setWeight(Math.random()*100+1);
-		n.setWidth(Math.random()*100+1);
+		n.setLength((double)Math.round(Math.random()*100+1));
+		n.setHeight((double)Math.round(Math.random()*100+1));
+		n.setWeight((double)Math.round(Math.random()*100+1));
+		n.setWidth((double)Math.round(Math.random()*100+1));
 		
 		queue.addLast(n);
-		System.out.println("Put: " + n.getLastname());
+		System.out.println("Put: " + n.getName().getFullName());
 		empty = false;
 		notifyAll();
 		

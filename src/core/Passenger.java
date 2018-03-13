@@ -6,16 +6,16 @@ import name_plane.Name;
 public class Passenger {
 	
 	private String bookingreference;
-	private String lastname;
+	private Name name;
 	private double weight;
 	private double length;
 	private double width;
 	private double height;
 	
-	public Passenger(String bookingreference,String lastname,double weight, double length, double width, double height){
+	public Passenger(String bookingreference,Name name,double weight, double length, double width, double height){
 		
 		setBookingreference(bookingreference);
-		setLastname(lastname);
+		setName(name);
 		setWeight(weight);
 		setLength(length);
 		setWidth(width);
@@ -63,13 +63,18 @@ public class Passenger {
 	public void setHeight(double height) {
 		this.height = height;
 	}
-
+	
+/*
 	public String getLastname() {
 		return lastname;
 	}
+*/
+	public Name getName() {
+		return name;
+	}
 
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
+	public void setName(Name name) {
+		this.name = name;
 	}
 	
 	

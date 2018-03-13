@@ -88,17 +88,17 @@ public class Manager {
 				if (inputLine.length() != 0) {	// skip empty lines
 					// split line into parts
 					data = inputLine.split(",");				
-					Name n = new Name(data[1]);
+					Name name = new Name(data[1]);
 					// create booking object
-					Booking b = new Booking(data[0], n, data[2], Boolean.parseBoolean(data[3]));
+					Booking b = new Booking(data[0], name, data[2], Boolean.parseBoolean(data[3]));
 					// add to booking hash map
-					book.add(data[0] + n.getLastName(), b);
+					book.add(data[0] + name.getLastName(), b);
 					// add booking references to a list
 					lists.addBookingReferences(data[0]);
 					// add last names to a list
-					lists.addLastName(n.getLastName());
+					lists.addLastName(name.getLastName());
 					//creates passenger object
-					passenger = new Passenger(data[0],n.getLastName(),0,0,0,0);
+					passenger = new Passenger(data[0],name,0,0,0,0);
 	                //adds passenger to passenger list
 					passengerlist.add(passenger);
 					}
