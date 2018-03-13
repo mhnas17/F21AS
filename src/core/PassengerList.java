@@ -6,7 +6,7 @@ public class PassengerList {
 	private ArrayList<Passenger> passengers;
 
 	public PassengerList() {
-		this.passengers = new ArrayList<> ();
+		      passengers = new ArrayList<> ();
 	}
 	
 	public void add(Passenger p) {
@@ -22,7 +22,7 @@ public class PassengerList {
 		return null;
 	}
 	
-	public Passenger get(int i) {
+	public Passenger getPassenger(int i) {
 		return passengers.get(i);
 	}
 	

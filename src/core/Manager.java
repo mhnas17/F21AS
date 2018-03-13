@@ -2,6 +2,11 @@ package core;
 
 
 import java.io.*;
+
+import CheckinThread.WaitingQueue;
+import CheckinThread.EnteringQueue;
+import CheckinThread.CheckInDesk;
+
 import GUI.NewGui;
 import name_plane.Name;
 import name_plane.Plane;
@@ -86,11 +91,11 @@ public class Manager {
 					Name n = new Name(data[1]);
 					// create booking object
 					Booking b = new Booking(data[0], n, data[2], Boolean.parseBoolean(data[3]));
-					// add to booking hashmap
+					// add to booking hash map
 					book.add(data[0] + n.getLastName(), b);
 					// add booking references to a list
 					lists.addBookingReferences(data[0]);
-					// add lastnames to a list
+					// add last names to a list
 					lists.addLastName(n.getLastName());
 					//creates passenger object
 					passenger = new Passenger(data[0],n.getLastName(),0,0,0,0);
@@ -118,6 +123,16 @@ public class Manager {
 		}
 
 	}
+	
+	public PassengerList getPassengerList(){
+		
+		return passengerlist;
+	}
+	
+    public BookingMap getBookingMap(){
+		
+		return book;
+	}
 
 	public void showGui() {
 		// create a gui object
@@ -131,15 +146,19 @@ public class Manager {
 	public static void main(String[] args) throws Exception {
 
 		Manager p = new Manager("flights.csv","bookings.csv");
-		//p.showGui();
 		
-		Queue q = new Queue();
-		CheckinScheduler s = new CheckinScheduler(q,p.passengerlist);
-		CheckinProcessor pr = new CheckinProcessor(q);
 		
-		new Thread(s).start();
-		new Thread(pr).start();
+        WaitingQueue so = new WaitingQueue();
 		
+		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
+		eq.start();
+		Thread ci = new Thread(new CheckInDesk(so,p.getBookingMap()));
+		ci.start();
+		
+		
+		// p.showGui();
+		
+	
 		
 		
 
