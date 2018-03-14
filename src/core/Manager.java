@@ -5,6 +5,7 @@ import java.io.*;
 
 import CheckinThread.WaitingQueue;
 import CheckinThread.EnteringQueue;
+import CheckinThread.Timer;
 import CheckinThread.CheckInDesk;
 
 import GUI.NewGui;
@@ -149,7 +150,8 @@ public class Manager {
 		
 		
         WaitingQueue so = new WaitingQueue();
-		
+        Thread timer = new Thread (new Timer(20,so));
+		timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
 		Thread ci = new Thread(new CheckInDesk(so,p.getBookingMap()));

@@ -16,13 +16,16 @@ public class CheckInDesk implements Runnable {
 	}
 
 	public void run() {
-		while (!so.getDone()|| so.getQueueSize()!=0) {
+		while ((!so.getDone()|| so.getQueueSize()!=0) && !so.getTimerFinish()) {
 			try {
 				Thread.sleep(2000);
+				
 			} catch (InterruptedException e) {
 			}
 			Passenger number = so.get(bm);
 
 		}
+		System.out.println("Flights have departed no more check ins");
+		System.exit(0);
 	}
 }

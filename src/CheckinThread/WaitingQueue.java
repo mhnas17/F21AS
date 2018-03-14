@@ -9,6 +9,7 @@ public class WaitingQueue {
 	
 	private boolean empty;
 	private boolean done;
+	private boolean timer;
 	
 	private LinkedList<Passenger> queue;
 
@@ -77,8 +78,17 @@ public class WaitingQueue {
 		return done;
 	}
 	
+	public void setTimerFinished() {
+		timer =true;
+	}
+	
+	public boolean getTimerFinish() {
+		return timer;
+	}
 	
 	public int getQueueSize(){
 		return queue.size();
 	}
+	
+	
 }
