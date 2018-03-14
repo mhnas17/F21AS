@@ -6,7 +6,6 @@ import core.Passenger;
 /**
  * Third attempt at solving the producer/consumer problem.
  */
-
 public class CheckInDesk implements Runnable {
 	private WaitingQueue so;
 	private BookingMap bm;
