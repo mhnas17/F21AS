@@ -77,5 +77,34 @@ public class Passenger {
 		this.name = name;
 	}
 	
+	public double getVolume() throws NumberFormatException {
+		if (length == 0 || width == 0 || height == 0)
+			throw new NumberFormatException();
+		// volume converted to m^3
+		double volume = (length*width*height)/1000000;
+		return volume;
+	}
+	
+	public double getExcessfees() throws NumberFormatException {
+		if (weight == 0)
+			throw new NumberFormatException();
+		double fees = compExceessFees(weight);
+		return fees;
+
+	}
+	
+	public double compExceessFees(double weight) 
+	{
+		double fees=0;
+		if(weight>20 && weight<=30) 
+		{
+			fees= (weight-20)*5;
+		}
+		else if(weight>30) 
+		{
+			fees=(10*5)+(weight-30)*10;
+		}
+		return fees;
+	}
 	
 }

@@ -7,6 +7,7 @@ import org.junit.Test;
 
 import Exceptions.NegativeNumbers;
 import core.Luggage;
+import core.Passenger;
 
 
 

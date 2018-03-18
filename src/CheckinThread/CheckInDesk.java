@@ -1,18 +1,27 @@
 package CheckinThread;
 
+import java.util.Observable;
+
+import Exceptions.NegativeNumbers;
 import core.BookingMap;
+import core.LuggageMap;
 import core.Passenger;
+import core.FlightMap;
 
 /**
  * Third attempt at solving the producer/consumer problem.
  */
-public class CheckInDesk implements Runnable {
+public class CheckInDesk extends Observable implements Runnable {
 	private WaitingQueue so;
 	private BookingMap bm;
+	private LuggageMap lm;
+	private FlightMap fl;
 
-	public CheckInDesk(WaitingQueue so, BookingMap bm) {
+	public CheckInDesk(WaitingQueue so, BookingMap bm,LuggageMap lm,FlightMap fl) {
 		this.so = so;
 		this.bm = bm;
+		this.lm = lm;
+		this.fl=fl;
 	}
 
 	public void run() {
@@ -22,10 +31,27 @@ public class CheckInDesk implements Runnable {
 				
 			} catch (InterruptedException e) {
 			}
-			Passenger number = so.get(bm);
+			try {
+				Passenger number = so.get(bm,lm,fl);
+			} catch (NegativeNumbers e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		}
 		System.out.println("Flights have departed no more check ins");
 		System.exit(0);
 	}
+	
+	/*public synchronized void receiveOneBid() {
+		
+				
+		//System.out.println("hi");
+
+		//update view display
+		setChanged();
+		notifyObservers();
+    	clearChanged();
+    	
+	}*/
 }

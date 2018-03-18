@@ -8,7 +8,7 @@ import CheckinThread.EnteringQueue;
 import CheckinThread.Timer;
 import CheckinThread.CheckInDesk;
 
-import GUI.NewGui;
+import GUI.Gui;
 import name_plane.Name;
 import name_plane.Plane;
 
@@ -19,7 +19,7 @@ public class Manager {
 	private LuggageMap lug;
 	private BookingMap book;
 	private BookingLists lists;
-	private NewGui gui;
+	private Gui gui;
 	private Luggage l;
 	private PassengerList passengerlist;
 	private Passenger passenger;
@@ -131,13 +131,21 @@ public class Manager {
 	}
 	
     public BookingMap getBookingMap(){
-		
 		return book;
 	}
+    
+    public LuggageMap getLuggageMap() {
+    	return lug;
+    }
+    
+    public FlightMap getFlightMap() {
+    	return entries;
+    }
 
-	public void showGui() {
+	public void showGui(CheckInDesk s) {
 		// create a gui object
-		gui = new NewGui(book, lug, lists, entries,l);
+		//gui = new NewGui(book, lug, lists, entries,l);
+		gui = new Gui(s);
 	}
 
 	public void report() {
@@ -154,11 +162,14 @@ public class Manager {
 		timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
-		Thread ci = new Thread(new CheckInDesk(so,p.getBookingMap()));
+		CheckInDesk s = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
+		Thread ci = new Thread(s);
+		//s.receiveOneBid();
 		ci.start();
 		
 		
-		// p.showGui();
+		
+		//p.showGui(s);
 		
 	
 		

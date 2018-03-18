@@ -1,11 +1,15 @@
 package CheckinThread;
 
 import java.util.LinkedList;
+import java.util.Observable;
 
+import Exceptions.NegativeNumbers;
 import core.BookingMap;
+import core.LuggageMap;
 import core.Passenger;
+import core.FlightMap;
 
-public class WaitingQueue {
+public class WaitingQueue{
 	
 	private boolean empty;
 	private boolean done;
@@ -22,7 +26,7 @@ public class WaitingQueue {
 	// wait while no number
 	// when waiting over, get number
 	// set empty to true and notify waiting methods
-	public synchronized  Passenger get(BookingMap book) {
+	public synchronized  Passenger get(BookingMap book,LuggageMap lug,FlightMap fl) throws NegativeNumbers {
 		while (empty) {
 			try {
 				wait();
@@ -30,12 +34,17 @@ public class WaitingQueue {
 				e.printStackTrace();
 			}
 		}
-		Passenger n = queue.pollFirst();
+		Passenger n = queue.pollFirst();		
 		
 		book.getValue(n.getBookingreference() + n.getName().getLastName()).setCheckedin(true);
 		
-		System.out.println("Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
+		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_weight(n.getWeight());
+		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_volume(n.getVolume());
+		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_excessfees(n.getExcessfees());
+		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_numberofpassengers(1);
 		
+		System.out.println("Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
+		//System.out.println("Flight details: " + lug.getReport(fl));
 		if(queue.isEmpty()){
 			empty = true;
 		}
@@ -89,6 +98,8 @@ public class WaitingQueue {
 	public int getQueueSize(){
 		return queue.size();
 	}
+	
+	
 	
 	
 }

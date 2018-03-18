@@ -114,7 +114,7 @@ public class NewGui extends JFrame implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		if (event.getSource() == checkIn) {
+		/*if (event.getSource() == checkIn) {
 			// if someone checks in with luggage
 			if (luggage.isSelected() == true) {
 				try {
@@ -221,32 +221,6 @@ public class NewGui extends JFrame implements ActionListener {
 				width.setEditable(false);
 				height.setEditable(false);
 			}
-
-		}
-
-	}
-
-	public double getVolume() throws NumberFormatException {
-		if (length.getText() == null || width.getText() == null || height.getText() == null)
-			throw new NumberFormatException();
-		// volume converted to m^3
-		double volume = lg.computeVolume(Double.parseDouble(length.getText()), Double.parseDouble(width.getText()),
-				Double.parseDouble(height.getText()));
-		return volume;
-	}
-
-	public double getWeight() throws NumberFormatException {
-		if (weight.getText() == null)
-			throw new NumberFormatException();
-		double w = Double.parseDouble(weight.getText());
-		return w;
-	}
-
-	public double getExcessfees() throws NumberFormatException {
-		if (weight.getText() == null)
-			throw new NumberFormatException();
-		double fees = lg.compExceessFees(Double.parseDouble(weight.getText()));
-		return fees;
-
-	}
+		}*/
+	}	
 }

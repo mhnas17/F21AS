@@ -1,6 +1,7 @@
 package CheckinThread;
 
 import core.PassengerList;
+import core.Passenger;
 
 /**
  * Third attempt at solving the producer/consumer problem.
@@ -16,13 +17,15 @@ public class EnteringQueue implements Runnable {
 	}
 
 	public void run() {
-		for (int i = 0; i < array.getSize(); i++) {
+		while (array.getSize() != 0) {
 			try {
 				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			so.put(array.getPassenger(i));
+			Passenger p = array.getPassenger();
+			so.put(p);
+			array.removePassenger(p);
 		}
 		so.setDone();
 	}

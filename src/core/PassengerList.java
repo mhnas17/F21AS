@@ -1,12 +1,15 @@
 package core;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class PassengerList {
 	private ArrayList<Passenger> passengers;
+	private Random random;
 
 	public PassengerList() {
 		      passengers = new ArrayList<> ();
+		      random = new Random();
 	}
 	
 	public void add(Passenger p) {
@@ -22,8 +25,13 @@ public class PassengerList {
 		return null;
 	}
 	
-	public Passenger getPassenger(int i) {
-		return passengers.get(i);
+	public Passenger getPassenger() {
+		int x = random.nextInt(passengers.size());
+		return passengers.get(x);
+	}
+	
+	public void removePassenger(Passenger p) {
+		passengers.remove(p);
 	}
 	
 	

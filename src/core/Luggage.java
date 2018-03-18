@@ -92,31 +92,7 @@ public class Luggage {
 		this.accum_numberofpassengers += accum_numberofpassengers;
 	}
 	
-	/**
-	 * @param h height
-	 * @param l length
-	 * @param w width
-	 * @return
-	 * returns the volume
-	 */ 
-	public double computeVolume(double l,double w,double h) {
-		double Vol= (h*w*l)/1000000; //flop saving math here to convert the cm given dimensions to m^3 
-		return Vol;
-	}
 	
-	public double compExceessFees(double w) 
-{
-	double fees=0;
-	if(w>20 && w<=30) 
-	{
-		fees= (w-20)*5;
-	}
-	else if(w>30) 
-	{
-		fees=(10*5)+(w-30)*10;
-	}
-	return fees;
-}
 
 
 }
