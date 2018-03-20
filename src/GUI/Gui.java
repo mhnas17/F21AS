@@ -21,7 +21,7 @@ public class Gui  extends JFrame  implements Observer
     private PassengerList custList = new PassengerList();
     //GUI components
     JButton processButton;
-    private JTextArea customers ;
+    private JTextArea customers;
 
     
     /**

@@ -15,6 +15,8 @@ public class WaitingQueue{
 	private boolean done;
 	private boolean timer;
 	
+	private String passenger;
+	
 	private LinkedList<Passenger> queue;
 
 	public WaitingQueue() {
@@ -22,7 +24,8 @@ public class WaitingQueue{
 		queue = new LinkedList<>();
 		empty = true;
 	}
-
+	
+	
 	// wait while no number
 	// when waiting over, get number
 	// set empty to true and notify waiting methods
@@ -45,6 +48,8 @@ public class WaitingQueue{
 		
 		System.out.println("Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
 		//System.out.println("Flight details: " + lug.getReport(fl));
+		
+		
 		if(queue.isEmpty()){
 			empty = true;
 		}
@@ -97,6 +102,14 @@ public class WaitingQueue{
 	
 	public int getQueueSize(){
 		return queue.size();
+	}
+	
+	public synchronized String getReport(){
+		passenger="";
+		for (Passenger n : queue){
+			passenger+= n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight() + "\n";
+		}		
+		return passenger;
 	}
 	
 	

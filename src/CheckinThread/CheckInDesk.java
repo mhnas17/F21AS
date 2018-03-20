@@ -1,5 +1,6 @@
 package CheckinThread;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 import Exceptions.NegativeNumbers;
@@ -17,7 +18,8 @@ public class CheckInDesk extends Observable implements Runnable {
 	private LuggageMap lm;
 	private FlightMap fl;
 	
-	private String name;
+	//private String name;
+	private String report;
 
 	public CheckInDesk(WaitingQueue so, BookingMap bm,LuggageMap lm,FlightMap fl) {
 		this.so = so;
@@ -33,10 +35,11 @@ public class CheckInDesk extends Observable implements Runnable {
 				
 			} catch (InterruptedException e) {
 			}
-			try {
-				Passenger number = so.get(bm,lm,fl);
-				name = number.getName().getFullName();
-				receiveOneBid();
+			try {				
+				report =so.getReport();				
+				Passenger number = so.get(bm,lm,fl);				
+				//name = number.getName().getFullName();
+				notifier();
 			} catch (NegativeNumbers e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -44,13 +47,13 @@ public class CheckInDesk extends Observable implements Runnable {
 
 		}
 		System.out.println("Flights have departed no more check ins");
-		System.exit(0);
+		//System.exit(0);
 	}
 	
-	public synchronized void receiveOneBid() {
+	public synchronized void notifier() {
 		
 				
-		System.out.println("hi");
+		//System.out.println("hi");
 
 		//update view display
 		setChanged();
@@ -59,7 +62,7 @@ public class CheckInDesk extends Observable implements Runnable {
     	
 	}
 	
-	public String queueReport() {
-		return name;
+	public synchronized String queueReport() {
+		return report;
 	}
 }
