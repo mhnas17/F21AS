@@ -16,6 +16,8 @@ public class CheckInDesk extends Observable implements Runnable {
 	private BookingMap bm;
 	private LuggageMap lm;
 	private FlightMap fl;
+	
+	private String name;
 
 	public CheckInDesk(WaitingQueue so, BookingMap bm,LuggageMap lm,FlightMap fl) {
 		this.so = so;
@@ -33,6 +35,8 @@ public class CheckInDesk extends Observable implements Runnable {
 			}
 			try {
 				Passenger number = so.get(bm,lm,fl);
+				name = number.getName().getFullName();
+				receiveOneBid();
 			} catch (NegativeNumbers e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -43,15 +47,19 @@ public class CheckInDesk extends Observable implements Runnable {
 		System.exit(0);
 	}
 	
-	/*public synchronized void receiveOneBid() {
+	public synchronized void receiveOneBid() {
 		
 				
-		//System.out.println("hi");
+		System.out.println("hi");
 
 		//update view display
 		setChanged();
 		notifyObservers();
     	clearChanged();
     	
-	}*/
+	}
+	
+	public String queueReport() {
+		return name;
+	}
 }

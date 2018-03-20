@@ -94,16 +94,9 @@ public class Gui  extends JFrame  implements Observer
     //possibly investigate SwingWorker
     //for each customer, store bidlist into correct panel
     public synchronized void update(Observable o, Object args) {
-    	//for (int i = 0; i < numCusts; i++) {
-    		String report = "sd";
-			customers.setText(report);	
-			/*if (report.contains("WINNING")){
-				customers[i].setForeground(Color.RED);
-			}
-			else
-				customers[i].setForeground(Color.BLACK);
-
-    	}*/
+    	String report = queue.queueReport();
+		customers.setText(report);
+			
     }
 
 }

@@ -169,7 +169,7 @@ public class Manager {
 		
 		
 		
-		//p.showGui(s);
+		p.showGui(s);
 		
 	
 		
