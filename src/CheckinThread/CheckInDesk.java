@@ -17,8 +17,6 @@ public class CheckInDesk extends Observable implements Runnable {
 	private BookingMap bm;
 	private LuggageMap lm;
 	private FlightMap fl;
-	
-	//private String name;
 	private String report;
 
 	public CheckInDesk(WaitingQueue so, BookingMap bm,LuggageMap lm,FlightMap fl) {
@@ -31,17 +29,18 @@ public class CheckInDesk extends Observable implements Runnable {
 	public void run() {
 		while ((!so.getDone()|| so.getQueueSize()!=0) && !so.getTimerFinish()) {
 			try {
-				Thread.sleep(2000);
+				Thread.sleep(1000);
 				
 			} catch (InterruptedException e) {
 			}
 			try {				
-				report =so.getReport();				
-				Passenger number = so.get(bm,lm,fl);				
-				//name = number.getName().getFullName();
-				notifier();
+						
+				Passenger number = so.get(bm,lm,fl);
+				
+				report =so.getReport();
+				notifier();	
+				
 			} catch (NegativeNumbers e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
@@ -51,11 +50,7 @@ public class CheckInDesk extends Observable implements Runnable {
 	}
 	
 	public synchronized void notifier() {
-		
-				
-		//System.out.println("hi");
-
-		//update view display
+						
 		setChanged();
 		notifyObservers();
     	clearChanged();

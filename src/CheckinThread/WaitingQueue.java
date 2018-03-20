@@ -47,9 +47,7 @@ public class WaitingQueue{
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_numberofpassengers(1);
 		
 		System.out.println("Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
-		//System.out.println("Flight details: " + lug.getReport(fl));
-		
-		
+				
 		if(queue.isEmpty()){
 			empty = true;
 		}
@@ -63,7 +61,7 @@ public class WaitingQueue{
 	// set empty to false and notify waiting methods
 	//!empty
 	public synchronized void put(Passenger n) {
-
+		
 		while (queue.size()>=5) {
 			try {
 				wait();
@@ -72,10 +70,10 @@ public class WaitingQueue{
 			}
 		}
 		// generates random numbers for weight and dimension of luggage
-		n.setLength((double)Math.round(Math.random()*100+1));
-		n.setHeight((double)Math.round(Math.random()*100+1));
-		n.setWeight((double)Math.round(Math.random()*100+1));
-		n.setWidth((double)Math.round(Math.random()*100+1));
+		n.setLength(Math.round(Math.random()*100+1));
+		n.setHeight(Math.round(Math.random()*100+1));
+		n.setWeight(Math.round(Math.random()*100+1));
+		n.setWidth(Math.round(Math.random()*100+1));
 		
 		queue.addLast(n);
 		System.out.println("Put: " + n.getName().getFullName());

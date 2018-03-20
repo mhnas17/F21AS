@@ -1,6 +1,9 @@
 package CheckinThread;
 
 import core.PassengerList;
+
+import java.util.Observable;
+
 import core.Passenger;
 
 /**
@@ -10,6 +13,7 @@ import core.Passenger;
 public class EnteringQueue implements Runnable {
 	private WaitingQueue so;
 	private PassengerList array;
+	
 
 	public EnteringQueue(WaitingQueue so, PassengerList array) {
 		this.so = so;
@@ -23,10 +27,16 @@ public class EnteringQueue implements Runnable {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			
+			
 			Passenger p = array.getPassenger();
 			so.put(p);
 			array.removePassenger(p);
+			
 		}
 		so.setDone();
 	}
+	
+	
+	
 }
