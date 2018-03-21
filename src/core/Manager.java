@@ -158,12 +158,12 @@ public class Manager {
 		timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
-		CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
+		/*CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
 		Thread ci = new Thread(s1,"1");
 		ci.start();
 		CheckInDesk s2 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
 		Thread cii = new Thread(s2,"2");
-		cii.start();
+		cii.start();*/
 		p.showGui(so,p);
 		
 	

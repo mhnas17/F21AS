@@ -15,33 +15,33 @@ import CheckinThread.*;
  * Simple GUI for Auction application
  */
 public class Gui extends JFrame implements Observer, ActionListener {
-	
+
 	private Manager p;
-	
+
 	private WaitingQueue wait;
 	private int numCusts;
 	private PassengerList custList = new PassengerList();
 	// GUI components
 	private JButton addButton = new JButton("Add");
+	private JButton removeButton = new JButton("Remove");
+	
 	private JTextArea waitingQueue;
-	
+
 	Container contentPane = new Container();
-	
-	int x=0;
-	
-	private JTextArea [] desks = new JTextArea [10];
-	
+
+	int x = 0;
+
+	private JTextArea[] desks = new JTextArea[10];
+
 	JPanel northPanel;
-	
-	
 
 	/**
 	 * Create the frame with its panels.
 	 */
-	public Gui(WaitingQueue wait,Manager p) {
+	public Gui(WaitingQueue wait, Manager p) {
 		this.wait = wait;
-		this.p=p;
-		
+		this.p = p;
+
 		wait.addObserver(this);
 
 		// custList = queue.getListOfCustomers();
@@ -71,27 +71,31 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	}
 
 	private JPanel createSouthPanel() {
-		JPanel southPanel = new JPanel(new GridLayout(2,1));
+		JPanel southPanel = new JPanel(new GridLayout(2, 1));
 
 		waitingQueue = new JTextArea(15, 80);
 
-		southPanel.add(waitingQueue);		
+		southPanel.add(waitingQueue);
+		
 		southPanel.add(addButton);
 		addButton.addActionListener(this);
 		
+		southPanel.remove(removeButton);
+		removeButton.addActionListener(this);
+
 		return southPanel;
 	}
-	
+
 	public synchronized void createCheckInDesk(int x) {
-		
-		CheckInDesk s1 = new CheckInDesk(wait,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
-		Thread ci = new Thread(s1,Integer.toString(x));
+
+		CheckInDesk s1 = new CheckInDesk(wait, p.getBookingMap(), p.getLuggageMap(), p.getFlightMap());
+		Thread ci = new Thread(s1, Integer.toString(x));
 		ci.start();
 	}
 
 	private JPanel createCenterPanel() {
-		northPanel = new JPanel();		
-		
+		northPanel = new JPanel();
+
 		for (int i = 0; i <= x; i++) {
 			desks[i] = new JTextArea(5, 20);
 			desks[i].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
@@ -101,34 +105,38 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		}
 		return northPanel;
 	}
-	
+
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == addButton) {
-				//Thread.this.
-				x++;
-				
-				desks[x] = new JTextArea(5, 20);
-				desks[x].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
-				desks[x].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.LIGHT_GRAY));
-				
-				northPanel.add(desks[x]);				
-				northPanel.revalidate();
-				northPanel.repaint();
-				
-				createCheckInDesk(x);
-			}
+			// Thread.this.
+			x++;
+
+			desks[x] = new JTextArea(5, 20);
+			desks[x].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+			desks[x].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.LIGHT_GRAY));
+
+			northPanel.add(desks[x]);
+			northPanel.revalidate();
+			northPanel.repaint();
+
+			createCheckInDesk(x);
 		}
-
-	/*////////////////////////////////////////////////////
-	// MVC pattern - allows listeners to be added
-	public void addProcessBidsListener(ActionListener al) {
-		addButton.addActionListener(al);
+		if (event.getSource() == removeButton) {
+			remove(desks[x]);
+			x--;
+			
+		
+		}
 	}
 
-	public void disableProcessButton() {
-		addButton.setEnabled(false);
-	}
-	////////////////////////////////////////////////////////*/
+	/*
+	 * //////////////////////////////////////////////////// // MVC pattern - allows
+	 * listeners to be added public void addProcessBidsListener(ActionListener al) {
+	 * addButton.addActionListener(al); }
+	 * 
+	 * public void disableProcessButton() { addButton.setEnabled(false); }
+	 * ////////////////////////////////////////////////////////
+	 */
 
 	// OBSERVER pattern - must provide update methods
 	// synchronized blocks access to sync methods of the same object until finished
@@ -138,17 +146,16 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 		waitingQueue.setText(args.toString());
 		String report = wait.checkInReport();
-		
-		for (int i=0;i<=x;i++) {
+
+		for (int i = 0; i <= x; i++) {
 			desks[i].setText(report);
 		}
-		/*if (Thread.currentThread().getName().equals("0")) {
-			desks[0].setText(report);
-		} else if (Thread.currentThread().getName().equals("1")) {
-			desks[1].setText(report);
-		} else if (Thread.currentThread().getName().equals("2")) {
-			desks[2].setText(report);
-		}*/
+		/*
+		 * if (Thread.currentThread().getName().equals("0")) { desks[0].setText(report);
+		 * } else if (Thread.currentThread().getName().equals("1")) {
+		 * desks[1].setText(report); } else if
+		 * (Thread.currentThread().getName().equals("2")) { desks[2].setText(report); }
+		 */
 
 		// desk2.setText(t);
 	}
