@@ -34,9 +34,8 @@ public class CheckInDesk extends Observable implements Runnable {
 			} catch (InterruptedException e) {
 			}
 			try {				
-						
-				Passenger number = so.get(bm,lm,fl);
 				
+				Passenger number = so.get(bm,lm,fl);
 				report =so.getReport();
 				notifier();	
 				
