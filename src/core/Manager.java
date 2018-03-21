@@ -159,14 +159,13 @@ public class Manager {
 		
         WaitingQueue so = new WaitingQueue();
         Thread timer = new Thread (new Timer(20,so));
-		//timer.start();
+		timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
 		CheckInDesk s = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
 		Thread ci = new Thread(s,"1");
 		CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
 		Thread cii = new Thread(s1,"2");
-		//s.receiveOneBid();
 		ci.start();
 		cii.start();
 		
