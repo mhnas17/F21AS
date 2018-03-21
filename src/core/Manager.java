@@ -119,7 +119,7 @@ public class Manager {
 			try {
 				buff.close();
 			} catch (IOException ioe) {
-				// don't do anything
+				
 			}
 		}
 
@@ -143,8 +143,6 @@ public class Manager {
     }
 
 	public void showGui(CheckInDesk s,WaitingQueue so) {
-		// create a gui object
-		//gui = new NewGui(book, lug, lists, entries,l);
 		gui = new Gui(s,so);
 	}
 
@@ -162,16 +160,13 @@ public class Manager {
 		timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
-		CheckInDesk s = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
-		Thread ci = new Thread(s,"1");
-		CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
-		Thread cii = new Thread(s1,"2");
+		CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
+		Thread ci = new Thread(s1,"1");
 		ci.start();
+		CheckInDesk s2 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
+		Thread cii = new Thread(s2,"2");
 		cii.start();
-		
-		
-		
-		p.showGui(s,so);
+		p.showGui(s1,so);
 		
 	
 		

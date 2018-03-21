@@ -108,10 +108,10 @@ public class Gui  extends JFrame  implements Observer
 		waitingQueue.setText(args.toString());
 		String report = wait.checkInReport();
 		if (Thread.currentThread().getName().equals("1")) {
-			desk1.setText(report+"1");
+			desk1.setText(report);
 		}
 		else if (Thread.currentThread().getName().equals("2")){
-			desk2.setText(report+"2");
+			desk2.setText(report);
 		}
 		
 		//desk2.setText(t);	

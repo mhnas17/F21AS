@@ -18,7 +18,7 @@ public class Timer implements Runnable{
 	}
 public void runTimer() {
 	
-	while (time>=0){
+	while (time>0){
         System.out.println("Remaining: "+time+" seconds");
         try {
           time--;
