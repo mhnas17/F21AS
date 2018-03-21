@@ -41,7 +41,7 @@ public class CheckInDesk implements Runnable {
 				}
 
 		}
-		System.out.println("Flights have departed no more check ins");
+		
 		
 	}
 	
