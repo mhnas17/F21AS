@@ -116,7 +116,7 @@ public class WaitingQueue extends Observable{
 			passenger+= n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight() + "\n";
 		}
 		notifier(passenger);
-	}
+	} 
 	
 	public synchronized void notifier(String x) {		
 		setChanged();
