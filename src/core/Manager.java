@@ -142,8 +142,8 @@ public class Manager {
     	return entries;
     }
 
-	public void showGui(WaitingQueue so) {
-		gui = new Gui(so);
+	public void showGui(WaitingQueue so,Manager p) {
+		gui = new Gui(so,p);
 	}
 
 	public void report() {
@@ -152,9 +152,7 @@ public class Manager {
 
 	public static void main(String[] args) throws Exception {
 
-		Manager p = new Manager("flights.csv","bookings.csv");
-		
-		
+		Manager p = new Manager("flights.csv","bookings.csv");		
         WaitingQueue so = new WaitingQueue();
         Thread timer = new Thread (new Timer(20,so));
 		timer.start();
@@ -166,7 +164,7 @@ public class Manager {
 		CheckInDesk s2 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
 		Thread cii = new Thread(s2,"2");
 		cii.start();
-		p.showGui(so);
+		p.showGui(so,p);
 		
 	
 		
