@@ -13,7 +13,7 @@ public class WaitingQueue extends Observable{
 	
 	private boolean empty;
 	private boolean done;
-	private boolean timer;
+	private boolean timer = false;
 	
 	private String reportGet;
 	private String reportPut;
@@ -100,6 +100,7 @@ public class WaitingQueue extends Observable{
 	
 	public void setTimerFinished() {
 		timer =true;
+		
 	}
 	
 	public boolean getTimerFinish() {

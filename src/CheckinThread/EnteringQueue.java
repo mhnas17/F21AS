@@ -27,7 +27,6 @@ public class EnteringQueue implements Runnable {
 			so.put(p);
 			array.removePassenger(p);
 			
-			
 		}
 		so.setDone();
 	}
