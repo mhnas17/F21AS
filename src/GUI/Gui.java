@@ -16,7 +16,6 @@ import CheckinThread.*;
  */
 public class Gui  extends JFrame  implements Observer
 {
-    private CheckInDesk queue;
     private WaitingQueue wait;
     private int numCusts;
     private PassengerList custList = new PassengerList();
@@ -31,9 +30,8 @@ public class Gui  extends JFrame  implements Observer
     /**
      * Create the frame with its panels.
      */
-    public Gui(CheckInDesk queue,WaitingQueue wait)
+    public Gui(WaitingQueue wait)
     {
-        this.queue = queue;
         this.wait=wait;
         wait.addObserver(this);
         

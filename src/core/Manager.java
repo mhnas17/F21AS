@@ -142,8 +142,8 @@ public class Manager {
     	return entries;
     }
 
-	public void showGui(CheckInDesk s,WaitingQueue so) {
-		gui = new Gui(s,so);
+	public void showGui(WaitingQueue so) {
+		gui = new Gui(so);
 	}
 
 	public void report() {
@@ -166,7 +166,7 @@ public class Manager {
 		CheckInDesk s2 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
 		Thread cii = new Thread(s2,"2");
 		cii.start();
-		p.showGui(s1,so);
+		p.showGui(so);
 		
 	
 		

@@ -25,8 +25,8 @@ public class CheckInDesk implements Runnable {
 
 	public void run() {
 		
-		while (so.getQueueSize()!=0 && !so.getTimerFinish()) {
-         
+		while ((!so.getDone()||so.getQueueSize()!=0) && !so.getTimerFinish()) {
+			 
 			 try {				
 					
 					Passenger number = so.get(bm,lm,fl);
@@ -35,14 +35,12 @@ public class CheckInDesk implements Runnable {
 					e.printStackTrace();
 				}
 			 try {
-					Thread.sleep(2000);
+					Thread.sleep(1500);
 					
-				} catch (InterruptedException e) {
-				}
-
-		}
-		
-		
+				 } catch (InterruptedException e) {
+				 }
+			 
+		}		
 	}
 	
 	
