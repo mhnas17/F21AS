@@ -142,10 +142,10 @@ public class Manager {
     	return entries;
     }
 
-	public void showGui(CheckInDesk s) {
+	public void showGui(CheckInDesk s,WaitingQueue so) {
 		// create a gui object
 		//gui = new NewGui(book, lug, lists, entries,l);
-		gui = new Gui(s);
+		gui = new Gui(s,so);
 	}
 
 	public void report() {
@@ -159,17 +159,20 @@ public class Manager {
 		
         WaitingQueue so = new WaitingQueue();
         Thread timer = new Thread (new Timer(20,so));
-		timer.start();
+		//timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
-		CheckInDesk s = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
-		Thread ci = new Thread(s);
+		CheckInDesk s = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
+		Thread ci = new Thread(s,"1");
+		CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());
+		Thread cii = new Thread(s1,"2");
 		//s.receiveOneBid();
 		ci.start();
+		cii.start();
 		
 		
 		
-		p.showGui(s);
+		p.showGui(s,so);
 		
 	
 		

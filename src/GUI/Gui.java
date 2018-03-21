@@ -17,20 +17,26 @@ import CheckinThread.*;
 public class Gui  extends JFrame  implements Observer
 {
     private CheckInDesk queue;
+    private WaitingQueue wait;
     private int numCusts;
     private PassengerList custList = new PassengerList();
     //GUI components
     JButton processButton;
-    private JTextArea customers;
+    private JTextArea waitingQueue;
+    private JTextArea desk1;
+    private JTextArea desk2;
+    
 
     
     /**
      * Create the frame with its panels.
      */
-    public Gui(CheckInDesk queue)
+    public Gui(CheckInDesk queue,WaitingQueue wait)
     {
         this.queue = queue;
-        queue.addObserver(this);
+        this.wait=wait;
+        wait.addObserver(this);
+        
         //custList = queue.getListOfCustomers();
         numCusts = custList.getSize();
 
@@ -55,9 +61,11 @@ public class Gui  extends JFrame  implements Observer
    
     private JPanel createCustPanel() {
     	//cheating - know there are 6 customers
-    	JPanel custPanel = new JPanel(new GridLayout (3,2));
+    	JPanel custPanel = new JPanel(new GridLayout (1,3));
 		//customers  = new JTextArea [numCusts];
-		customers  = new JTextArea(15,80);
+		waitingQueue  = new JTextArea(15,80);
+		desk1 = new JTextArea(15,15);
+		desk2 =new JTextArea(15,15);
 		//customers [0]= 
 		/*for (int i = 0; i < numCusts; i++) {
 			customers [i]= new JTextArea(15,80);
@@ -66,7 +74,9 @@ public class Gui  extends JFrame  implements Observer
 			customers [i].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.LIGHT_GRAY));
 			custPanel.add(customers[i]);
 		}*/
-		custPanel.add(customers);
+		custPanel.add(waitingQueue);
+		custPanel.add(desk1);
+		custPanel.add(desk2);
 		return custPanel;
     }
 
@@ -94,9 +104,17 @@ public class Gui  extends JFrame  implements Observer
     //possibly investigate SwingWorker
     //for each customer, store bidlist into correct panel
     public synchronized void update(Observable o, Object args) {
-    	String report = queue.queueReport();
-		customers.setText(report);
-			
+    	
+		waitingQueue.setText(args.toString());
+		String report = wait.checkInReport();
+		if (Thread.currentThread().getName().equals("1")) {
+			desk1.setText(report+"1");
+		}
+		else if (Thread.currentThread().getName().equals("2")){
+			desk2.setText(report+"2");
+		}
+		
+		//desk2.setText(t);	
     }
 
 }

@@ -12,7 +12,7 @@ import core.FlightMap;
 /**
  * Third attempt at solving the producer/consumer problem.
  */
-public class CheckInDesk extends Observable implements Runnable {
+public class CheckInDesk implements Runnable {
 	private WaitingQueue so;
 	private BookingMap bm;
 	private LuggageMap lm;
@@ -36,8 +36,9 @@ public class CheckInDesk extends Observable implements Runnable {
 			try {				
 				
 				Passenger number = so.get(bm,lm,fl);
-				report =so.getReport();
-				notifier();	
+				System.out.println(Thread.currentThread().getName());
+				//notifier();
+				//report =so.getReport();				
 				
 			} catch (NegativeNumbers e) {
 				e.printStackTrace();
@@ -48,15 +49,7 @@ public class CheckInDesk extends Observable implements Runnable {
 		//System.exit(0);
 	}
 	
-	public synchronized void notifier() {
-						
-		setChanged();
-		notifyObservers();
-    	    clearChanged();
-    	
-	}
 	
-	public synchronized String queueReport() {
-		return report;
-	}
+	
+	
 }

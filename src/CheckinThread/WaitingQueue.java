@@ -9,11 +9,14 @@ import core.LuggageMap;
 import core.Passenger;
 import core.FlightMap;
 
-public class WaitingQueue{
+public class WaitingQueue extends Observable{
 	
 	private boolean empty;
 	private boolean done;
 	private boolean timer;
+	
+	private String reportGet;
+	private String reportPut;
 	
 	private String passenger;
 	
@@ -46,13 +49,15 @@ public class WaitingQueue{
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_excessfees(n.getExcessfees());
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_numberofpassengers(1);
 		
+		reportGet = "Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight();
 		System.out.println("Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
 				
 		if(queue.isEmpty()){
 			empty = true;
 		}
-		
+				
 		notifyAll();
+				
 		return n;
 	}
 
@@ -78,7 +83,10 @@ public class WaitingQueue{
 		queue.addLast(n);
 		System.out.println("Put: " + n.getName().getFullName());
 		empty = false;
+	
+		
 		notifyAll();
+		getReport();
 		
 	}
 
@@ -102,15 +110,21 @@ public class WaitingQueue{
 		return queue.size();
 	}
 	
-	public synchronized String getReport(){
+	public synchronized void getReport(){
 		passenger="";
 		for (Passenger n : queue){
 			passenger+= n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight() + "\n";
-		}		
-		return passenger;
+		}
+		notifier(passenger);
 	}
 	
+	public synchronized void notifier(String x) {		
+		setChanged();
+		notifyObservers(x);
+    	clearChanged();    	
+	}	
 	
-	
-	
+	public synchronized String checkInReport() {
+		return reportGet;
+	}
 }
