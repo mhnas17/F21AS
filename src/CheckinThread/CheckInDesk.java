@@ -29,7 +29,7 @@ public class CheckInDesk extends Observable implements Runnable {
 	public void run() {
 		while ((!so.getDone()|| so.getQueueSize()!=0) && !so.getTimerFinish()) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 				
 			} catch (InterruptedException e) {
 			}
@@ -53,7 +53,7 @@ public class CheckInDesk extends Observable implements Runnable {
 						
 		setChanged();
 		notifyObservers();
-    	clearChanged();
+    	    clearChanged();
     	
 	}
 	
