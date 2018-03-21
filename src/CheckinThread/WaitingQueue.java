@@ -57,7 +57,7 @@ public class WaitingQueue extends Observable{
 		}
 				
 		notifyAll();
-				
+		getReport();	
 		return n;
 	}
 
