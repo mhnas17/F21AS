@@ -138,13 +138,17 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 		waitingQueue.setText(args.toString());
 		String report = wait.checkInReport();
-		if (Thread.currentThread().getName().equals("0")) {
+		
+		for (int i=0;i<=x;i++) {
+			desks[i].setText(report);
+		}
+		/*if (Thread.currentThread().getName().equals("0")) {
 			desks[0].setText(report);
 		} else if (Thread.currentThread().getName().equals("1")) {
 			desks[1].setText(report);
 		} else if (Thread.currentThread().getName().equals("2")) {
 			desks[2].setText(report);
-		}
+		}*/
 
 		// desk2.setText(t);
 	}
