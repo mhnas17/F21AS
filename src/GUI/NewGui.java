@@ -193,7 +193,7 @@ public class NewGui extends JFrame implements ActionListener {
 
 		}
 		if (event.getSource() == report) {
-			lugagges.writeToFile("Report.txt", lugagges.getReport(fmap));
+			lugagges.writeToFile("Report.txt", lugagges.getReport(f	map));
 		}
 
 		if (event.getSource() == close) {

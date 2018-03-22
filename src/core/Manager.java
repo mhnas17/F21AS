@@ -9,6 +9,8 @@ import CheckinThread.Timer;
 import CheckinThread.CheckInDesk;
 
 import GUI.Gui;
+import ReportLogs.CheckedInReport;
+import ReportLogs.Log;
 import name_plane.Name;
 import name_plane.Plane;
 
@@ -152,8 +154,9 @@ public class Manager {
 
 	public static void main(String[] args) throws Exception {
 
-		Manager p = new Manager("flights.csv","bookings.csv");		
-        WaitingQueue so = new WaitingQueue();
+		Manager p = new Manager("flights.csv","bookings.csv");
+		WaitingQueue so = new WaitingQueue();
+		CheckedInReport r=new CheckedInReport(so);
         Thread timer = new Thread (new Timer(20,so));
 		timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
@@ -165,6 +168,7 @@ public class Manager {
 		Thread cii = new Thread(s2,"2");
 		cii.start();*/
 		p.showGui(so,p);
+		Log.log(r.getCheckedInReport());
 		
 	
 		
