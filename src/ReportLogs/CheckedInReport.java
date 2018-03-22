@@ -19,11 +19,17 @@ public class CheckedInReport implements Observer{
 		wait.addObserver(this);
 	}
 	
-public String getCheckedInReport() {
+	public String getCheckedInReport() {
 	String s="";
-	if(wait.checkInReport()!=null) {
-		 report +=wait.checkInReport()+"got 1\n";
-		 return report;}
+	
+	if(wait.checkInReport()!=null ) {
+		 CharSequence cs =wait.checkInReport()+"got 1\n";
+		 if(!report.contains(cs) ) {
+			 report +=wait.checkInReport()+"got 1\n";
+			 return report;
+		 }else {
+				return report;}
+		 }
 	else {
 	return s;}
 	}

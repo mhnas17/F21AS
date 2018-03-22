@@ -90,7 +90,7 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 	public synchronized void createCheckInDesk(int x) {
 
-		CheckInDesk s1 = new CheckInDesk(wait, p.getBookingMap(), p.getLuggageMap(), p.getFlightMap());
+		CheckInDesk s1 = new CheckInDesk(wait, p.getBookingMap(), p.getLuggageMap(), p.getFlightMap(),threads);
 		Thread ci = new Thread(s1, Integer.toString(x));
 		ci.start();
 		threads.add(ci);

@@ -20,6 +20,8 @@ public class WaitingQueue extends Observable{
 	
 	private String passenger;
 	
+	private boolean flag=false;
+	
 	private LinkedList<Passenger> queue;
 
 	public WaitingQueue() {
@@ -57,6 +59,7 @@ public class WaitingQueue extends Observable{
 		}
 				
 		notifyAll();
+		flag=true;
 		getReport();	
 		return n;
 	}
@@ -87,7 +90,12 @@ public class WaitingQueue extends Observable{
 		
 		notifyAll();
 		getReport();
+		flag=false;
 		
+	}
+	
+	public boolean returnFlag() {
+		return flag;
 	}
 
 	public void setDone() {

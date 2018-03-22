@@ -1,5 +1,7 @@
 package CheckinThread;
 
+import java.util.ArrayList;
+
 import Exceptions.NegativeNumbers;
 import core.BookingMap;
 import core.LuggageMap;
@@ -14,36 +16,35 @@ public class CheckInDesk implements Runnable {
 	private BookingMap bm;
 	private LuggageMap lm;
 	private FlightMap fl;
-	
+	ArrayList<Thread> threads = new ArrayList<>();
 
-	public CheckInDesk(WaitingQueue so, BookingMap bm,LuggageMap lm,FlightMap fl) {
+	public CheckInDesk(WaitingQueue so, BookingMap bm, LuggageMap lm, FlightMap fl, ArrayList<Thread> threads) {
 		this.so = so;
 		this.bm = bm;
 		this.lm = lm;
-		this.fl=fl;
+		this.fl = fl;
+		this.threads = threads;
 	}
 
 	public void run() {
-		
-		while (((!so.getDone()||so.getQueueSize()!=0) && !so.getTimerFinish()) && !Thread.currentThread().isInterrupted()) {
-			 
-			 try {				
-					
-					Passenger number = so.get(bm,lm,fl);
-								
+		for (Thread p : threads) {
+			while (((!so.getDone() || so.getQueueSize() != 0) && !so.getTimerFinish()) && !p.isInterrupted()) {
+
+				try {
+
+					Passenger number = so.get(bm, lm, fl);
+
 				} catch (NegativeNumbers e) {
 					e.printStackTrace();
 				}
-			 try {
+				try {
 					Thread.sleep(1500);
-					
-				 } catch (InterruptedException e) {
-				 }
-			 
-		}		
+
+				} catch (InterruptedException e) {
+				}
+
+			}
+		}
 	}
-	
-	
-	
-	
+
 }

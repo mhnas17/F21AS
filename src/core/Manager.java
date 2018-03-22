@@ -168,6 +168,7 @@ public class Manager {
 		Thread cii = new Thread(s2,"2");
 		cii.start();*/
 		p.showGui(so,p);
+		
 		Log.log(r.getCheckedInReport());
 		
 	
