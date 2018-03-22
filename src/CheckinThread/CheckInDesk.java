@@ -25,7 +25,7 @@ public class CheckInDesk implements Runnable {
 
 	public void run() {
 		
-		while ((!so.getDone()||so.getQueueSize()!=0) && !so.getTimerFinish()) {
+		while (((!so.getDone()||so.getQueueSize()!=0) && !so.getTimerFinish()) && !Thread.currentThread().isInterrupted()) {
 			 
 			 try {				
 					

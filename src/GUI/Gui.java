@@ -25,6 +25,8 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	private JButton addButton = new JButton("Add");
 	private JButton removeButton = new JButton("Remove");
 	
+	ArrayList<Thread> threads = new ArrayList<>();
+	
 	private JTextArea waitingQueue;
 
 	Container contentPane = new Container();
@@ -80,7 +82,7 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		southPanel.add(addButton);
 		addButton.addActionListener(this);
 		
-		southPanel.remove(removeButton);
+		southPanel.add(removeButton);
 		removeButton.addActionListener(this);
 
 		return southPanel;
@@ -91,6 +93,21 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		CheckInDesk s1 = new CheckInDesk(wait, p.getBookingMap(), p.getLuggageMap(), p.getFlightMap());
 		Thread ci = new Thread(s1, Integer.toString(x));
 		ci.start();
+		threads.add(ci);
+	}
+	
+	public synchronized void removeCheckInDesk() {
+		
+		for (Thread p : threads) {
+			if (p.getName().equals(Integer.toString(x))) {
+				p.interrupt();
+				northPanel.remove(desks[x]);
+				}
+		}
+		
+		northPanel.revalidate();
+		northPanel.repaint();
+		x--;
 	}
 
 	private JPanel createCenterPanel() {
@@ -122,10 +139,11 @@ public class Gui extends JFrame implements Observer, ActionListener {
 			createCheckInDesk(x);
 		}
 		if (event.getSource() == removeButton) {
-			remove(desks[x]);
-			x--;
-			
-		
+			northPanel.remove(desks[x]);
+			northPanel.revalidate();
+			northPanel.repaint();
+			removeCheckInDesk();
+			x--;		
 		}
 	}
 
@@ -148,16 +166,8 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		String report = wait.checkInReport();
 
 		for (int i = 0; i <= x; i++) {
-			desks[i].setText(report);
+			if (Thread.currentThread().getName().equals(Integer.toString(i))) { 
+				 desks[i].setText(report);}
 		}
-		/*
-		 * if (Thread.currentThread().getName().equals("0")) { desks[0].setText(report);
-		 * } else if (Thread.currentThread().getName().equals("1")) {
-		 * desks[1].setText(report); } else if
-		 * (Thread.currentThread().getName().equals("2")) { desks[2].setText(report); }
-		 */
-
-		// desk2.setText(t);
 	}
-
 }
