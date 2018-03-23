@@ -11,6 +11,7 @@ import CheckinThread.CheckInDesk;
 import GUI.Gui;
 import ReportLogs.CheckedInReport;
 import ReportLogs.Log;
+import ReportLogs.QueueReport;
 import name_plane.Name;
 import name_plane.Plane;
 
@@ -156,6 +157,7 @@ public class Manager {
 
 		Manager p = new Manager("flights.csv","bookings.csv");
 		WaitingQueue so = new WaitingQueue();
+		QueueReport q=new QueueReport(so);
 		CheckedInReport r=new CheckedInReport(so);
         //Thread timer = new Thread (new Timer(20,so));
 		//timer.start();
@@ -169,7 +171,7 @@ public class Manager {
 		cii.start();*/
 		p.showGui(so,p);
 		
-		Log.log(r.getCheckedInReport());
+		Log.log(r.getCheckedinReport());
 		
 	
 		

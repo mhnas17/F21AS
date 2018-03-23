@@ -4,6 +4,7 @@ import java.util.Observer;
 import CheckinThread.WaitingQueue;
 import core.Manager;
 import core.PassengerList;
+import ReportLogs.QueueReport;
 
 
 public class CheckedInReport implements Observer{
@@ -19,26 +20,29 @@ public class CheckedInReport implements Observer{
 		wait.addObserver(this);
 	}
 	
-	public String getCheckedInReport() {
-	String s="";
-	
-	if(wait.checkInReport()!=null ) {
-		 CharSequence cs =wait.checkInReport()+"got 1\n";
-		 if(!report.contains(cs) ) {
-			 report +=wait.checkInReport()+"got 1\n";
-			 return report;
-		 }else {
-				return report;}
-		 }
-	else {
-	return s;}
+	public void setCheckedInReport() {
+		// String s="";
+
+		if (wait.checkInReport() != null) {
+			CharSequence cs = wait.checkInReport() + "got 1\n";
+			if (!report.contains(cs)) {
+				report += wait.checkInReport() + "got 1\n";
+
+			}
+		}
 	}
+
+	public String getCheckedinReport() {
+		return report;
+	}
+
 	@Override
-	// The problem so far is that this is noitified whether we put someone in queue or we get. We only want it to work when someone is checke in
+	// The problem so far is that this is noitified whether we put someone in queue
+	// or we get. We only want it to work when someone is checke in
 	public synchronized void update(Observable o, Object arg) {
-		getCheckedInReport();
-		//System.out.println(getCheckedInReport());
-		
+		setCheckedInReport();
+		//System.out.println(getCheckedinReport());
+
 	}
 
 }
