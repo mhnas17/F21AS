@@ -20,43 +20,33 @@ public class CheckInDesk implements Runnable {
 	private BookingMap bm;
 	private LuggageMap lm;
 	private FlightMap fl;
-	//ArrayList<Thread> threads;
-	Map<String,Thread> threads = new ConcurrentHashMap<String,Thread>();
+	Map<String, Thread> threads = new ConcurrentHashMap<String, Thread>();
 
-	public CheckInDesk(WaitingQueue so, BookingMap bm, LuggageMap lm, FlightMap fl, Map<String,Thread> threads) {
+	public CheckInDesk(WaitingQueue so, BookingMap bm, LuggageMap lm, FlightMap fl, Map<String, Thread> threads) {
 		this.so = so;
 		this.bm = bm;
 		this.lm = lm;
 		this.fl = fl;
 		this.threads = threads;
 	}
-	
 
 	public void run() {
-		//for (Thread p : threads.values()) {
-			while (((!so.getDone() || so.getQueueSize() != 0) && !so.getTimerFinish())) {
-				try {
-					Thread.sleep(1500);
+		while (((!so.getDone() || so.getQueueSize() != 0) && !so.getTimerFinish())) {
+			try {
+				Thread.sleep(1500);
 
-				} catch (InterruptedException e) {
-					break;
-				}
-				try {
-					
-
-					Passenger number = so.get(bm, lm, fl);
-
-				} catch (NegativeNumbers e) {
-					e.printStackTrace();
-				}
-				
-
+			} catch (InterruptedException e) {
+				break;
 			}
-		//}
-	}
-	
-	public void stopThread(String x) {
-		this.threads.get(x).interrupt();
+			try {
+
+				Passenger number = so.get(bm, lm, fl);
+
+			} catch (NegativeNumbers e) {
+				e.printStackTrace();
+			}
+
+		}
 	}
 
 }

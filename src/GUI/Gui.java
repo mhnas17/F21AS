@@ -28,7 +28,6 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 	ArrayList<Thread> threads = new ArrayList<>();
 	Map<String, Thread> m = new ConcurrentHashMap<String, Thread>();
-	Map<Thread, CheckInDesk> c = new ConcurrentHashMap<Thread, CheckInDesk>();
 
 	private JTextArea waitingQueue;
 
@@ -96,18 +95,14 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		CheckInDesk s1 = new CheckInDesk(wait, p.getBookingMap(), p.getLuggageMap(), p.getFlightMap(), m);
 		Thread ci = new Thread(s1, Integer.toString(x));
 		ci.start();
-		// threads.add(ci);
 		m.put(Integer.toString(x), ci);
-		c.put(ci, s1);
 	}
 
 	public synchronized void removeCheckInDesk() {
 
-		for (Thread p : c.keySet()) {
+		for (Thread p : m.values()) {
 			if (p.getName().equals(Integer.toString(x))) {
-
-				c.get(p).stopThread(Integer.toString(x));
-				c.remove(p);
+				p.interrupt();
 				m.remove(Integer.toString(x));
 			}
 		}
