@@ -37,7 +37,7 @@ public class CheckedInReport implements Observer{
 	// The problem so far is that this is noitified whether we put someone in queue or we get. We only want it to work when someone is checke in
 	public synchronized void update(Observable o, Object arg) {
 		getCheckedInReport();
-		System.out.println(getCheckedInReport());
+		//System.out.println(getCheckedInReport());
 		
 	}
 

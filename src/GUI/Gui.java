@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import core.Manager;
 import core.PassengerList;
@@ -24,9 +25,11 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	// GUI components
 	private JButton addButton = new JButton("Add");
 	private JButton removeButton = new JButton("Remove");
-	
+
 	ArrayList<Thread> threads = new ArrayList<>();
-	
+	Map<String, Thread> m = new ConcurrentHashMap<String, Thread>();
+	Map<Thread, CheckInDesk> c = new ConcurrentHashMap<Thread, CheckInDesk>();
+
 	private JTextArea waitingQueue;
 
 	Container contentPane = new Container();
@@ -78,10 +81,10 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		waitingQueue = new JTextArea(15, 80);
 
 		southPanel.add(waitingQueue);
-		
+
 		southPanel.add(addButton);
 		addButton.addActionListener(this);
-		
+
 		southPanel.add(removeButton);
 		removeButton.addActionListener(this);
 
@@ -90,24 +93,24 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 	public synchronized void createCheckInDesk(int x) {
 
-		CheckInDesk s1 = new CheckInDesk(wait, p.getBookingMap(), p.getLuggageMap(), p.getFlightMap(),threads);
+		CheckInDesk s1 = new CheckInDesk(wait, p.getBookingMap(), p.getLuggageMap(), p.getFlightMap(), m);
 		Thread ci = new Thread(s1, Integer.toString(x));
 		ci.start();
-		threads.add(ci);
+		// threads.add(ci);
+		m.put(Integer.toString(x), ci);
+		c.put(ci, s1);
 	}
-	
+
 	public synchronized void removeCheckInDesk() {
-		
-		for (Thread p : threads) {
+
+		for (Thread p : c.keySet()) {
 			if (p.getName().equals(Integer.toString(x))) {
-				p.interrupt();
-				northPanel.remove(desks[x]);
-				}
+
+				c.get(p).stopThread(Integer.toString(x));
+				c.remove(p);
+				m.remove(Integer.toString(x));
+			}
 		}
-		
-		northPanel.revalidate();
-		northPanel.repaint();
-		x--;
 	}
 
 	private JPanel createCenterPanel() {
@@ -139,11 +142,13 @@ public class Gui extends JFrame implements Observer, ActionListener {
 			createCheckInDesk(x);
 		}
 		if (event.getSource() == removeButton) {
+			removeCheckInDesk();
+
 			northPanel.remove(desks[x]);
 			northPanel.revalidate();
 			northPanel.repaint();
-			removeCheckInDesk();
-			x--;		
+
+			x--;
 		}
 	}
 
@@ -166,8 +171,9 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		String report = wait.checkInReport();
 
 		for (int i = 0; i <= x; i++) {
-			if (Thread.currentThread().getName().equals(Integer.toString(i))) { 
-				 desks[i].setText(report);}
+			if (Thread.currentThread().getName().equals(Integer.toString(i))) {
+				desks[i].setText(report);
+			}
 		}
 	}
 }

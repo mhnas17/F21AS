@@ -1,6 +1,10 @@
 package CheckinThread;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+
+import com.sun.swing.internal.plaf.metal.resources.metal;
 
 import Exceptions.NegativeNumbers;
 import core.BookingMap;
@@ -16,35 +20,43 @@ public class CheckInDesk implements Runnable {
 	private BookingMap bm;
 	private LuggageMap lm;
 	private FlightMap fl;
-	ArrayList<Thread> threads = new ArrayList<>();
+	//ArrayList<Thread> threads;
+	Map<String,Thread> threads = new ConcurrentHashMap<String,Thread>();
 
-	public CheckInDesk(WaitingQueue so, BookingMap bm, LuggageMap lm, FlightMap fl, ArrayList<Thread> threads) {
+	public CheckInDesk(WaitingQueue so, BookingMap bm, LuggageMap lm, FlightMap fl, Map<String,Thread> threads) {
 		this.so = so;
 		this.bm = bm;
 		this.lm = lm;
 		this.fl = fl;
 		this.threads = threads;
 	}
+	
 
 	public void run() {
-		for (Thread p : threads) {
-			while (((!so.getDone() || so.getQueueSize() != 0) && !so.getTimerFinish()) && !p.isInterrupted()) {
-
+		//for (Thread p : threads.values()) {
+			while (((!so.getDone() || so.getQueueSize() != 0) && !so.getTimerFinish())) {
 				try {
+					Thread.sleep(1500);
+
+				} catch (InterruptedException e) {
+					break;
+				}
+				try {
+					
 
 					Passenger number = so.get(bm, lm, fl);
 
 				} catch (NegativeNumbers e) {
 					e.printStackTrace();
 				}
-				try {
-					Thread.sleep(1500);
-
-				} catch (InterruptedException e) {
-				}
+				
 
 			}
-		}
+		//}
+	}
+	
+	public void stopThread(String x) {
+		this.threads.get(x).interrupt();
 	}
 
 }

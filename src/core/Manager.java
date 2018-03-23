@@ -157,8 +157,8 @@ public class Manager {
 		Manager p = new Manager("flights.csv","bookings.csv");
 		WaitingQueue so = new WaitingQueue();
 		CheckedInReport r=new CheckedInReport(so);
-        Thread timer = new Thread (new Timer(20,so));
-		timer.start();
+        //Thread timer = new Thread (new Timer(20,so));
+		//timer.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
 		/*CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		
