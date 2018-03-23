@@ -4,6 +4,7 @@ import java.io.*;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
+import javax.swing.GroupLayout.SequentialGroup;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
@@ -23,8 +24,8 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	private int numCusts;
 	private PassengerList custList = new PassengerList();
 	// GUI components
-	private JButton addButton = new JButton("Add");
-	private JButton removeButton = new JButton("Remove");
+	private JButton addButton = new JButton("Open Check-in Desk");
+	private JButton removeButton = new JButton("Close Check-in Desk");
 
 	ArrayList<Thread> threads = new ArrayList<>();
 	Map<String, Thread> m = new ConcurrentHashMap<String, Thread>();
@@ -36,8 +37,9 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	int x = 0;
 
 	private JTextArea[] desks = new JTextArea[10];
+	private JTextArea[] flights = new JTextArea[3];
 
-	JPanel northPanel;
+	JPanel centerPanel;
 
 	/**
 	 * Create the frame with its panels.
@@ -52,11 +54,12 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		numCusts = custList.getSize();
 
 		// set up window title
-		setTitle("Auction");
+		setTitle("El Venizelos");
 		// ensure program ends when window closes
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setSize(100, 600);
 		setLocation(10, 20);
+		
 
 		// add button panel and result field to the content pane
 		Container contentPane = getContentPane();
@@ -70,12 +73,19 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 	private JPanel createNorthPanel() {
 		JPanel northPanel = new JPanel(new GridLayout(1, 3));
-
+		
+		for (int i = 0; i <3; i++) {
+			flights[i] = new JTextArea(5, 20);
+			flights[i].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+			flights[i].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.LIGHT_GRAY));
+			northPanel.add(flights[i]);
+		}
+		
 		return northPanel;
 	}
 
 	private JPanel createSouthPanel() {
-		JPanel southPanel = new JPanel(new GridLayout(2, 1));
+		JPanel southPanel = new JPanel();
 
 		waitingQueue = new JTextArea(15, 80);
 
@@ -109,16 +119,16 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	}
 
 	private JPanel createCenterPanel() {
-		northPanel = new JPanel();
+		centerPanel = new JPanel();
 
 		for (int i = 0; i <= x; i++) {
 			desks[i] = new JTextArea(5, 20);
 			desks[i].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 			desks[i].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.LIGHT_GRAY));
-			northPanel.add(desks[i]);
+			centerPanel.add(desks[i]);
 			createCheckInDesk(i);
 		}
-		return northPanel;
+		return centerPanel;
 	}
 
 	public void actionPerformed(ActionEvent event) {
@@ -130,18 +140,18 @@ public class Gui extends JFrame implements Observer, ActionListener {
 			desks[x].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
 			desks[x].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.LIGHT_GRAY));
 
-			northPanel.add(desks[x]);
-			northPanel.revalidate();
-			northPanel.repaint();
+			centerPanel.add(desks[x]);
+			centerPanel.revalidate();
+			centerPanel.repaint();
 
 			createCheckInDesk(x);
 		}
 		if (event.getSource() == removeButton) {
 			removeCheckInDesk();
 
-			northPanel.remove(desks[x]);
-			northPanel.revalidate();
-			northPanel.repaint();
+			centerPanel.remove(desks[x]);
+			centerPanel.revalidate();
+			centerPanel.repaint();
 
 			x--;
 		}

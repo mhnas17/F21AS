@@ -31,7 +31,7 @@ public class QueueReport implements Observer{
 	@Override
 	public synchronized void  update(Observable o, Object arg) {
 		setQueueReport(arg.toString()); 
-		System.out.println(getQueueReport());
+		//System.out.println(getQueueReport());
 		
 	}
 

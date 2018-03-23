@@ -13,7 +13,6 @@ import core.Passenger;
 public class EnteringQueue implements Runnable {
 	private WaitingQueue so;
 	private PassengerList array;
-	
 
 	public EnteringQueue(WaitingQueue so, PassengerList array) {
 		this.so = so;
@@ -22,15 +21,19 @@ public class EnteringQueue implements Runnable {
 
 	public void run() {
 		while (array.getSize() != 0) {
-			
+			try {
+				Thread.sleep(1000);
+
+			} catch (InterruptedException e) {
+				break;
+			}
+
 			Passenger p = array.getPassenger();
 			so.put(p);
 			array.removePassenger(p);
-			
+
 		}
 		so.setDone();
 	}
-	
-	
-	
+
 }
