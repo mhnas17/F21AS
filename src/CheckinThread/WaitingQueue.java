@@ -55,7 +55,7 @@ public class WaitingQueue extends Observable{
 		
 		if(n.getExcessfees()!=0) {
 			
-			reportGet += "\nA baggage fee of Â£"+ n.getExcessfees() + " is due.";
+			reportGet += "\nA baggage fee of £"+ n.getExcessfees() + " is due.";
 		}
 			
 		System.out.println(Thread.currentThread().getName()+" Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
