@@ -9,6 +9,7 @@ import core.LuggageMap;
 import core.Passenger;
 import core.FlightMap;
 
+
 public class WaitingQueue extends Observable{
 	
 	private boolean empty;
@@ -55,7 +56,7 @@ public class WaitingQueue extends Observable{
 		
 		if(n.getExcessfees()!=0) {
 			
-			reportGet += "\nA baggage fee of £"+ n.getExcessfees() + " is due.";
+			reportGet += "\nA baggage fee of ï¿½"+ n.getExcessfees() + " is due.";
 		}
 			
 		System.out.println(Thread.currentThread().getName()+" Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
@@ -127,10 +128,12 @@ public class WaitingQueue extends Observable{
 	
 	public synchronized void getReport(){
 		passenger = "There are currently " + queue.size() + " people waiting in the queue:\n\n";
-		passenger+= "|Flight code |"+ "Passenger Name |"+ "Bag Weight|"+ "Bag Dimension|\n";
+		//passenger+= "|Booking Reference |   |Passenger Initials|       |Bag Weight|       |Bag Dimension|\n";
+		
 		for (Passenger n : queue){
 			
-			passenger+= n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight() + "\n";
+			passenger+= n.getBookingreference() +"    "+((int) n.getWeight())+"kg" +"    "+((int) n.getHeight())+"x"+((int) n.getLength())+"x"+((int) n.getWidth())+"    "+n.getName().getFullName()+"\n";                       
+					
 		}
 		notifier(passenger);
 	} 
