@@ -22,7 +22,7 @@ public class QueueReport implements Observer{
 	}
 	// This is a String report containing the people left in the queue after the closure of the desks
 	public void setQueueReport(String x) {
-		report=r+ x+"dong";
+		report=r+ x;
 	}
 	public String getQueueReport(){
 		return report;
