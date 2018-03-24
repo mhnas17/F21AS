@@ -10,6 +10,10 @@ import java.util.Set;
 import name_plane.Plane;
 
 
+/**
+ * @author pphil
+ *
+ */
 public class LuggageMap {
 
 	/**
@@ -95,6 +99,14 @@ public class LuggageMap {
 			return 0;
 			}
 	}
+	/** Gives the percentage of used capacity of flight
+	 * @param b
+	 * @return int
+	 */
+	public int getPercentageCapacity(Flight b){
+		int percentage= ((checkindata.get(b.getFlightcode()).getAccum_numberofpassengers())/( b.getPlane().getMaxpassengers()))*100;
+		return percentage;
+	}
 
 	/**
 	 * @return the excess weight in each flight
@@ -155,6 +167,7 @@ public class LuggageMap {
 	    //System.out.println(report); printing the report on the console for testing the format of the table
 		return report;
 	}
+	
 	
 	/**Writes an output file of the info we want file
 	 * @param filename
