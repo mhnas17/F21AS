@@ -52,6 +52,7 @@ public class WaitingQueue extends Observable{
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_numberofpassengers(1);
 		
 		reportGet = n.getName().getFullName() +" is droping off 1 bag of " + n.getWeight()+"kg.";
+		
 		if(n.getExcessfees()!=0) {
 			
 			reportGet += "\nA baggage fee of £"+ n.getExcessfees() + " is due.";
@@ -125,8 +126,10 @@ public class WaitingQueue extends Observable{
 	}
 	
 	public synchronized void getReport(){
-		passenger="";
+		passenger = "There are currently " + queue.size() + " people waiting in the queue:\n\n";
+		passenger+= "|Flight code |"+ "Passenger Name |"+ "Bag Weight|"+ "Bag Dimension|\n";
 		for (Passenger n : queue){
+			
 			passenger+= n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight() + "\n";
 		}
 		notifier(passenger);
