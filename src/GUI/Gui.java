@@ -26,6 +26,7 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	// GUI components
 	private JButton addButton = new JButton("Open Check-in Desk");
 	private JButton removeButton = new JButton("Close Check-in Desk");
+	private JCheckBox auto = new JCheckBox("Auto");
 
 	ArrayList<Thread> threads = new ArrayList<>();
 	Map<String, Thread> m = new ConcurrentHashMap<String, Thread>();
@@ -35,6 +36,7 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	Container contentPane = new Container();
 
 	int x = 0;
+	
 
 	private JTextArea[] desks = new JTextArea[10];
 	private JTextArea[] flights = new JTextArea[3];
@@ -96,6 +98,9 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 		southPanel.add(removeButton);
 		removeButton.addActionListener(this);
+		
+		southPanel.add(auto);
+		auto.addActionListener(this);
 
 		return southPanel;
 	}
@@ -130,6 +135,34 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		}
 		return centerPanel;
 	}
+	
+	public void autoCheckIn() {
+		while(!wait.getTimerFinish()) {
+			System.out.println(desks.length);
+			if(wait.getQueueSize() +3 > desks.length) {
+				x++;
+
+				desks[x] = new JTextArea(5, 20);
+				desks[x].setFont(new Font(Font.MONOSPACED, Font.PLAIN, 12));
+				desks[x].setBorder(BorderFactory.createMatteBorder(4, 4, 4, 4, Color.LIGHT_GRAY));
+
+				centerPanel.add(desks[x]);
+				centerPanel.revalidate();
+				centerPanel.repaint();
+
+				createCheckInDesk(x);
+			}
+			else {
+				removeCheckInDesk();
+
+				centerPanel.remove(desks[x]);
+				centerPanel.revalidate();
+				centerPanel.repaint();
+
+				x--;
+			}
+		}
+	}
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == addButton) {
@@ -154,6 +187,15 @@ public class Gui extends JFrame implements Observer, ActionListener {
 			centerPanel.repaint();
 
 			x--;
+		}
+		if (auto.isSelected()) {
+			removeButton.setEnabled(false);
+			addButton.setEnabled(false);
+			autoCheckIn();
+		}
+		if (!auto.isSelected()) {
+			removeButton.setEnabled(true);
+			addButton.setEnabled(true);
 		}
 	}
 
