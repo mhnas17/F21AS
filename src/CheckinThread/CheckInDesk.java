@@ -39,8 +39,12 @@ public class CheckInDesk implements Runnable {
 				break;
 			}
 			try {
-
+				if (!so.getTimerFinish()) {
 				Passenger number = so.get(bm, lm, fl);
+				}
+				else {
+					break;
+				}
 
 			} catch (NegativeNumbers e) {
 				e.printStackTrace();

@@ -22,7 +22,7 @@ public class EnteringQueue implements Runnable {
 	public void run() {
 		while (array.getSize() != 0) {
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(500);
 
 			} catch (InterruptedException e) {
 				break;
