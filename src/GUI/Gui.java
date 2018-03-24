@@ -219,7 +219,8 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 		for (int i = 0; i <= x; i++) {
 			if (Thread.currentThread().getName().equals(Integer.toString(i))) {
-				desks[i].setText(report);
+				int deskno = Integer.parseInt(Thread.currentThread().getName())+1;
+				desks[i].setText("Desk"+ deskno +": \n" + report);
 			}
 		}
 	}
