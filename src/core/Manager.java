@@ -51,11 +51,11 @@ public class Manager {
 					// define plane type
 					String planeType = data[3];
 					if (planeType.equals("A1")) {
-						p1 = new Plane(10, 200, 3.75);
+						p1 = new Plane(30, 200, 3.75);
 					} else if (planeType.equals("A2")) {
-						p1 = new Plane(10, 200, 3.75);
+						p1 = new Plane(40, 200, 3.75);
 					} else {
-						p1 = new Plane(13, 260, 4.875);
+						p1 = new Plane(50, 260, 4.875);
 					}
 					// create flight object
 					Flight s = new Flight(data[0], data[1], data[2], p1);
