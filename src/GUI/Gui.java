@@ -216,8 +216,12 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 		waitingQueue.setText(args.toString());
 		String report = wait.checkInReport();
-		String flightReport=p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("A1320"));
-		flights[0].setText(flightReport);
+		String flightReport1=p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("A1320"));
+		String flightReport2=p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("B2430"));
+		String flightReport3=p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("C3340"));
+		flights[0].setText(flightReport1);
+		flights[1].setText(flightReport2);
+		flights[2].setText(flightReport3);
 		for (int i = 0; i <= x; i++) {
 			if (Thread.currentThread().getName().equals(Integer.toString(i))) {
 				int deskno = Integer.parseInt(Thread.currentThread().getName())+1;
