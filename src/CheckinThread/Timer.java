@@ -1,11 +1,19 @@
 package CheckinThread;
 
+import core.Flight;
+
 public class Timer implements Runnable{
 
 	private int time;
-	private WaitingQueue so;
+	private Flight so;
 	
-	public Timer(int time,WaitingQueue so ) {
+	/*public Timer(int time,WaitingQueue so ) {
+		
+		this.time= time;
+		this.so = so;
+	}*/
+	
+	public Timer(int time,Flight so ) {
 		
 		this.time= time;
 		this.so = so;
@@ -29,7 +37,7 @@ public void runTimer() {
          }
        }
 	so.setTimerFinished();
-	System.out.println("Flights have departed no more check ins");
+	System.out.println("Flight has departed no more check ins");
   }
 
 }

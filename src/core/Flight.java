@@ -9,6 +9,7 @@ public class Flight {
 	private String flightdestination;
 	private String carrier;
 	private Plane plane;
+	private boolean timer = false;
 		
 	
 	/**
@@ -134,7 +135,14 @@ public class Flight {
 		return ch >= 'A' && ch <= 'Z';
 	}
 	
+	public void setTimerFinished() {
+		timer =true;
+		
+	}
 	
+	public boolean getTimerFinish() {
+		return timer;
+	}
 
 			
 }

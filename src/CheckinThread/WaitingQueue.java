@@ -147,4 +147,13 @@ public class WaitingQueue extends Observable{
 	public synchronized String checkInReport() {
 		return reportGet;
 	}
+	
+	public synchronized Passenger getNextPassenger() {
+		return queue.element();
+	}
+	
+	public synchronized void removeFirst() {
+		queue.remove();
+		getReport();
+	}
 }

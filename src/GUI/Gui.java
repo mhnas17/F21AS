@@ -132,7 +132,6 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 	public void actionPerformed(ActionEvent event) {
 		if (event.getSource() == addButton) {
-			// Thread.this.
 			x++;
 
 			desks[x] = new JTextArea(5, 20);
@@ -157,8 +156,11 @@ public class Gui extends JFrame implements Observer, ActionListener {
 
 		if (x == 3) {
 			addButton.setEnabled(false);
+			removeButton.setEnabled(true);
 		} else if (x == -1) {
 			removeButton.setEnabled(false);
+			addButton.setEnabled(true);
+			
 		}
 	}
 

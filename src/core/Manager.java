@@ -159,8 +159,12 @@ public class Manager {
 		WaitingQueue so = new WaitingQueue();
 		QueueReport q=new QueueReport(so);
 		CheckedInReport r=new CheckedInReport(so);
-        Thread timer = new Thread (new Timer(20,so));
-		timer.start();
+        Thread timer1 = new Thread (new Timer(20,p.getFlightMap().getFlight("A1320")));
+		timer1.start();
+		Thread timer2 = new Thread (new Timer(30,p.getFlightMap().getFlight("B2430")));
+		timer2.start();
+		Thread timer3 = new Thread (new Timer(8,p.getFlightMap().getFlight("C3340")));
+		timer3.start();
 		Thread eq = new Thread(new EnteringQueue(so,p.getPassengerList()));
 		eq.start();
 		/*CheckInDesk s1 = new CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap());		

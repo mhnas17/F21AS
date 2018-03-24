@@ -28,24 +28,36 @@ public class CheckInDesk implements Runnable {
 		this.lm = lm;
 		this.fl = fl;
 		this.threads = threads;
+		
 	}
 
 	public void run() {
-		while (((!so.getDone() || so.getQueueSize() != 0) && !so.getTimerFinish())) {
+		while (((!so.getDone() || so.getQueueSize() != 0) )) {
 			try {
 				Thread.sleep(1500);
 
 			} catch (InterruptedException e) {
 				break;
 			}
+			
 			try {
-				if (!so.getTimerFinish()) {
-				Passenger number = so.get(bm, lm, fl);
+				if (!fl.getFlight("A1320").getTimerFinish() && so.getQueueSize()!=0 && bm.getValue(so.getNextPassenger().getBookingreference() + so.getNextPassenger().getName().getLastName()).getFlightcode().equals("A1320")) {
+					Passenger number = so.get(bm, lm, fl);
+				}
+				else if  (!fl.getFlight("B2430").getTimerFinish() && so.getQueueSize()!=0 && bm.getValue(so.getNextPassenger().getBookingreference() + so.getNextPassenger().getName().getLastName()).getFlightcode().equals("B2430")) {
+					Passenger number = so.get(bm, lm, fl);
+				}
+				else if (!fl.getFlight("C3340").getTimerFinish() && so.getQueueSize()!=0 && bm.getValue(so.getNextPassenger().getBookingreference() + so.getNextPassenger().getName().getLastName()).getFlightcode().equals("C3340")) {
+					Passenger number = so.get(bm, lm, fl);
+				}
+				else if((fl.getFlight("A1320").getTimerFinish()||fl.getFlight("B2430").getTimerFinish()||fl.getFlight("C3340").getTimerFinish()) && so.getQueueSize()!=0) {
+					System.out.println("out"+so.getNextPassenger().getName().getFullName());
+					so.removeFirst();
+					
 				}
 				else {
 					break;
 				}
-
 			} catch (NegativeNumbers e) {
 				e.printStackTrace();
 			}
