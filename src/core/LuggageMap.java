@@ -3,6 +3,7 @@ package core;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -15,6 +16,7 @@ import name_plane.Plane;
  *
  */
 public class LuggageMap {
+	private static DecimalFormat twoDecimals = new DecimalFormat(".00");
 
 	/**
 	 * instantiate a hashmap. 
@@ -103,8 +105,8 @@ public class LuggageMap {
 	 * @param b
 	 * @return int
 	 */
-	public int getPercentageCapacity(Flight b){
-		int percentage= ((checkindata.get(b.getFlightcode()).getAccum_numberofpassengers())/( b.getPlane().getMaxpassengers()))*100;
+	public double getPercentageVolumeCapacity(Flight b){
+		double percentage= ((checkindata.get(b.getFlightcode()).getAccum_volume())/( b.getPlane().getMaxvolume())*100);
 		return percentage;
 	}
 
@@ -131,7 +133,11 @@ public class LuggageMap {
 		}
 		else return 0;
 	}
-		
+	public String FlightStatus(Flight b) {
+		String status="Flight "+b.getFlightcode()+" "+b.getFlightdestination()+"\n"+ String.format("%d",checkindata.get(b.getFlightcode()).getAccum_numberofpassengers())+" passengers checked in out of "+String.format("%d", b.getPlane().getMaxpassengers())+"\n"+"Hold is "+String.format("%s",twoDecimals.format(getPercentageVolumeCapacity(b)))+"% full";
+	return status;
+	}
+	
 	/**
 	 * @param k
 	 * @return the luggage object that corresponds to the key provided in the parameter
