@@ -1,11 +1,14 @@
 package CheckinThread;
 
+import ReportLogs.CheckedInReport;
+import ReportLogs.QueueReport;
 import core.Flight;
+import core.Manager;
 
 public class Timer implements Runnable{
 
 	private int time;
-	private Flight so;
+	private Flight fl;
 	
 	/*public Timer(int time,WaitingQueue so ) {
 		
@@ -13,10 +16,11 @@ public class Timer implements Runnable{
 		this.so = so;
 	}*/
 	
-	public Timer(int time,Flight so ) {
+	public Timer(int time,Flight fl) {
 		
 		this.time= time;
-		this.so = so;
+		this.fl = fl;
+		
 	}
 	
 	@Override
@@ -36,12 +40,10 @@ public void runTimer() {
              
          }
        }
-	so.setTimerFinished();
+	fl.setTimerFinished();
+	
 	System.out.println("Flight has departed no more check ins");
   }
 
 }
 	
-	
-	
-

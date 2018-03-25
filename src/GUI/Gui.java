@@ -12,6 +12,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import core.Manager;
 import core.PassengerList;
 import CheckinThread.*;
+import ReportLogs.CheckedInReport;
+import ReportLogs.Log;
+import ReportLogs.QueueReport;
 
 /**
  * Simple GUI for Auction application
@@ -21,6 +24,9 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	private Manager p;
 
 	private WaitingQueue wait;
+	QueueReport q;
+	CheckedInReport r;
+	
 	private int numCusts;
 	private PassengerList custList = new PassengerList();
 	// GUI components
@@ -44,9 +50,11 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	/**
 	 * Create the frame with its panels.
 	 */
-	public Gui(WaitingQueue wait, Manager p) {
+	public Gui(WaitingQueue wait, Manager p,QueueReport q,CheckedInReport r) {
 		this.wait = wait;
 		this.p = p;
+		this.q=q;
+		this.r=r;
 
 		wait.addObserver(this);
 
@@ -57,6 +65,26 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		setTitle("El Venizelos");
 		// ensure program ends when window closes
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addWindowListener(new WindowAdapter() {
+			/* When user closes the window he gets a warning window. If user clicks yes
+			 * the program clears the current accommodation list, reads the updated one,
+			 * writes it on a .txt file and terminates.
+        	 * 
+        	 */
+		    @Override
+		    public void windowClosing(WindowEvent we)
+		    { 
+		        String ObjButtons[] = {"Yes","No"};
+		        int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit?","Check-in",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+		        if(PromptResult==JOptionPane.YES_OPTION)
+		        	
+		        {
+		        	Log.log(p.getFinalReport(r,q,p.getLuggageMap(),p.getFlightMap(),wait));
+		        	
+		        	System.exit(0);
+		        }
+		    }
+		});
 		setSize(100, 600);
 		setLocation(10, 20);
 
@@ -184,14 +212,31 @@ public class Gui extends JFrame implements Observer, ActionListener {
 		String flightReport1 = p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("A1320"));
 		String flightReport2 = p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("B2430"));
 		String flightReport3 = p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("C3340"));
-		flights[0].setText(flightReport1);
-		flights[1].setText(flightReport2);
+		if(p.getFlightMap().getFlight("A1320").getTimerFinish()) {
+		flights[0].setText(flightReport1+"\n DEPARTED");
+		flights[0].setForeground(Color.red);
+		
+		}
+		else {flights[0].setText(flightReport1);}
+		if(p.getFlightMap().getFlight("B2430").getTimerFinish()) {
+		flights[1].setText(flightReport2+"\n DEPARTED");
+		flights[1].setForeground(Color.red);
+		}
+		else {flights[1].setText(flightReport2);}
+		if(p.getFlightMap().getFlight("C3340").getTimerFinish()) {
+		flights[2].setText(flightReport3+"\n DEPARTED");
+		flights[2].setForeground(Color.red);
+		}
+		else {
 		flights[2].setText(flightReport3);
+		}
 		for (int i = 0; i <= x; i++) {
 			if (Thread.currentThread().getName().equals(Integer.toString(i))) {
 				int deskno = Integer.parseInt(Thread.currentThread().getName()) + 1;
 				desks[i].setText("Desk " + deskno + ": \n" + report);
 			}
 		}
+		
+		
 	}
 }

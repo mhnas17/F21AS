@@ -11,7 +11,7 @@ import core.PassengerList;
 public class QueueReport implements Observer{
 	private Manager p;
 	private WaitingQueue wait;
-	private String r = "Passengers that Showed up but didn't check in\n" + "=======================================\n";
+	
 	private String report="";
 	//private PassengerList custList = new PassengerList();
 	
@@ -22,11 +22,12 @@ public class QueueReport implements Observer{
 	}
 	// This is a String report containing the people left in the queue after the closure of the desks
 	public void setQueueReport(String x) {
-		report=r+ x;
+		report=x;
 	}
 	public String getQueueReport(){
 		return report;
 		}
+	
 	
 	@Override
 	public synchronized void  update(Observable o, Object arg) {
