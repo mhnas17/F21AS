@@ -5,7 +5,7 @@ import ReportLogs.QueueReport;
 import core.Flight;
 import core.Manager;
 
-public class Timer implements Runnable{
+public class Timer implements Runnable {
 
 	private int time;
 	private Flight fl;
@@ -39,7 +39,7 @@ public void runTimer() {
          catch (InterruptedException e) {
              
          }
-       }
+    	}
 	fl.setTimerFinished();
 	
 	System.out.println("Flight has departed no more check ins");

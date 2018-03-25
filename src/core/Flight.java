@@ -1,9 +1,10 @@
 package core;
 import Exceptions.InvalidFlightCode;
 import name_plane.Plane;
+import java.util.Observable;
 
 
-public class Flight {
+public class Flight extends Observable{
 
 	private String flightcode;
 	private String flightdestination;
@@ -26,7 +27,6 @@ public class Flight {
 		setFlightdestination(flightdestination);
 		setCarrier(carrier);
 		setPlane(plane);
-
 	}
 
 	/**
@@ -135,15 +135,20 @@ public class Flight {
 		return ch >= 'A' && ch <= 'Z';
 	}
 	
-	public void setTimerFinished() {
+	public synchronized void setTimerFinished() {
 		timer =true;
-		
+		notifier("Flight has departed!");
 	}
 	
 	public boolean getTimerFinish() {
 		return timer;
 	}
-
+	
+	public synchronized void notifier(String x) {		
+		setChanged();
+		notifyObservers(x);
+    	clearChanged();    	
+	}
 			
 }
 	

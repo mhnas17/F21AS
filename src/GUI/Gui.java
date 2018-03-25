@@ -10,6 +10,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import core.Manager;
+import core.Flight;
 import core.PassengerList;
 import CheckinThread.*;
 import ReportLogs.CheckedInReport;
@@ -205,17 +206,17 @@ public class Gui extends JFrame implements Observer, ActionListener {
 	// synchronized blocks access to sync methods of the same object until finished
 	// possibly investigate SwingWorker
 	// for each customer, store bidlist into correct panel
-	public synchronized void update(Observable o, Object args) {
-
+	public synchronized void update(Observable o, Object args) {		
+		
 		waitingQueue.setText(args.toString());
+				
 		String report = wait.checkInReport();
 		String flightReport1 = p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("A1320"));
 		String flightReport2 = p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("B2430"));
 		String flightReport3 = p.getLuggageMap().FlightStatus(p.getFlightMap().getFlight("C3340"));
 		if(p.getFlightMap().getFlight("A1320").getTimerFinish()) {
 		flights[0].setText(flightReport1+"\n DEPARTED");
-		flights[0].setForeground(Color.red);
-		
+		flights[0].setForeground(Color.red);		
 		}
 		else {flights[0].setText(flightReport1);}
 		if(p.getFlightMap().getFlight("B2430").getTimerFinish()) {

@@ -21,17 +21,9 @@ public class EnteringQueue implements Runnable {
 
 	public void run() {
 		while (array.getSize() != 0) {
-			/*try {
-				Thread.sleep(1);
-
-			} catch (InterruptedException e) {
-				break;
-			}*/
-
 			Passenger p = array.getPassenger();
 			so.put(p);
 			array.removePassenger(p);
-
 		}
 		so.setDone();
 	}

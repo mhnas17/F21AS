@@ -65,10 +65,10 @@ public class WaitingQueue extends Observable{
 				
 		if(queue.isEmpty()){
 			empty = true;
+			flag=true;
 		}
 				
 		notifyAll();
-		flag=true;
 		getReport();	
 		return n;
 	}
@@ -98,13 +98,11 @@ public class WaitingQueue extends Observable{
 	
 		
 		notifyAll();
-		getReport();
-		flag=false;
-		
+		getReport();		
 	}
 	
 	public boolean returnFlag() {
-		return flag;
+		return empty;
 	}
 
 	public void setDone() {
@@ -143,7 +141,9 @@ public class WaitingQueue extends Observable{
 		setChanged();
 		notifyObservers(x);
     	clearChanged();    	
-	}	
+	}
+	
+	
 	
 	public synchronized String checkInReport() {
 		return reportGet;

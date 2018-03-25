@@ -163,17 +163,22 @@ public class Manager {
 	public static void main(String[] args) throws Exception {
 
 		Manager p = new Manager("flights.csv", "bookings.csv");
+		
 		WaitingQueue so = new WaitingQueue();
 		QueueReport q = new QueueReport(so);
 		CheckedInReport r = new CheckedInReport(so);
-		Thread timer1 = new Thread(new Timer(20, p.getFlightMap().getFlight("A1320")));
+		Thread timer1 = new Thread(new Timer(5, p.getFlightMap().getFlight("A1320")));
 		timer1.start();
 		Thread timer2 = new Thread(new Timer(15, p.getFlightMap().getFlight("B2430")));
 		timer2.start();
-		Thread timer3 = new Thread(new Timer(8, p.getFlightMap().getFlight("C3340")));
+		Thread timer3 = new Thread(new Timer(20, p.getFlightMap().getFlight("C3340")));
 		timer3.start();
 		Thread eq = new Thread(new EnteringQueue(so, p.getPassengerList()));
 		eq.start();
+		Gui gui = new Gui(so, p,q,r);
+		p.getFlightMap().getFlight("A1320").addObserver(gui);
+		p.getFlightMap().getFlight("B2430").addObserver(gui);
+		p.getFlightMap().getFlight("C3340").addObserver(gui);
 		/*
 		 * CheckInDesk s1 = new
 		 * CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap()); Thread
@@ -181,7 +186,7 @@ public class Manager {
 		 * CheckInDesk(so,p.getBookingMap(),p.getLuggageMap(),p.getFlightMap()); Thread
 		 * cii = new Thread(s2,"2"); cii.start();
 		 */
-		p.showGui(so, p,q,r);
+		//p.showGui(so, p,q,r);
 
 	}
 
