@@ -52,11 +52,11 @@ public class WaitingQueue extends Observable{
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_excessfees(n.getExcessfees());
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_numberofpassengers(1);
 		
-		reportGet = n.getName().getFullName() +" is droping off 1 bag of " + n.getWeight()+"kg.";
+		reportGet = n.getName().getFullName() +" is droping off 1 bag of " + ((int) n.getWeight())+"kg.";
 		
 		if(n.getExcessfees()!=0) {
 			
-			reportGet += "\nA baggage fee of $"+ n.getExcessfees() + " is due.";
+			reportGet += "\nA baggage fee of $"+ ((int)n.getExcessfees()) + " is due.";
 		}
 			
 		System.out.println(Thread.currentThread().getName()+" Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
