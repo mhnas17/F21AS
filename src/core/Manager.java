@@ -168,7 +168,7 @@ public class Manager {
 		CheckedInReport r = new CheckedInReport(so);
 		Thread timer1 = new Thread(new Timer(20, p.getFlightMap().getFlight("A1320")));
 		timer1.start();
-		Thread timer2 = new Thread(new Timer(30, p.getFlightMap().getFlight("B2430")));
+		Thread timer2 = new Thread(new Timer(15, p.getFlightMap().getFlight("B2430")));
 		timer2.start();
 		Thread timer3 = new Thread(new Timer(8, p.getFlightMap().getFlight("C3340")));
 		timer3.start();

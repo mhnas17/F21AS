@@ -52,14 +52,16 @@ public class CheckInDesk implements Runnable {
 				else if (!fl.getFlight("C3340").getTimerFinish() && so.getQueueSize()!=0 && bm.getValue(so.getNextPassenger().getBookingreference() + so.getNextPassenger().getName().getLastName()).getFlightcode().equals("C3340")) {
 					Passenger number = so.get(bm, lm, fl);
 				}
-				else if(fl.getFlight("A1320").getTimerFinish()&&fl.getFlight("B2430").getTimerFinish()&&fl.getFlight("C3340").getTimerFinish()){
-					break;
-				}
+				
 				else if((fl.getFlight("A1320").getTimerFinish()||fl.getFlight("B2430").getTimerFinish()||fl.getFlight("C3340").getTimerFinish()) && so.getQueueSize()!=0) {
 					System.out.println("out"+so.getNextPassenger().getName().getFullName());
 					//deniedBoardingReport+=so.getNextPassenger().getName().getFullName()+"\n";
 					so.removeFirst();
-				}// anything under here needs to be rechecked
+				}
+				else if(fl.getFlight("A1320").getTimerFinish()&&fl.getFlight("B2430").getTimerFinish()&&fl.getFlight("C3340").getTimerFinish()){
+					break;
+				}
+				// anything under here needs to be rechecked
 				else {
 					break;
 				}
