@@ -1,5 +1,7 @@
 package objects;
 import exceptions.InvalidFlightCode;
+import queue.WaitingQueue;
+
 import java.util.Observable;
 
 
@@ -135,9 +137,9 @@ public class Flight extends Observable{
 		return ch >= 'A' && ch <= 'Z';
 	}
 	
-	public synchronized void setTimerFinished() {
+	public synchronized void setTimerFinished(WaitingQueue wait) {
 		timer =true;
-		notifier("Flight has departed!");
+		notifier(wait.getQueueReport());
 	}
 	
 	public boolean getTimerFinish() {

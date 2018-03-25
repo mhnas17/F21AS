@@ -139,6 +139,10 @@ public class WaitingQueue extends Observable{
 		notifier(passenger);
 	}
 	
+	public synchronized String getQueueReport() {
+		return passenger;
+	}
+	
 	public synchronized void notifier(String x) {		
 		setChanged();
 		notifyObservers(x);

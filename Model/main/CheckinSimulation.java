@@ -17,11 +17,11 @@ public class CheckinSimulation {
 		WaitingQueue so = new WaitingQueue();
 		QueueReport q = new QueueReport(so);
 		CheckedInReport r = new CheckedInReport(so);
-		Thread timer1 = new Thread(new Timer(6, p.getFlightMap().getFlight("A1320")));
+		Thread timer1 = new Thread(new Timer(15, p.getFlightMap().getFlight("A1320"),so));
 		timer1.start();
-		Thread timer2 = new Thread(new Timer(12, p.getFlightMap().getFlight("B2430")));
+		Thread timer2 = new Thread(new Timer(17, p.getFlightMap().getFlight("B2430"),so));
 		timer2.start();
-		Thread timer3 = new Thread(new Timer(18, p.getFlightMap().getFlight("C3340")));
+		Thread timer3 = new Thread(new Timer(20, p.getFlightMap().getFlight("C3340"),so));
 		timer3.start();
 		Thread eq = new Thread(new EnteringQueue(so, p.getPassengerList()));
 		eq.start();		

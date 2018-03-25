@@ -2,6 +2,7 @@ package threads;
 
 import objects.Flight;
 import objects.Manager;
+import queue.WaitingQueue;
 import report_logs.CheckedInReport;
 import report_logs.QueueReport;
 
@@ -9,6 +10,7 @@ public class Timer implements Runnable{
 
 	private int time;
 	private Flight fl;
+	private WaitingQueue wait;
 	
 	/*public Timer(int time,WaitingQueue so ) {
 		
@@ -16,10 +18,11 @@ public class Timer implements Runnable{
 		this.so = so;
 	}*/
 	
-	public Timer(int time,Flight fl) {
+	public Timer(int time,Flight fl,WaitingQueue wait) {
 		
 		this.time= time;
 		this.fl = fl;
+		this.wait = wait;
 		
 	}
 	
@@ -40,7 +43,7 @@ public void runTimer() {
              
          }
        }
-	fl.setTimerFinished();
+	fl.setTimerFinished(wait);
 	
 	System.out.println("Flight has departed no more check ins");
   }
