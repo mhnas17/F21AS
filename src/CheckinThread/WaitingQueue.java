@@ -54,11 +54,11 @@ public class WaitingQueue extends Observable{
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_excessfees(n.getExcessfees());
 		lug.getValue(book.getValue(n.getBookingreference() + n.getName().getLastName()).getFlightcode()).setAccum_numberofpassengers(1);
 		
-		reportGet = n.getName().getFullName() +" is droping off 1 bag of " + n.getWeight()+"kg.";
+		reportGet = n.getName().getFullName() +" is droping off 1 bag of " + ((int) n.getWeight())+"kg.";
 		
 		if(n.getExcessfees()!=0) {
 			
-			reportGet += "\nA baggage fee of $"+ n.getExcessfees() + " is due.";
+			reportGet += "\nA baggage fee of $"+ ((int)n.getExcessfees()) + " is due.";
 		}
 			
 		System.out.println(Thread.currentThread().getName()+" Got: " + n.getName().getFullName() +" " +  n.getWeight()+ " " + n.getWidth() + " " + n.getLength() + " " + n.getHeight());
@@ -130,15 +130,14 @@ public class WaitingQueue extends Observable{
 	
 	public synchronized void getReport(){
 		passenger = "There are currently " + queue.size() + " people waiting in the queue:\n\n";
-		//passenger+= "|Booking Reference |   |Passenger Initials|       |Bag Weight|       |Bag Dimension|\n";
-		
+		passenger+= "|Booking Reference |     |Bag Weight in kg|     |Bag Dimension in cm|     |   Full Passenger Name|\n";
+	
 		for (Passenger n : queue){
-			
-			passenger+= n.getBookingreference() +"    "+((int) n.getWeight())+"kg" +"    "+((int) n.getHeight())+"x"+((int) n.getLength())+"x"+((int) n.getWidth())+"    "+n.getName().getFullName()+"\n";                       
+			passenger+= String.format("%15s\t\t%-10s\t   %-15s\t            %s\n", n.getBookingreference(), ((int) n.getWeight()),((int) n.getHeight())+"x"+((int) n.getLength())+"x"+((int) n.getWidth()),n.getName().getFullName());
 					
 		}
 		notifier(passenger);
-	} 
+	}
 	
 	public synchronized void notifier(String x) {		
 		setChanged();
