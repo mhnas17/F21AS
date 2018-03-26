@@ -7,9 +7,9 @@ public class PlaneType {
 	private double maxvolume;
 
 	/**
-	 * @param maxpassengers
-	 * @param maxweight
-	 * @param maxvolume
+	 * @param maxpassengers the maximum number of passengers in a plane
+	 * @param maxweight the maximum weight a plane can carry
+	 * @param maxvolume the maximum volume capacity of the plane
 	 */
 	public PlaneType(int maxpassengers, double maxweight, double maxvolume) {
 		setMaxpassengers(maxpassengers);
@@ -18,13 +18,14 @@ public class PlaneType {
 	}
 	
 	/**
-	 * @return
+	 * @return maximum number of passengers
 	 */
 	public int getMaxpassengers() {
 		return maxpassengers;
 	}
 
 	/**
+	 * sets the maximum number of passengers
 	 * @param maxpassengers
 	 */
 	public void setMaxpassengers(int maxpassengers) {
@@ -32,6 +33,7 @@ public class PlaneType {
 	}
 
 	/**
+	 * get the maximum weight the plane coud carry
 	 * @return
 	 */
 	public double getMaxweight() {
@@ -39,20 +41,22 @@ public class PlaneType {
 	}
 
 	/**
-	 * @param maxweight
+	 * set maximum weight the plane could carry
+	 * @param maxweight 
 	 */
 	public void setMaxweight(double maxweight) {
 		this.maxweight = maxweight;
 	}
 
 	/**
-	 * @return
+	 * @return the maximum volume capacity of the plane
 	 */
 	public double getMaxvolume() {
 		return maxvolume;
 	}
 
 	/**
+	 * sets the volume capacity of the plane
 	 * @param maxvolume
 	 */
 	public void setMaxvolume(double maxvolume) {

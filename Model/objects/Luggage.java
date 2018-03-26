@@ -91,8 +91,5 @@ public class Luggage {
 	public void setAccum_numberofpassengers(int accum_numberofpassengers) {
 		this.accum_numberofpassengers += accum_numberofpassengers;
 	}
-	
-	
-
 
 }

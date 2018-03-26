@@ -10,12 +10,9 @@ public class PassengerName {
 	/**
 	 * constructor to create object with first, middle and last name
 	 * 
-	 * @param fName
-	 *            first name
-	 * @param mName
-	 *            middle name
-	 * @param lName
-	 *            last name
+	 * @param fName first name
+	 * @param mName middle name
+	 * @param lName last name
 	 */
 	public PassengerName(String fName, String mName, String lName) {
 		setFirstName(fName);
@@ -26,8 +23,7 @@ public class PassengerName {
 	/**
 	 * constructor to generate name from full name
 	 * 
-	 * @param fullName
-	 *            full name
+	 * @param fullName full name
 	 */
 	public PassengerName(String fullName) {
 		try {
@@ -61,8 +57,7 @@ public class PassengerName {
 	/**
 	 * sets the first name
 	 * 
-	 * @param firstName
-	 *            the new first name
+	 * @param firstName the new first name
 	 */
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
@@ -80,8 +75,7 @@ public class PassengerName {
 	/**
 	 * sets the middle name
 	 * 
-	 * @param middleName
-	 *            the new middle name
+	 * @param middleName the new middle name
 	 */
 	public void setMiddleName(String middleName) {
 		this.middleName = middleName;
@@ -99,8 +93,7 @@ public class PassengerName {
 	/**
 	 * sets the last name
 	 * 
-	 * @param lastName
-	 *            the new last name
+	 * @param lastName the new last name
 	 */
 	public void setLastName(String lastName) {
 		this.lastName = lastName;

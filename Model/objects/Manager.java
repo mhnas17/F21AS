@@ -29,7 +29,7 @@ public class Manager {
 	private Passenger passenger;
 
 	/**
-	 * Reads the two csv files and creates the hashmaps and starts the Gui
+	 * Reads the two csv files and creates the hash maps and starts the Gui
 	 * 
 	 * @throws Exception
 	 */
@@ -41,6 +41,8 @@ public class Manager {
 		lists = new BookingLists();
 		passengerlist = new PassengerList();
 
+		// read csv file that contains flight details, creates flight objects and stores
+		// them in the flight map
 		BufferedReader buff = null;
 		String data[] = new String[4];
 		try {
@@ -87,6 +89,9 @@ public class Manager {
 				// don't do anything
 			}
 		}
+
+		// read csv file that contains bookings and passenger details, fills the maps
+		// and lists that contain passenger details
 		try {
 
 			buff = new BufferedReader(new FileReader(booking));
@@ -131,34 +136,59 @@ public class Manager {
 
 	}
 
+	/**
+	 * @return return the the passenger array list
+	 */
 	public PassengerList getPassengerList() {
 
 		return passengerlist;
 	}
 
+	/**
+	 * @return the map that contains passenger objects
+	 */
 	public BookingMap getBookingMap() {
 		return book;
 	}
 
+	/**
+	 * @return the map that contains objects which store the accumulated volume,
+	 *         passengers number and weight for each flight
+	 */
 	public LuggageMap getLuggageMap() {
 		return lug;
 	}
 
+	/**
+	 * @return map that contains flight objects
+	 */
 	public FlightMap getFlightMap() {
 		return entries;
 	}
 
+	/**
+	 * return report for the accumulated details for each flight
+	 */
 	public void report() {
 		lug.getReport(entries);
 	}
 
+	/**
+	 * creates a total report of checked in passengers , passengers that missed
+	 * their flights and status of flight
+	 * 
+	 * @param r CheckedInReport
+	 * @param q QueueReport
+	 * @param lug LuggageMap
+	 * @param p FlightMap
+	 * @param so WaitingQueue
+	 * @return
+	 */
 	public String getFinalReport(CheckedInReport r, QueueReport q, LuggageMap lug, FlightMap p, WaitingQueue so) {
 		String finalReport = r.getCheckedinReport() + "\n" + q.getQueueReport() + "\n" + lug.getReport(p) + "\n"
 				+ so.removeReport();
 		System.out.println(finalReport);
 		return finalReport;
 	}
-
-	
 
 }

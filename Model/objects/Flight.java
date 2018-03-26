@@ -137,22 +137,30 @@ public class Flight extends Observable{
 		return ch >= 'A' && ch <= 'Z';
 	}
 	
+	/**
+	 * @param wait waiting queue notifies that the flight has departed
+	 */
 	public synchronized void setTimerFinished(WaitingQueue wait) {
-		timer =true;
+		timer = true;
 		notifier(wait.getQueueReport());
 	}
-	
+
+	/**
+	 * @return true if the flight has departed
+	 */
 	public boolean getTimerFinish() {
 		return timer;
 	}
-	
-	public synchronized void notifier(String x) {		
+
+	/**
+	 * @param check in report to update gui
+	 */
+	public synchronized void notifier(String x) {
 		setChanged();
 		notifyObservers(x);
-    	clearChanged();    	
+		clearChanged();
 	}
 
-			
 }
 	
 
