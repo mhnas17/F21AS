@@ -1,35 +1,26 @@
 package threads;
 
-import java.util.Observable;
-
 import data_structure_lists.PassengerList;
 import objects.Passenger;
 import queue.WaitingQueue;
-
-/**
- * 
- */
 
 public class EnteringQueue implements Runnable {
 	private WaitingQueue so;
 	private PassengerList array;
 
+	/**
+	 * constructor 
+	 * @param so waiting queue
+	 * @param array array list of passengers
+	 */
 	public EnteringQueue(WaitingQueue so, PassengerList array) {
 		this.so = so;
 		this.array = array;
 	}
 
-	/* (non-Javadoc)
-	 * run method of the entring the queue	
-	 *  */
+	// Queue feeder. It is adding passenger to the queue
 	public void run() {
 		while (array.getSize() != 0) {
-			/*try {
-				Thread.sleep(1);
-
-			} catch (InterruptedException e) {
-				break;
-			}*/
 
 			Passenger p = array.getPassenger();
 			so.put(p);

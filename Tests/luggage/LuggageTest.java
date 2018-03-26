@@ -7,9 +7,6 @@ import org.junit.Test;
 
 import exceptions.NegativeNumbers;
 import objects.Luggage;
-import objects.Passenger;
-
-
 
 public class LuggageTest {
 	
@@ -92,30 +89,5 @@ private Luggage c1;
 		 c1.setAccum_numberofpassengers(12);
 		 assertEquals(expected2, c1.getAccum_numberofpassengers(),0.00000001);
 	}
-	// Test for the computation of the volume method
-	@Test
-	public void testComVolume() {
-		double expected1 = 0.048125;
-	    //double actual1 = c1.computeVolume(25,35,55);
-	    //assertEquals(expected1, actual1,0.00000001);
-	}
-	// Test for the computation of the excess method for all the different cases
-	@Test
-	public void testcomputeExcessFees() {
-		double expected1 = 0;
-		double expected2 = 0;
-		double expected3 = 25;
-		double expected4 = 50;
-		double expected5 = 60;
-	    //double actual1 = c1.compExceessFees(10);
-	    //double actual2 = c1.compExceessFees(20);
-	    //double actual3 = c1.compExceessFees(25);
-	    //double actual4 = c1.compExceessFees(30);
-	    //double actual5 = c1.compExceessFees(31);
-	    //assertEquals(expected1, actual1,0.00000001);
-	    //assertEquals(expected2, actual2,0.00000001);
-	    //assertEquals(expected3, actual3,0.00000001);
-	    //assertEquals(expected4, actual4,0.00000001);
-	    //assertEquals(expected5, actual5,0.00000001);
-	}
+	
 }
