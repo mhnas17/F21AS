@@ -7,7 +7,7 @@ import objects.Passenger;
 import queue.WaitingQueue;
 
 /**
- * Third attempt at solving the producer/consumer problem.
+ * 
  */
 
 public class EnteringQueue implements Runnable {
@@ -19,6 +19,9 @@ public class EnteringQueue implements Runnable {
 		this.array = array;
 	}
 
+	/* (non-Javadoc)
+	 * run method of the entring the queue	
+	 *  */
 	public void run() {
 		while (array.getSize() != 0) {
 			/*try {

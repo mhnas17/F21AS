@@ -15,7 +15,7 @@ import queue.WaitingQueue;
 import report_logs.QueueReport;
 
 /**
- * Third attempt at solving the producer/consumer problem.
+ * 
  */
 public class CheckInDesk implements Runnable {
 	private WaitingQueue so;
@@ -33,11 +33,13 @@ public class CheckInDesk implements Runnable {
 		this.threads = threads;
 		
 	}
-	
+	/* (non-Javadoc)
+	 * run method of the check in thread	
+	 *  */
 	public void run() {
 		while (((!so.getDone() || so.getQueueSize() != 0) )) {
 			try {
-				Thread.sleep(1500);
+				Thread.sleep(1600);
 
 			} catch (InterruptedException e) {
 				break;

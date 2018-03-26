@@ -63,7 +63,7 @@ public class Gui extends JFrame implements Observer {
 		numCusts = custList.getSize();
 
 		// set up window title
-		setTitle("El Venizelos");
+		setTitle("HWU Airport");
 		// ensure program ends when window closes
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 		addWindowListener(new WindowAdapter() {
@@ -76,7 +76,7 @@ public class Gui extends JFrame implements Observer {
 		    public void windowClosing(WindowEvent we)
 		    { 
 		        String ObjButtons[] = {"Yes","No"};
-		        int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit?","Check-in",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
+		        int PromptResult = JOptionPane.showOptionDialog(null,"Are you sure you want to exit?\n A log file will be written of the events after exit.","Check-in",JOptionPane.DEFAULT_OPTION,JOptionPane.WARNING_MESSAGE,null,ObjButtons,ObjButtons[1]);
 		        if(PromptResult==JOptionPane.YES_OPTION)
 		        	
 		        {
@@ -252,7 +252,18 @@ public class Gui extends JFrame implements Observer {
 				desks[i].setText("Desk " + deskno + ": \n" + report);
 			}
 		}
-		
-		
+		if (wait.getQueueSize()==0) {
+			for (int i = 0; i <= x; i++) {
+			
+					desks[i].setText("Available for check-in");
+				}
+		}
+		if (p.getFlightMap().getFlight("C3340").getTimerFinish()&&p.getFlightMap().getFlight("B2430").getTimerFinish()&&p.getFlightMap().getFlight("A1320").getTimerFinish()) {
+			for (int i = 0; i <= x; i++) {
+			
+					desks[i].setText("All flights departed.\n Check-in closed");
+					desks[i].setForeground(Color.red);
+				}
+		}
 	}
 }
