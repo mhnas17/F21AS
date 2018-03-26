@@ -13,48 +13,52 @@ import queue.WaitingQueue;
 public class CheckinControler {
 
 	private Gui gui;
-	
+
+	/**
+	 * Constructor of the controller
+	 * 
+	 * @param gui
+	 */
 	public CheckinControler(Gui gui) {
 		this.gui = gui;
 		gui.addAddButtonListener(new addButtonControler());
 		gui.addRemoveButtonListener(new removeButtonControler());
-		
+
 	}
-	
+
 	class addButtonControler implements ActionListener {
-		
-		public void actionPerformed(ActionEvent e) {					
+		/**
+		 * The action listener for the add check in desk button in the gui
+		 *
+		 */
+		public void actionPerformed(ActionEvent e) {
 			gui.addButton();
-			if (gui.getNumberofDesks()==3) {
+			if (gui.getNumberofDesks() == 3) {
 				gui.disableAddButton();
 				gui.enableRemoveButton();
-			}else if(gui.getNumberofDesks()==1) {
+			} else if (gui.getNumberofDesks() == 1) {
 				gui.enableRemoveButton();
 			}
-			
-			}
+
 		}
-	
+	}
+
 	class removeButtonControler implements ActionListener {
-		
+		/**
+		 * The action listener for the remove check in desk button in the gui
+		 *
+		 */
 		public void actionPerformed(ActionEvent e) {
-			
-			
+
 			gui.removeButton();
-			if (gui.getNumberofDesks()==0) {
+			if (gui.getNumberofDesks() == 0) {
 				gui.enableAddButton();
 				gui.disableRemoveButton();
-			}else if(gui.getNumberofDesks()==2) {
+			} else if (gui.getNumberofDesks() == 2) {
 				gui.enableAddButton();
-			}	
-		
-		
-			
 			}
-		}
-		
-	}
-	
-	
-	
 
+		}
+	}
+
+}
