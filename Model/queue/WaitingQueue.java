@@ -45,6 +45,7 @@ public class WaitingQueue extends Observable{
 				e.printStackTrace();
 			}
 		}
+		
 		Passenger n = queue.pollFirst();		
 		
 		book.getValue(n.getBookingreference() + n.getName().getLastName()).setCheckedin(true);
@@ -103,28 +104,28 @@ public class WaitingQueue extends Observable{
 		
 	}
 	
-	public boolean returnFlag() {
+	public synchronized boolean returnFlag() {
 		return flag;
 	}
 
-	public void setDone() {
+	public synchronized void setDone() {
 		done = true;
 	}
 
-	public boolean getDone() {
+	public synchronized boolean getDone() {
 		return done;
 	}
 	
-	public void setTimerFinished() {
+	public synchronized void setTimerFinished() {
 		timer =true;
 		
 	}
 	
-	public boolean getTimerFinish() {
+	public synchronized boolean getTimerFinish() {
 		return timer;
 	}
 	
-	public int getQueueSize(){
+	public synchronized int getQueueSize(){
 		return queue.size();
 	}
 	
@@ -160,13 +161,13 @@ public class WaitingQueue extends Observable{
 	public synchronized void removeFirst() {
 		
 		reportRemove += queue.element().getName().getFullName()+"\n";
-			
-		queue.remove();
 		
+		queue.remove();
 		getReport();
+		
 	}
 	
-	public String removeReport() {
+	public synchronized String removeReport() {
 		return reportRemove;
 	}
 }

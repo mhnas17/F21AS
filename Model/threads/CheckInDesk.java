@@ -38,6 +38,7 @@ public class CheckInDesk implements Runnable {
 	 *  */
 	public void run() {
 		while (((!so.getDone() || so.getQueueSize() != 0) )) {
+			
 			try {
 				Thread.sleep(1600);
 
@@ -57,7 +58,7 @@ public class CheckInDesk implements Runnable {
 				}
 				
 				else if((fl.getFlight("A1320").getTimerFinish()||fl.getFlight("B2430").getTimerFinish()||fl.getFlight("C3340").getTimerFinish()) && so.getQueueSize()!=0) {
-					System.out.println("out"+so.getNextPassenger().getName().getFullName());
+					System.out.println("out "+so.getNextPassenger().getName().getFullName());
 					//deniedBoardingReport+=so.getNextPassenger().getName().getFullName()+"\n";
 					so.removeFirst();
 				}
@@ -71,7 +72,7 @@ public class CheckInDesk implements Runnable {
 			} catch (NegativeNumbers e) {
 				e.printStackTrace();
 			}
-
+			
 		}
 	}
 	

@@ -27,6 +27,7 @@ public class Gui extends JFrame implements Observer {
 	private WaitingQueue wait;
 	QueueReport q;
 	CheckedInReport r;
+	private String [] temp = new String [4];
 	
 	private int numCusts;
 	private PassengerList custList = new PassengerList();
@@ -247,9 +248,10 @@ public class Gui extends JFrame implements Observer {
 		flights[2].setText(flightReport3);
 		}
 		for (int i = 0; i <= x; i++) {
-			if (Thread.currentThread().getName().equals(Integer.toString(i))) {
+			if (Thread.currentThread().getName().equals(Integer.toString(i))&&report!=temp[0]&&report!=temp[1]&&report!=temp[2]&&report!=temp[3]) {
 				int deskno = Integer.parseInt(Thread.currentThread().getName()) + 1;
 				desks[i].setText("Desk " + deskno + ": \n" + report);
+				temp[i] =report;
 			}
 		}
 		if (wait.getQueueSize()==0) {
